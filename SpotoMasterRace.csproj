@@ -65,17 +65,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class_SpotoMasterRace.cs" />
-    <Compile Include="Form_SpotoMasterRace.cs">
+    <Compile Include="ClassSpotoMasterRace.cs" />
+    <Compile Include="StructSet.cs" />
+    <Compile Include="FormSpotoMasterRace.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_SpotoMasterRace.Designer.cs">
-      <DependentUpon>Form_SpotoMasterRace.cs</DependentUpon>
+    <Compile Include="FormSpotoMasterRace.Designer.cs">
+      <DependentUpon>FormSpotoMasterRace.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form_SpotoMasterRace.resx">
-      <DependentUpon>Form_SpotoMasterRace.cs</DependentUpon>
+    <EmbeddedResource Include="FormSpotoMasterRace.resx">
+      <DependentUpon>FormSpotoMasterRace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
