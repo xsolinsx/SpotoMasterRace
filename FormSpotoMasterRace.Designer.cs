@@ -133,7 +133,7 @@
             this.tabControl_SpotoMasterRace.Location = new System.Drawing.Point(12, 12);
             this.tabControl_SpotoMasterRace.Name = "tabControl_SpotoMasterRace";
             this.tabControl_SpotoMasterRace.SelectedIndex = 0;
-            this.tabControl_SpotoMasterRace.Size = new System.Drawing.Size(811, 658);
+            this.tabControl_SpotoMasterRace.Size = new System.Drawing.Size(760, 537);
             this.tabControl_SpotoMasterRace.TabIndex = 0;
             this.tabControl_SpotoMasterRace.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl_SpotoMasterRace_Selecting);
             // 
@@ -151,7 +151,7 @@
             this.tabPage_SetTheory.Location = new System.Drawing.Point(4, 22);
             this.tabPage_SetTheory.Name = "tabPage_SetTheory";
             this.tabPage_SetTheory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_SetTheory.Size = new System.Drawing.Size(803, 632);
+            this.tabPage_SetTheory.Size = new System.Drawing.Size(752, 511);
             this.tabPage_SetTheory.TabIndex = 2;
             this.tabPage_SetTheory.Text = "Set Theory";
             this.tabPage_SetTheory.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             // 
             this.label_Cardinality.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Cardinality.AutoSize = true;
-            this.label_Cardinality.Location = new System.Drawing.Point(712, 9);
+            this.label_Cardinality.Location = new System.Drawing.Point(611, 9);
             this.label_Cardinality.Name = "label_Cardinality";
             this.label_Cardinality.Size = new System.Drawing.Size(61, 13);
             this.label_Cardinality.TabIndex = 15;
@@ -183,9 +183,9 @@
             this.groupBox_SetOperations.Controls.Add(this.listBox_Set2);
             this.groupBox_SetOperations.Controls.Add(this.button_SetIntersection);
             this.groupBox_SetOperations.Controls.Add(this.button_SetUnion);
-            this.groupBox_SetOperations.Location = new System.Drawing.Point(623, 281);
+            this.groupBox_SetOperations.Location = new System.Drawing.Point(572, 32);
             this.groupBox_SetOperations.Name = "groupBox_SetOperations";
-            this.groupBox_SetOperations.Size = new System.Drawing.Size(174, 345);
+            this.groupBox_SetOperations.Size = new System.Drawing.Size(174, 472);
             this.groupBox_SetOperations.TabIndex = 14;
             this.groupBox_SetOperations.TabStop = false;
             this.groupBox_SetOperations.Text = "Set Operations";
@@ -195,7 +195,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button1.Location = new System.Drawing.Point(45, 299);
+            this.button1.Location = new System.Drawing.Point(45, 426);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(84, 35);
             this.button1.TabIndex = 19;
@@ -228,7 +228,6 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
@@ -241,7 +240,7 @@
             this.button_SetSymmetricDifference.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetSymmetricDifference.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetSymmetricDifference.Location = new System.Drawing.Point(45, 258);
+            this.button_SetSymmetricDifference.Location = new System.Drawing.Point(45, 385);
             this.button_SetSymmetricDifference.Name = "button_SetSymmetricDifference";
             this.button_SetSymmetricDifference.Size = new System.Drawing.Size(84, 35);
             this.button_SetSymmetricDifference.TabIndex = 17;
@@ -293,7 +292,7 @@
             this.button_SetDifference.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetDifference.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetDifference.Location = new System.Drawing.Point(45, 229);
+            this.button_SetDifference.Location = new System.Drawing.Point(45, 356);
             this.button_SetDifference.Name = "button_SetDifference";
             this.button_SetDifference.Size = new System.Drawing.Size(84, 23);
             this.button_SetDifference.TabIndex = 16;
@@ -309,7 +308,7 @@
             this.listBox_Set1.Location = new System.Drawing.Point(6, 32);
             this.listBox_Set1.Name = "listBox_Set1";
             this.listBox_Set1.ScrollAlwaysVisible = true;
-            this.listBox_Set1.Size = new System.Drawing.Size(33, 303);
+            this.listBox_Set1.Size = new System.Drawing.Size(33, 420);
             this.listBox_Set1.TabIndex = 15;
             // 
             // listBox_Set2
@@ -321,7 +320,7 @@
             this.listBox_Set2.Name = "listBox_Set2";
             this.listBox_Set2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.listBox_Set2.ScrollAlwaysVisible = true;
-            this.listBox_Set2.Size = new System.Drawing.Size(33, 303);
+            this.listBox_Set2.Size = new System.Drawing.Size(33, 420);
             this.listBox_Set2.TabIndex = 15;
             // 
             // button_SetIntersection
@@ -329,7 +328,7 @@
             this.button_SetIntersection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetIntersection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetIntersection.Location = new System.Drawing.Point(45, 188);
+            this.button_SetIntersection.Location = new System.Drawing.Point(45, 315);
             this.button_SetIntersection.Name = "button_SetIntersection";
             this.button_SetIntersection.Size = new System.Drawing.Size(84, 35);
             this.button_SetIntersection.TabIndex = 12;
@@ -342,7 +341,7 @@
             this.button_SetUnion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetUnion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetUnion.Location = new System.Drawing.Point(45, 159);
+            this.button_SetUnion.Location = new System.Drawing.Point(45, 286);
             this.button_SetUnion.Name = "button_SetUnion";
             this.button_SetUnion.Size = new System.Drawing.Size(84, 23);
             this.button_SetUnion.TabIndex = 11;
@@ -357,7 +356,7 @@
             this.textBox_TempSet.Location = new System.Drawing.Point(6, 6);
             this.textBox_TempSet.Name = "textBox_TempSet";
             this.textBox_TempSet.ReadOnly = true;
-            this.textBox_TempSet.Size = new System.Drawing.Size(700, 20);
+            this.textBox_TempSet.Size = new System.Drawing.Size(599, 20);
             this.textBox_TempSet.TabIndex = 10;
             this.textBox_TempSet.Text = "Temp Set";
             this.textBox_TempSet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -367,7 +366,7 @@
             this.label_Elements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Elements.AutoSize = true;
-            this.label_Elements.Location = new System.Drawing.Point(432, 30);
+            this.label_Elements.Location = new System.Drawing.Point(381, 30);
             this.label_Elements.Name = "label_Elements";
             this.label_Elements.Size = new System.Drawing.Size(50, 13);
             this.label_Elements.TabIndex = 9;
@@ -384,11 +383,12 @@
             // 
             // groupBox_SetTheoryElements
             // 
-            this.groupBox_SetTheoryElements.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_SetTheoryElements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_SetTheoryElements.Controls.Add(this.button_DeleteElement);
             this.groupBox_SetTheoryElements.Controls.Add(this.textBox_Element);
             this.groupBox_SetTheoryElements.Controls.Add(this.button_InsertElement);
-            this.groupBox_SetTheoryElements.Location = new System.Drawing.Point(623, 33);
+            this.groupBox_SetTheoryElements.Location = new System.Drawing.Point(392, 429);
             this.groupBox_SetTheoryElements.Name = "groupBox_SetTheoryElements";
             this.groupBox_SetTheoryElements.Size = new System.Drawing.Size(174, 74);
             this.groupBox_SetTheoryElements.TabIndex = 7;
@@ -397,6 +397,7 @@
             // 
             // button_DeleteElement
             // 
+            this.button_DeleteElement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_DeleteElement.Location = new System.Drawing.Point(90, 45);
             this.button_DeleteElement.Name = "button_DeleteElement";
             this.button_DeleteElement.Size = new System.Drawing.Size(78, 23);
@@ -430,24 +431,24 @@
             // 
             // groupBox_SetTheorySets
             // 
-            this.groupBox_SetTheorySets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_SetTheorySets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox_SetTheorySets.Controls.Add(this.button_CopySet);
             this.groupBox_SetTheorySets.Controls.Add(this.button_DeleteSet);
             this.groupBox_SetTheorySets.Controls.Add(this.button_AddSet);
             this.groupBox_SetTheorySets.Controls.Add(this.checkBox_FlagOrdered);
             this.groupBox_SetTheorySets.Controls.Add(this.button_NewSet);
-            this.groupBox_SetTheorySets.Location = new System.Drawing.Point(623, 113);
+            this.groupBox_SetTheorySets.Location = new System.Drawing.Point(6, 429);
             this.groupBox_SetTheorySets.Name = "groupBox_SetTheorySets";
-            this.groupBox_SetTheorySets.Size = new System.Drawing.Size(174, 162);
+            this.groupBox_SetTheorySets.Size = new System.Drawing.Size(380, 76);
             this.groupBox_SetTheorySets.TabIndex = 2;
             this.groupBox_SetTheorySets.TabStop = false;
             this.groupBox_SetTheorySets.Text = "Set Management";
             // 
             // button_CopySet
             // 
-            this.button_CopySet.Location = new System.Drawing.Point(6, 106);
+            this.button_CopySet.Location = new System.Drawing.Point(132, 48);
             this.button_CopySet.Name = "button_CopySet";
-            this.button_CopySet.Size = new System.Drawing.Size(162, 23);
+            this.button_CopySet.Size = new System.Drawing.Size(120, 23);
             this.button_CopySet.TabIndex = 14;
             this.button_CopySet.Text = "Copy Selected Set";
             this.button_CopySet.UseVisualStyleBackColor = true;
@@ -455,9 +456,9 @@
             // 
             // button_DeleteSet
             // 
-            this.button_DeleteSet.Location = new System.Drawing.Point(6, 77);
+            this.button_DeleteSet.Location = new System.Drawing.Point(132, 19);
             this.button_DeleteSet.Name = "button_DeleteSet";
-            this.button_DeleteSet.Size = new System.Drawing.Size(162, 23);
+            this.button_DeleteSet.Size = new System.Drawing.Size(120, 23);
             this.button_DeleteSet.TabIndex = 13;
             this.button_DeleteSet.Text = "Delete Selected Set";
             this.button_DeleteSet.UseVisualStyleBackColor = true;
@@ -467,7 +468,7 @@
             // 
             this.button_AddSet.Location = new System.Drawing.Point(6, 48);
             this.button_AddSet.Name = "button_AddSet";
-            this.button_AddSet.Size = new System.Drawing.Size(162, 23);
+            this.button_AddSet.Size = new System.Drawing.Size(120, 23);
             this.button_AddSet.TabIndex = 12;
             this.button_AddSet.Text = "Add Set";
             this.button_AddSet.UseVisualStyleBackColor = true;
@@ -476,9 +477,9 @@
             // checkBox_FlagOrdered
             // 
             this.checkBox_FlagOrdered.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_FlagOrdered.Location = new System.Drawing.Point(6, 135);
+            this.checkBox_FlagOrdered.Location = new System.Drawing.Point(258, 22);
             this.checkBox_FlagOrdered.Name = "checkBox_FlagOrdered";
-            this.checkBox_FlagOrdered.Size = new System.Drawing.Size(162, 21);
+            this.checkBox_FlagOrdered.Size = new System.Drawing.Size(116, 49);
             this.checkBox_FlagOrdered.TabIndex = 10;
             this.checkBox_FlagOrdered.Text = "Ordered?";
             this.checkBox_FlagOrdered.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -489,7 +490,7 @@
             // 
             this.button_NewSet.Location = new System.Drawing.Point(6, 19);
             this.button_NewSet.Name = "button_NewSet";
-            this.button_NewSet.Size = new System.Drawing.Size(162, 23);
+            this.button_NewSet.Size = new System.Drawing.Size(120, 23);
             this.button_NewSet.TabIndex = 11;
             this.button_NewSet.Text = "New Set";
             this.button_NewSet.UseVisualStyleBackColor = true;
@@ -500,9 +501,9 @@
             this.listBox_Elements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox_Elements.FormattingEnabled = true;
-            this.listBox_Elements.Location = new System.Drawing.Point(435, 46);
+            this.listBox_Elements.Location = new System.Drawing.Point(384, 46);
             this.listBox_Elements.Name = "listBox_Elements";
-            this.listBox_Elements.Size = new System.Drawing.Size(182, 563);
+            this.listBox_Elements.Size = new System.Drawing.Size(182, 381);
             this.listBox_Elements.TabIndex = 1;
             this.listBox_Elements.SelectedIndexChanged += new System.EventHandler(this.listBox_Elements_SelectedIndexChanged);
             this.listBox_Elements.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_Elements_KeyDown);
@@ -515,7 +516,7 @@
             this.listBox_Sets.FormattingEnabled = true;
             this.listBox_Sets.Location = new System.Drawing.Point(6, 46);
             this.listBox_Sets.Name = "listBox_Sets";
-            this.listBox_Sets.Size = new System.Drawing.Size(423, 563);
+            this.listBox_Sets.Size = new System.Drawing.Size(372, 381);
             this.listBox_Sets.TabIndex = 0;
             this.listBox_Sets.SelectedIndexChanged += new System.EventHandler(this.listBox_Sets_SelectedIndexChanged);
             this.listBox_Sets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_Sets_KeyDown);
@@ -531,7 +532,7 @@
             this.tabPage_DescriptiveStatistics.Location = new System.Drawing.Point(4, 22);
             this.tabPage_DescriptiveStatistics.Name = "tabPage_DescriptiveStatistics";
             this.tabPage_DescriptiveStatistics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_DescriptiveStatistics.Size = new System.Drawing.Size(803, 632);
+            this.tabPage_DescriptiveStatistics.Size = new System.Drawing.Size(752, 511);
             this.tabPage_DescriptiveStatistics.TabIndex = 0;
             this.tabPage_DescriptiveStatistics.Text = "Descriptive Statistics";
             this.tabPage_DescriptiveStatistics.UseVisualStyleBackColor = true;
@@ -556,7 +557,7 @@
             this.groupBox_IntervalRatio.Controls.Add(this.button_MedianInterval);
             this.groupBox_IntervalRatio.Controls.Add(this.button_StandardDeviationPopulation);
             this.groupBox_IntervalRatio.Controls.Add(this.button_Mean);
-            this.groupBox_IntervalRatio.Location = new System.Drawing.Point(539, 32);
+            this.groupBox_IntervalRatio.Location = new System.Drawing.Point(488, 32);
             this.groupBox_IntervalRatio.Name = "groupBox_IntervalRatio";
             this.groupBox_IntervalRatio.Size = new System.Drawing.Size(258, 298);
             this.groupBox_IntervalRatio.TabIndex = 6;
@@ -747,7 +748,7 @@
             this.groupBox_Ordinal.Controls.Add(this.button_CumulativeFrequencies);
             this.groupBox_Ordinal.Controls.Add(this.button_ProportionsPercentage);
             this.groupBox_Ordinal.Controls.Add(this.button_Proportions);
-            this.groupBox_Ordinal.Location = new System.Drawing.Point(230, 32);
+            this.groupBox_Ordinal.Location = new System.Drawing.Point(205, 32);
             this.groupBox_Ordinal.Name = "groupBox_Ordinal";
             this.groupBox_Ordinal.Size = new System.Drawing.Size(174, 298);
             this.groupBox_Ordinal.TabIndex = 4;
@@ -882,7 +883,7 @@
             // button_CheckDataDescriptiveStatistics
             // 
             this.button_CheckDataDescriptiveStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_CheckDataDescriptiveStatistics.Location = new System.Drawing.Point(719, 6);
+            this.button_CheckDataDescriptiveStatistics.Location = new System.Drawing.Point(668, 6);
             this.button_CheckDataDescriptiveStatistics.Name = "button_CheckDataDescriptiveStatistics";
             this.button_CheckDataDescriptiveStatistics.Size = new System.Drawing.Size(78, 20);
             this.button_CheckDataDescriptiveStatistics.TabIndex = 3;
@@ -898,7 +899,7 @@
             this.richTextBox_ResultsDescriptiveStatistics.Location = new System.Drawing.Point(6, 336);
             this.richTextBox_ResultsDescriptiveStatistics.Name = "richTextBox_ResultsDescriptiveStatistics";
             this.richTextBox_ResultsDescriptiveStatistics.ReadOnly = true;
-            this.richTextBox_ResultsDescriptiveStatistics.Size = new System.Drawing.Size(791, 290);
+            this.richTextBox_ResultsDescriptiveStatistics.Size = new System.Drawing.Size(740, 169);
             this.richTextBox_ResultsDescriptiveStatistics.TabIndex = 2;
             this.richTextBox_ResultsDescriptiveStatistics.Text = "";
             // 
@@ -940,7 +941,7 @@
             this.textBox_CollectionDescriptiveStatistics.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_CollectionDescriptiveStatistics.Location = new System.Drawing.Point(6, 6);
             this.textBox_CollectionDescriptiveStatistics.Name = "textBox_CollectionDescriptiveStatistics";
-            this.textBox_CollectionDescriptiveStatistics.Size = new System.Drawing.Size(707, 20);
+            this.textBox_CollectionDescriptiveStatistics.Size = new System.Drawing.Size(656, 20);
             this.textBox_CollectionDescriptiveStatistics.TabIndex = 1;
             this.textBox_CollectionDescriptiveStatistics.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
     "Liam";
@@ -960,7 +961,7 @@
             this.tabPage_Combinatorics.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Combinatorics.Name = "tabPage_Combinatorics";
             this.tabPage_Combinatorics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Combinatorics.Size = new System.Drawing.Size(803, 632);
+            this.tabPage_Combinatorics.Size = new System.Drawing.Size(752, 511);
             this.tabPage_Combinatorics.TabIndex = 1;
             this.tabPage_Combinatorics.Text = "Combinatorics";
             this.tabPage_Combinatorics.UseVisualStyleBackColor = true;
@@ -982,14 +983,14 @@
             this.richTextBox_ResultsCombinatorics.Location = new System.Drawing.Point(6, 103);
             this.richTextBox_ResultsCombinatorics.Name = "richTextBox_ResultsCombinatorics";
             this.richTextBox_ResultsCombinatorics.ReadOnly = true;
-            this.richTextBox_ResultsCombinatorics.Size = new System.Drawing.Size(791, 523);
+            this.richTextBox_ResultsCombinatorics.Size = new System.Drawing.Size(740, 402);
             this.richTextBox_ResultsCombinatorics.TabIndex = 27;
             this.richTextBox_ResultsCombinatorics.Text = "";
             // 
             // button_CombinationsWithRepetitions
             // 
             this.button_CombinationsWithRepetitions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_CombinationsWithRepetitions.Location = new System.Drawing.Point(697, 6);
+            this.button_CombinationsWithRepetitions.Location = new System.Drawing.Point(646, 6);
             this.button_CombinationsWithRepetitions.Name = "button_CombinationsWithRepetitions";
             this.button_CombinationsWithRepetitions.Size = new System.Drawing.Size(100, 35);
             this.button_CombinationsWithRepetitions.TabIndex = 25;
@@ -1000,7 +1001,7 @@
             // button_CombinationsWithoutRepetitions
             // 
             this.button_CombinationsWithoutRepetitions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_CombinationsWithoutRepetitions.Location = new System.Drawing.Point(697, 47);
+            this.button_CombinationsWithoutRepetitions.Location = new System.Drawing.Point(646, 47);
             this.button_CombinationsWithoutRepetitions.Name = "button_CombinationsWithoutRepetitions";
             this.button_CombinationsWithoutRepetitions.Size = new System.Drawing.Size(100, 50);
             this.button_CombinationsWithoutRepetitions.TabIndex = 24;
@@ -1011,7 +1012,7 @@
             // button_PermutationsWithRepetitions
             // 
             this.button_PermutationsWithRepetitions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_PermutationsWithRepetitions.Location = new System.Drawing.Point(591, 6);
+            this.button_PermutationsWithRepetitions.Location = new System.Drawing.Point(540, 6);
             this.button_PermutationsWithRepetitions.Name = "button_PermutationsWithRepetitions";
             this.button_PermutationsWithRepetitions.Size = new System.Drawing.Size(100, 35);
             this.button_PermutationsWithRepetitions.TabIndex = 22;
@@ -1022,7 +1023,7 @@
             // button_PermutationsWithoutRepetitions
             // 
             this.button_PermutationsWithoutRepetitions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_PermutationsWithoutRepetitions.Location = new System.Drawing.Point(591, 47);
+            this.button_PermutationsWithoutRepetitions.Location = new System.Drawing.Point(540, 47);
             this.button_PermutationsWithoutRepetitions.Name = "button_PermutationsWithoutRepetitions";
             this.button_PermutationsWithoutRepetitions.Size = new System.Drawing.Size(100, 50);
             this.button_PermutationsWithoutRepetitions.TabIndex = 21;
@@ -1091,9 +1092,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 682);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tabControl_SpotoMasterRace);
-            this.MinimumSize = new System.Drawing.Size(851, 721);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "FormSpotoMasterRace";
             this.Text = "SpotoMasterRace";
             this.tabControl_SpotoMasterRace.ResumeLayout(false);

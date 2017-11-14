@@ -2,9 +2,9 @@
 
 internal struct StructSet
 {
-    char name;
-    BindingList<string> elements;
-    bool ordered;
+    private char name;
+    private BindingList<string> elements;
+    private bool ordered;
 
     public StructSet(char _name)
     {

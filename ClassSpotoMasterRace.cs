@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace SpotoMasterRace
 {
@@ -131,26 +130,26 @@ namespace SpotoMasterRace
         static internal BindingList<string> Difference(StructSet set1, StructSet set2)
         {
             StructSet intersection = new StructSet('A', Intersection(set1, set2), set1.Ordered);
-            StructSet tmp = new StructSet(set1);
+            BindingList<string> tempElements = new BindingList<string>();
+            foreach (string item in set1.Elements)
+                tempElements.Add(item);
             foreach (string item in intersection.Elements)
-            {
-                while (tmp.Elements.IndexOf(item) >= 0)
-                    tmp.Elements.Remove(item);
-            }
+                while (tempElements.IndexOf(item) >= 0)
+                    tempElements.Remove(item);
             if (!set1.Ordered)
-                tmp.Elements = ClassSpotoMasterRace.RemoveDuplicates(tmp.Elements);
-            return tmp.Elements;
+                tempElements = ClassSpotoMasterRace.RemoveDuplicates(tempElements);
+            return tempElements;
         }
 
         static internal BindingList<string> CartesianProduct(StructSet set1, StructSet set2)
         {
-            StructSet tmp = new StructSet('A');
+            BindingList<string> tempElements = new BindingList<string>();
             foreach (string item1 in set1.Elements)
                 foreach (string item2 in set2.Elements)
-                    tmp.Elements.Add("(" + item1 + "," + item2 + ")");
+                    tempElements.Add("(" + item1 + "," + item2 + ")");
             if (!set1.Ordered)
-                tmp.Elements = ClassSpotoMasterRace.RemoveDuplicates(tmp.Elements);
-            return tmp.Elements;
+                tempElements = ClassSpotoMasterRace.RemoveDuplicates(tempElements);
+            return tempElements;
         }
 
         #endregion Set Theory

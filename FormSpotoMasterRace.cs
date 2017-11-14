@@ -21,13 +21,21 @@ namespace SpotoMasterRace
         public FormSpotoMasterRace()
         {
             InitializeComponent();
+
+            #region Number representation
+
+            //making things work like:
+            //numbers are expressed with this notation: X.Y where X is the integer part and Y is the decimal part (if present), no group separator
+            //examples: 100000000.00001     101  1.1     1.123   11111.1     0.1
             System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             customCulture.NumberFormat.NumberGroupSeparator = "";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
-            //making things work like:
-            //numbers are expressed with this notation: X.Y where X is the integer part and Y is the decimal part (if present), no group separator
-            //examples: 100000000.00001     101  1.1     1.123   11111.1     0.1
+
+            #endregion Number representation
+
+            #region Set Theory
+
             nextSetName = 'A';
             actualSetName = 'A';
             selectedSetIndex = 0;
@@ -37,6 +45,8 @@ namespace SpotoMasterRace
             listBox_Sets.DataSource = sets;
             listBox_Elements.DataSource = tempSet.Elements;
             nextSetName++;
+
+            #endregion Set Theory
         }
 
         #region Global Misc
@@ -47,8 +57,8 @@ namespace SpotoMasterRace
             {
                 case "tabPage_SetTheory":
                     {
-                        this.MinimumSize = new Size(851, 721);
-                        this.Size = new Size(851, 721);
+                        this.MinimumSize = new Size(800, 600);
+                        this.Size = new Size(800, 600);
                         break;
                     }
                 case "tabPage_DescriptiveStatistics":
@@ -200,7 +210,7 @@ namespace SpotoMasterRace
                 button_DeleteElement_Click(sender, new EventArgs());
         }
 
-        #endregion
+        #endregion Elements Management
 
         #region Sets Management
 
@@ -254,7 +264,7 @@ namespace SpotoMasterRace
             Update_TempSet_Listboxes();
         }
 
-        #endregion
+        #endregion Sets Management
 
         #region Set Operations
 
@@ -414,7 +424,7 @@ namespace SpotoMasterRace
             Update_TempSet_Listboxes();
         }
 
-        #endregion
+        #endregion Set Operations
 
         #endregion Set Theory
 
