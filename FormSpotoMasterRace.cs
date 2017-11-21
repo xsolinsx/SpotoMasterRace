@@ -8,19 +8,33 @@ namespace SpotoMasterRace
 {
     public partial class FormSpotoMasterRace : Form
     {
+        /*TODO:
+         * Sets list of SetTheory in Probability Theory?
+         * Avoid Duplicates in Probability Theory (it's a non-ordered set)
+         * GetFrequency<T>(BindingList<StructSet<T>> collection, StructSet<T> item) check if list A contains at least one of the elements of B
+         */
+
+        private bool showHelp = true;
         private char actualSetName;
         private char nextSetName;
         private int selectedSetIndex;
         private int selectedElementIndex;
-        private BindingList<StructSet> sets;
-        private StructSet tempSet;
-        private StructSet emptySet = new StructSet('@', new BindingList<string>(), false);
+        private BindingList<StructSet<string>> sets;
+        private StructSet<string> tempSet;
+        private StructSet<StructSet<string>> probabilityTempSet;
+        private StructSet<string> emptySet = new StructSet<string>('@', new BindingList<string>(), false);
         private List<string> stringCollection;
         private List<double> doubleCollection;
 
         public FormSpotoMasterRace()
         {
             InitializeComponent();
+
+            this.MinimumSize = new Size(800, 600);
+            this.Size = new Size(800, 600);
+
+            //remove this if debugging
+            tabControl_SpotoMasterRace.TabPages.Remove(tabPage_ProbabilityTheory);
 
             #region Number representation
 
@@ -40,9 +54,11 @@ namespace SpotoMasterRace
             actualSetName = 'A';
             selectedSetIndex = 0;
             selectedElementIndex = 0;
-            sets = new BindingList<StructSet>();
-            tempSet = new StructSet(nextSetName);
+            sets = new BindingList<StructSet<string>>();
+            probabilityTempSet = new StructSet<StructSet<string>>('E');
+            tempSet = new StructSet<string>(nextSetName);
             listBox_Sets.DataSource = sets;
+            listBox_Set1.DataSource = sets;
             listBox_Elements.DataSource = tempSet.Elements;
             nextSetName++;
 
@@ -77,6 +93,16 @@ namespace SpotoMasterRace
             }
         }
 
+        private void checkBox_ShowHelp_CheckedChanged(object sender, EventArgs e)
+        { showHelp = checkBox_ShowHelp.Checked; }
+
+        private void HelpMessages(string formControl)
+        {
+            if (showHelp)
+                switch (formControl)
+                { }
+        }
+
         #endregion Global Misc
 
         #region Set Theory
@@ -88,12 +114,18 @@ namespace SpotoMasterRace
             tempSet.Ordered = checkBox_FlagOrdered.Checked;
             if (!checkBox_FlagOrdered.Checked)
                 tempSet.Elements = ClassSpotoMasterRace.RemoveDuplicates(tempSet.Elements);
+            for (int i = 0; i < sets.Count; i++)
+            {
+                if (sets[i].Name == tempSet.Name)
+                    sets[i] = new StructSet<string>(tempSet);
+            }
             listBox_Elements.DataSource = tempSet.Elements;
             Update_TempSet_Listboxes();
         }
 
         private void Update_TempSet_Listboxes()
         {
+            //update current set
             try
             {
                 string strElements = "";
@@ -104,30 +136,42 @@ namespace SpotoMasterRace
                     //remove comma and whitespace
                     strElements = strElements.Remove(strElements.Length - 1);
                 }
-                textBox_TempSet.Text = actualSetName + " = " + (checkBox_FlagOrdered.Checked ? "( " : "{ ") + strElements + (checkBox_FlagOrdered.Checked ? " )" : " }");
+                textBox_CurrentSet.Text = actualSetName + " = " + (checkBox_FlagOrdered.Checked ? "( " : "{ ") + strElements + (checkBox_FlagOrdered.Checked ? " )" : " }");
                 label_Cardinality.Text = "Cardinality: " + tempSet.Cardinality;
             }
             catch
-            { textBox_TempSet.Text = ""; }
-
+            { textBox_CurrentSet.Text = ""; }
+            //update listboxes
             try
             {
                 if (sets.Count != 0)
                 {
                     listBox_Sets.Update();
                     List<string> tmp = new List<string>();
-                    foreach (StructSet item in sets)
+                    foreach (StructSet<string> item in sets)
                         tmp.Add(item.Name.ToString());
-                    listBox_Set1.DataSource = new List<string>(tmp);
-                    listBox_Set2.DataSource = new List<string>(tmp);
+
+                    int old1_index = listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0;
+                    int old2_index = listBox_Set2.SelectedIndex >= 0 ? listBox_Set2.SelectedIndex : 0;
+                    listBox_Set1.DataSource = new BindingList<string>(tmp);
+                    listBox_Set2.DataSource = new BindingList<string>(tmp);
+                    listBox_Set1.SelectedIndex = old1_index;
+                    listBox_Set2.SelectedIndex = old2_index;
+
+                    //update the bindings
                     sets.Add(emptySet);
                     sets.RemoveAt(sets.Count - 1);
+                }
+                else
+                {
+                    listBox_Set1.DataSource = new BindingList<string>(new List<string>());
+                    listBox_Set2.DataSource = new BindingList<string>(new List<string>());
                 }
             }
             catch
             {
-                listBox_Set1.DataSource = new List<string>();
-                listBox_Set2.DataSource = new List<string>();
+                listBox_Set1.DataSource = new BindingList<string>(new List<string>());
+                listBox_Set2.DataSource = new BindingList<string>(new List<string>());
             }
         }
 
@@ -208,6 +252,8 @@ namespace SpotoMasterRace
         {
             if (e.KeyCode == Keys.Delete)
                 button_DeleteElement_Click(sender, new EventArgs());
+            else if (e.Control && e.KeyCode == Keys.C)
+                button_InsertElement_Click(sender, new EventArgs());
         }
 
         #endregion Elements Management
@@ -218,7 +264,7 @@ namespace SpotoMasterRace
         {
             nextSetName = sets.Count > 0 ? sets[sets.Count - 1].Name : '@'; //'@' is the character before 'A'
             nextSetName++;
-            tempSet = new StructSet(nextSetName, new BindingList<string>(), checkBox_FlagOrdered.Checked);
+            tempSet = new StructSet<string>(nextSetName, new BindingList<string>(), checkBox_FlagOrdered.Checked);
             listBox_Elements.DataSource = tempSet.Elements;
             actualSetName = tempSet.Name;
             Update_TempSet_Listboxes();
@@ -235,7 +281,7 @@ namespace SpotoMasterRace
                     button_NewSet_Click(sender, e);
                     return;
                 }
-            sets.Add(new StructSet(tempSet));
+            sets.Add(new StructSet<string>(tempSet));
             //new set
             button_NewSet_Click(sender, e);
         }
@@ -253,6 +299,8 @@ namespace SpotoMasterRace
         {
             if (e.KeyCode == Keys.Delete)
                 button_DeleteSet_Click(sender, new EventArgs());
+            else if (e.Control && e.KeyCode == Keys.C)
+                button_CopySet_Click(sender, new EventArgs());
         }
 
         private void button_CopySet_Click(object sender, EventArgs e)
@@ -272,10 +320,10 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
-                    textBox_TempSet.Text = set1.Name + " = " + set2.Name + ": " + ClassSpotoMasterRace.Equality(set1, set2).ToString();
+                    textBox_CurrentSet.Text = set1.Name + " = " + set2.Name + ": " + ClassSpotoMasterRace.Equality(set1, set2).ToString();
                 else
                     MessageBox.Show("You must choose 2 unordered sets from the 2 lists near the button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -287,10 +335,10 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
-                    textBox_TempSet.Text = set1.Name + " ⊆ " + set2.Name + ": " + ClassSpotoMasterRace.Inclusion(set1, set2, false).ToString();
+                    textBox_CurrentSet.Text = set1.Name + " ⊆ " + set2.Name + ": " + ClassSpotoMasterRace.Inclusion(set1, set2, false).ToString();
                 else
                     MessageBox.Show("You must choose 2 unordered sets from the 2 lists near the button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -302,10 +350,10 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
-                    textBox_TempSet.Text = set1.Name + " ⊂ " + set2.Name + ": " + ClassSpotoMasterRace.Inclusion(set1, set2, true).ToString();
+                    textBox_CurrentSet.Text = set1.Name + " ⊂ " + set2.Name + ": " + ClassSpotoMasterRace.Inclusion(set1, set2, true).ToString();
                 else
                     MessageBox.Show("You must choose 2 unordered sets from the 2 lists near the button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -319,8 +367,19 @@ namespace SpotoMasterRace
             button_NewSet_Click(sender, e);
             if (sets.Count > 0)
             {
-                tempSet.Elements = ClassSpotoMasterRace.PowerSet(sets[listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0]);
-                tempSet.Sort();
+                if (!sets[listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0].Ordered)
+                {
+                    bool proceed = true;
+                    if (Math.Pow(2.0, sets[listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0].Cardinality) >= 4096)
+                        proceed = MessageBox.Show("I need to calculate " + Math.Pow(2.0, sets[listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0].Cardinality) + " (2^" + sets[listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0].Cardinality + ") elements.\nThis can take a lot, do you really want to proceed?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+                    if (proceed)
+                    {
+                        tempSet.Elements = ClassSpotoMasterRace.PowerSet(sets[listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0]);
+                        tempSet.Sort();
+                    }
+                }
+                else
+                    MessageBox.Show("You must choose an unordered set from the list on the left of the buttons.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Update_TempSet_Listboxes();
         }
@@ -329,8 +388,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
@@ -349,8 +408,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
@@ -369,13 +428,13 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
                     button_NewSet_Click(sender, e);
-                    tempSet = new StructSet(nextSetName, ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered);
+                    tempSet = new StructSet<string>(nextSetName, ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered);
                 }
                 else
                     MessageBox.Show("You must choose 2 unordered sets from the 2 lists near the button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -389,13 +448,13 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
                     button_NewSet_Click(sender, e);
-                    tempSet.Elements = ClassSpotoMasterRace.Union(new StructSet('A', ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered), new StructSet('A', ClassSpotoMasterRace.Difference(set2, set1), set1.Ordered));
+                    tempSet.Elements = ClassSpotoMasterRace.Union(new StructSet<string>('A', ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered), new StructSet<string>('A', ClassSpotoMasterRace.Difference(set2, set1), set1.Ordered));
                 }
                 else
                     MessageBox.Show("You must choose 2 unordered sets from the 2 lists near the button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -409,8 +468,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet set2 = sets[listBox_Set2.SelectedIndex];
+                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     button_NewSet_Click(sender, e);
@@ -834,5 +893,56 @@ namespace SpotoMasterRace
         }
 
         #endregion Combinatorics
+
+        #region Probability Theory
+
+        #region Misc
+
+        private void textBox_OutcomeSpace_TextChanged(object sender, EventArgs e)
+        {
+            if (GetCollectionType(textBox_OutcomeSpace.Text) != "error")
+            {
+                BindingList<StructSet<string>> collection = new BindingList<StructSet<string>>();
+                foreach (string item in stringCollection)
+                {
+                    BindingList<string> temp = new BindingList<string>();
+                    temp.Add(item);
+                    collection.Add(new StructSet<string>('X', temp));
+                }
+                probabilityTempSet.Elements = collection;
+            }
+            label_CardinalityOutcomeSpace.Text = "|Ω| = " + probabilityTempSet.Cardinality.ToString();
+            label_CardinalitySpaceOfEvents.Text = "|ε| = " + Math.Pow(2.0, probabilityTempSet.Cardinality).ToString();
+        }
+
+        private void listBox_SpaceOfEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = ClassSpotoMasterRace.GetFrequency(probabilityTempSet.Elements, ((StructSet<string>)listBox_SpaceOfEvents.SelectedItem));
+            if (((StructSet<string>)listBox_SpaceOfEvents.SelectedItem).Elements.Count == 0)
+                i = 0;
+            label_ProbabilityOfX.Text = "Probability of " + probabilityTempSet.Elements[listBox_SpaceOfEvents.SelectedIndex] + " = " + i + "/" + probabilityTempSet.Cardinality;
+        }
+
+        #endregion Misc
+
+        private void button_SpaceOfEvents_Click(object sender, EventArgs e)
+        {
+            if (GetCollectionType(textBox_OutcomeSpace.Text) != "error")
+            {
+                bool proceed = true;
+                if (Math.Pow(2.0, probabilityTempSet.Cardinality) >= 4096)
+                    proceed = MessageBox.Show("I need to calculate " + Math.Pow(2.0, probabilityTempSet.Cardinality) + " (2^" + probabilityTempSet.Cardinality + ") elements.\nThis can take a lot, do you really want to proceed?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+                if (proceed)
+                {
+                    probabilityTempSet.Elements = ClassSpotoMasterRace.PowerSet<string>(new StructSet<string>('E', new BindingList<string>(stringCollection), false));
+                    probabilityTempSet.Sort();
+                    listBox_SpaceOfEvents.DataSource = probabilityTempSet.Elements;
+                }
+            }
+            else
+                MessageBox.Show("Invalid Data.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        #endregion Probability Theory
     }
 }

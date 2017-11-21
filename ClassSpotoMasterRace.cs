@@ -13,8 +13,57 @@ namespace SpotoMasterRace
             List<T> list = new List<T>(collection);
 
             int originalDim = list.Count;
-            while (list.IndexOf(item) >= 0)
+            while (list.Contains(item))
                 list.Remove(item);
+            int dimWithoutItem = list.Count;
+            return originalDim - dimWithoutItem;
+        }
+
+        /*something that I'm not sure of
+        counts probabilities with repetitions
+        check if all the elements of ITEM are in COLLECTION.ELEMENTS
+        static internal int GetFrequency<T>(BindingList<StructSet<T>> collection, StructSet<T> item)
+        {
+            BindingList<StructSet<T>> list = new BindingList<StructSet<T>>();
+
+            foreach (StructSet<T> obj in collection)
+                list.Add(obj);
+
+            int originalDim = list.Count;
+            for (int i = 0; i < list.Count; i++)
+            {
+                bool contained = true;
+                foreach (T set in item.Elements)
+                {
+                    if (!list[i].Elements.Contains(set))
+                        contained = false;
+                }
+                if (contained)
+                    list.Remove(list[i]);
+            }
+            int dimWithoutItem = list.Count;
+            return originalDim - dimWithoutItem;
+        }*/
+
+        static internal int GetFrequency<T>(BindingList<StructSet<T>> collection, StructSet<T> item)
+        {
+            BindingList<StructSet<T>> list = new BindingList<StructSet<T>>();
+
+            foreach (StructSet<T> obj in collection)
+                list.Add(obj);
+
+            int originalDim = list.Count;
+            for (int i = 0; i < list.Count; i++)
+            {
+                bool contained = false;
+                foreach (T element in list[i].Elements)
+                {
+                    if (!item.Elements.Contains(element))
+                        contained = true;
+                }
+                if (!contained)
+                    list.Remove(list[i]);
+            }
             int dimWithoutItem = list.Count;
             return originalDim - dimWithoutItem;
         }
@@ -49,7 +98,7 @@ namespace SpotoMasterRace
 
         #region Set Theory
 
-        static internal bool Equality(StructSet set1, StructSet set2)
+        static internal bool Equality(StructSet<string> set1, StructSet<string> set2)
         {
             if (set1.Cardinality == set2.Cardinality)
             {
@@ -62,7 +111,7 @@ namespace SpotoMasterRace
             return true;
         }
 
-        static internal bool Inclusion(StructSet set1, StructSet set2, bool strict)
+        static internal bool Inclusion(StructSet<string> set1, StructSet<string> set2, bool strict)
         {
             if (set1.Cardinality > set2.Cardinality)
                 return false;
@@ -77,7 +126,7 @@ namespace SpotoMasterRace
             return true;
         }
 
-        static internal BindingList<string> PowerSet(StructSet set)
+        static internal BindingList<string> PowerSet(StructSet<string> set)
         {
             int n = set.Cardinality;
             // Power set contains 2^N subsets.
@@ -103,7 +152,28 @@ namespace SpotoMasterRace
             return powerSet;
         }
 
-        static internal BindingList<string> Union(StructSet set1, StructSet set2)
+        static internal BindingList<StructSet<T>> PowerSet<T>(StructSet<T> set)
+        {
+            int n = set.Cardinality;
+            // Power set contains 2^N subsets.
+            long powerSetCount = Convert.ToInt64(Math.Pow(2, n));
+            BindingList<StructSet<T>> powerSet = new BindingList<StructSet<T>>();
+
+            for (int setMask = 0; setMask < powerSetCount; setMask++)
+            {
+                StructSet<T> s = new StructSet<T>('X');
+                for (int i = 0; i < n; i++)
+                {
+                    // Checking whether i'th element of input collection should go to the current subset.
+                    if ((setMask & (1 << i)) > 0)
+                        s.Elements.Add(set.Elements[i]);
+                }
+                powerSet.Add(s);
+            }
+            return powerSet;
+        }
+
+        static internal BindingList<string> Union(StructSet<string> set1, StructSet<string> set2)
         {
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item in set1.Elements)
@@ -115,7 +185,7 @@ namespace SpotoMasterRace
             return tempElements;
         }
 
-        static internal BindingList<string> Intersection(StructSet set1, StructSet set2)
+        static internal BindingList<string> Intersection(StructSet<string> set1, StructSet<string> set2)
         {
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item1 in set1.Elements)
@@ -127,9 +197,9 @@ namespace SpotoMasterRace
             return tempElements;
         }
 
-        static internal BindingList<string> Difference(StructSet set1, StructSet set2)
+        static internal BindingList<string> Difference(StructSet<string> set1, StructSet<string> set2)
         {
-            StructSet intersection = new StructSet('A', Intersection(set1, set2), set1.Ordered);
+            StructSet<string> intersection = new StructSet<string>('A', Intersection(set1, set2), set1.Ordered);
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item in set1.Elements)
                 tempElements.Add(item);
@@ -141,7 +211,7 @@ namespace SpotoMasterRace
             return tempElements;
         }
 
-        static internal BindingList<string> CartesianProduct(StructSet set1, StructSet set2)
+        static internal BindingList<string> CartesianProduct(StructSet<string> set1, StructSet<string> set2)
         {
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item1 in set1.Elements)

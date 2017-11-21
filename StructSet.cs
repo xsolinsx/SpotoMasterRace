@@ -1,26 +1,26 @@
 ﻿using System.ComponentModel;
 
-internal struct StructSet
+internal struct StructSet<T>
 {
     private char name;
-    private BindingList<string> elements;
+    private BindingList<T> elements;
     private bool ordered;
 
     public StructSet(char _name)
     {
         this.name = _name;
-        this.elements = new BindingList<string>();
+        this.elements = new BindingList<T>();
         this.ordered = false;
     }
 
-    public StructSet(char _name, BindingList<string> _elements, bool _ordered = false)
+    public StructSet(char _name, BindingList<T> _elements, bool _ordered = false)
     {
         this.name = _name;
         this.elements = _elements;
         this.ordered = _ordered;
     }
 
-    public StructSet(StructSet _set)
+    public StructSet(StructSet<T> _set)
     {
         this.name = _set.Name;
         this.elements = _set.Elements;
@@ -30,7 +30,7 @@ internal struct StructSet
     public char Name
     { get { return name; } }
 
-    public BindingList<string> Elements
+    public BindingList<T> Elements
     {
         get { return elements; }
         set { elements = value; }
@@ -50,8 +50,8 @@ internal struct StructSet
         try
         {
             string strElements = "";
-            foreach (string item in this.elements)
-                strElements += item + ",";
+            foreach (T item in this.elements)
+                strElements += item.ToString() + ",";
             //remove comma and whitespace
             strElements = strElements.Remove(strElements.Length - 1);
             return this.name + " = " + (this.ordered ? "( " : "{ ") + strElements + (this.ordered ? " )" : " }");
@@ -60,15 +60,24 @@ internal struct StructSet
         { return this.name + " = " + (this.ordered ? "( " : "{ ") + (this.ordered ? " )" : " }"); }
     }
 
-    public StructSet Sort()
+    public StructSet<T> Sort()
     {
-        for (int i = 0; i < this.Cardinality; i++)
-            for (int j = 0; j < this.Cardinality; j++)
-                if (this.elements[i].Length < this.elements[j].Length)
+        for (int i = 0; i < elements.Count - 1; i++)
+            for (int j = 0; j < elements.Count - 1; j++)
+                if (elements[j].ToString().Split(',').Length <= elements[j + 1].ToString().Split(',').Length)
                 {
-                    string tmp = this.elements[i];
-                    this.elements[i] = this.elements[j];
-                    this.elements[j] = tmp;
+                    if (elements[j].ToString().Split(',').Length == elements[j + 1].ToString().Split(',').Length && elements[j].ToString().Length > elements[j + 1].ToString().Length)
+                    {
+                        T tmp = elements[j];
+                        elements[j] = elements[j + 1];
+                        elements[j + 1] = tmp;
+                    }
+                }
+                else
+                {
+                    T tmp = elements[j];
+                    elements[j] = elements[j + 1];
+                    elements[j + 1] = tmp;
                 }
         return this;
     }
