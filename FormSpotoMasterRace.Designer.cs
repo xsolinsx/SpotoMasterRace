@@ -50,6 +50,7 @@
             this.label_Elements = new System.Windows.Forms.Label();
             this.label_Sets = new System.Windows.Forms.Label();
             this.groupBox_SetTheoryElements = new System.Windows.Forms.GroupBox();
+            this.label_InsertOneElementAtATime = new System.Windows.Forms.Label();
             this.button_DeleteElement = new System.Windows.Forms.Button();
             this.textBox_Element = new System.Windows.Forms.TextBox();
             this.button_InsertElement = new System.Windows.Forms.Button();
@@ -63,6 +64,10 @@
             this.listBox_Sets = new System.Windows.Forms.ListBox();
             this.tabPage_DescriptiveStatistics = new System.Windows.Forms.TabPage();
             this.groupBox_IntervalRatio = new System.Windows.Forms.GroupBox();
+            this.label_ZScoreIntervalRatio = new System.Windows.Forms.Label();
+            this.label_StandardDeviationIntervalRatio = new System.Windows.Forms.Label();
+            this.label_MeanIntervalRatio = new System.Windows.Forms.Label();
+            this.label_DatumIntervalRatio = new System.Windows.Forms.Label();
             this.textBox_StandardDeviationIntervalRatio = new System.Windows.Forms.TextBox();
             this.textBox_MeanIntervalRatio = new System.Windows.Forms.TextBox();
             this.textBox_ZScoreIntervalRatio = new System.Windows.Forms.TextBox();
@@ -81,6 +86,7 @@
             this.button_StandardDeviationPopulation = new System.Windows.Forms.Button();
             this.button_Mean = new System.Windows.Forms.Button();
             this.groupBox_Ordinal = new System.Windows.Forms.GroupBox();
+            this.label_DatumOrdinal = new System.Windows.Forms.Label();
             this.button_PercentileRank = new System.Windows.Forms.Button();
             this.textBox_DatumOrdinal = new System.Windows.Forms.TextBox();
             this.numericUpDown_XPercentile = new System.Windows.Forms.NumericUpDown();
@@ -119,6 +125,7 @@
             this.textBox_OutcomeSpace = new System.Windows.Forms.TextBox();
             this.toolTip_General = new System.Windows.Forms.ToolTip(this.components);
             this.checkBox_ShowHelp = new System.Windows.Forms.CheckBox();
+            this.tabPage_ProbabilityDistributions = new System.Windows.Forms.TabPage();
             this.tabControl_SpotoMasterRace.SuspendLayout();
             this.tabPage_SetTheory.SuspendLayout();
             this.groupBox_SetOperations.SuspendLayout();
@@ -144,6 +151,7 @@
             this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_DescriptiveStatistics);
             this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_Combinatorics);
             this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_ProbabilityTheory);
+            this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_ProbabilityDistributions);
             this.tabControl_SpotoMasterRace.Location = new System.Drawing.Point(12, 12);
             this.tabControl_SpotoMasterRace.Name = "tabControl_SpotoMasterRace";
             this.tabControl_SpotoMasterRace.SelectedIndex = 0;
@@ -199,7 +207,7 @@
             this.groupBox_SetOperations.Controls.Add(this.button_SetUnion);
             this.groupBox_SetOperations.Location = new System.Drawing.Point(572, 32);
             this.groupBox_SetOperations.Name = "groupBox_SetOperations";
-            this.groupBox_SetOperations.Size = new System.Drawing.Size(174, 465);
+            this.groupBox_SetOperations.Size = new System.Drawing.Size(174, 473);
             this.groupBox_SetOperations.TabIndex = 14;
             this.groupBox_SetOperations.TabStop = false;
             this.groupBox_SetOperations.Text = "Set Operations";
@@ -209,7 +217,7 @@
             this.button_CartesianProduct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_CartesianProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_CartesianProduct.Location = new System.Drawing.Point(45, 419);
+            this.button_CartesianProduct.Location = new System.Drawing.Point(45, 427);
             this.button_CartesianProduct.Name = "button_CartesianProduct";
             this.button_CartesianProduct.Size = new System.Drawing.Size(84, 35);
             this.button_CartesianProduct.TabIndex = 19;
@@ -254,7 +262,7 @@
             this.button_SetSymmetricDifference.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetSymmetricDifference.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetSymmetricDifference.Location = new System.Drawing.Point(45, 378);
+            this.button_SetSymmetricDifference.Location = new System.Drawing.Point(45, 386);
             this.button_SetSymmetricDifference.Name = "button_SetSymmetricDifference";
             this.button_SetSymmetricDifference.Size = new System.Drawing.Size(84, 35);
             this.button_SetSymmetricDifference.TabIndex = 17;
@@ -306,7 +314,7 @@
             this.button_SetDifference.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetDifference.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetDifference.Location = new System.Drawing.Point(45, 349);
+            this.button_SetDifference.Location = new System.Drawing.Point(45, 357);
             this.button_SetDifference.Name = "button_SetDifference";
             this.button_SetDifference.Size = new System.Drawing.Size(84, 23);
             this.button_SetDifference.TabIndex = 16;
@@ -322,7 +330,7 @@
             this.listBox_Set1.Location = new System.Drawing.Point(6, 32);
             this.listBox_Set1.Name = "listBox_Set1";
             this.listBox_Set1.ScrollAlwaysVisible = true;
-            this.listBox_Set1.Size = new System.Drawing.Size(33, 420);
+            this.listBox_Set1.Size = new System.Drawing.Size(33, 433);
             this.listBox_Set1.TabIndex = 15;
             // 
             // listBox_Set2
@@ -334,7 +342,7 @@
             this.listBox_Set2.Name = "listBox_Set2";
             this.listBox_Set2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.listBox_Set2.ScrollAlwaysVisible = true;
-            this.listBox_Set2.Size = new System.Drawing.Size(33, 420);
+            this.listBox_Set2.Size = new System.Drawing.Size(33, 433);
             this.listBox_Set2.TabIndex = 15;
             // 
             // button_SetIntersection
@@ -342,7 +350,7 @@
             this.button_SetIntersection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetIntersection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetIntersection.Location = new System.Drawing.Point(45, 308);
+            this.button_SetIntersection.Location = new System.Drawing.Point(45, 316);
             this.button_SetIntersection.Name = "button_SetIntersection";
             this.button_SetIntersection.Size = new System.Drawing.Size(84, 35);
             this.button_SetIntersection.TabIndex = 12;
@@ -355,7 +363,7 @@
             this.button_SetUnion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SetUnion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_SetUnion.Location = new System.Drawing.Point(45, 279);
+            this.button_SetUnion.Location = new System.Drawing.Point(45, 287);
             this.button_SetUnion.Name = "button_SetUnion";
             this.button_SetUnion.Size = new System.Drawing.Size(84, 23);
             this.button_SetUnion.TabIndex = 11;
@@ -400,20 +408,34 @@
             // 
             this.groupBox_SetTheoryElements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_SetTheoryElements.Controls.Add(this.label_InsertOneElementAtATime);
             this.groupBox_SetTheoryElements.Controls.Add(this.button_DeleteElement);
             this.groupBox_SetTheoryElements.Controls.Add(this.textBox_Element);
             this.groupBox_SetTheoryElements.Controls.Add(this.button_InsertElement);
             this.groupBox_SetTheoryElements.Location = new System.Drawing.Point(336, 420);
             this.groupBox_SetTheoryElements.Name = "groupBox_SetTheoryElements";
-            this.groupBox_SetTheoryElements.Size = new System.Drawing.Size(230, 77);
+            this.groupBox_SetTheoryElements.Size = new System.Drawing.Size(230, 85);
             this.groupBox_SetTheoryElements.TabIndex = 7;
             this.groupBox_SetTheoryElements.TabStop = false;
             this.groupBox_SetTheoryElements.Text = "Elements Management";
             // 
+            // label_InsertOneElementAtATime
+            // 
+            this.label_InsertOneElementAtATime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_InsertOneElementAtATime.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_InsertOneElementAtATime.Location = new System.Drawing.Point(6, 16);
+            this.label_InsertOneElementAtATime.Name = "label_InsertOneElementAtATime";
+            this.label_InsertOneElementAtATime.Size = new System.Drawing.Size(218, 10);
+            this.label_InsertOneElementAtATime.TabIndex = 24;
+            this.label_InsertOneElementAtATime.Text = "Insert one element at a time";
+            this.label_InsertOneElementAtATime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // button_DeleteElement
             // 
             this.button_DeleteElement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_DeleteElement.Location = new System.Drawing.Point(146, 48);
+            this.button_DeleteElement.Location = new System.Drawing.Point(146, 56);
             this.button_DeleteElement.Name = "button_DeleteElement";
             this.button_DeleteElement.Size = new System.Drawing.Size(78, 23);
             this.button_DeleteElement.TabIndex = 7;
@@ -426,11 +448,10 @@
             this.textBox_Element.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Element.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Element.Location = new System.Drawing.Point(6, 19);
+            this.textBox_Element.Location = new System.Drawing.Point(6, 30);
             this.textBox_Element.Name = "textBox_Element";
             this.textBox_Element.Size = new System.Drawing.Size(218, 20);
             this.textBox_Element.TabIndex = 4;
-            this.textBox_Element.Text = "Insert 1 element at a time";
             this.textBox_Element.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip_General.SetToolTip(this.textBox_Element, "Here you can insert the elements, one at a time, into the current set.\r\nYou can p" +
         "ress \"Enter\" to insert the element.");
@@ -438,7 +459,7 @@
             // 
             // button_InsertElement
             // 
-            this.button_InsertElement.Location = new System.Drawing.Point(6, 48);
+            this.button_InsertElement.Location = new System.Drawing.Point(6, 56);
             this.button_InsertElement.Name = "button_InsertElement";
             this.button_InsertElement.Size = new System.Drawing.Size(78, 23);
             this.button_InsertElement.TabIndex = 6;
@@ -456,14 +477,14 @@
             this.groupBox_SetTheorySets.Controls.Add(this.button_NewSet);
             this.groupBox_SetTheorySets.Location = new System.Drawing.Point(6, 420);
             this.groupBox_SetTheorySets.Name = "groupBox_SetTheorySets";
-            this.groupBox_SetTheorySets.Size = new System.Drawing.Size(324, 77);
+            this.groupBox_SetTheorySets.Size = new System.Drawing.Size(324, 85);
             this.groupBox_SetTheorySets.TabIndex = 2;
             this.groupBox_SetTheorySets.TabStop = false;
             this.groupBox_SetTheorySets.Text = "Set Management";
             // 
             // button_CopySet
             // 
-            this.button_CopySet.Location = new System.Drawing.Point(6, 48);
+            this.button_CopySet.Location = new System.Drawing.Point(6, 56);
             this.button_CopySet.Name = "button_CopySet";
             this.button_CopySet.Size = new System.Drawing.Size(100, 23);
             this.button_CopySet.TabIndex = 14;
@@ -483,7 +504,7 @@
             // 
             // button_AddSet
             // 
-            this.button_AddSet.Location = new System.Drawing.Point(112, 48);
+            this.button_AddSet.Location = new System.Drawing.Point(112, 56);
             this.button_AddSet.Name = "button_AddSet";
             this.button_AddSet.Size = new System.Drawing.Size(100, 23);
             this.button_AddSet.TabIndex = 12;
@@ -495,9 +516,9 @@
             // checkBox_FlagOrdered
             // 
             this.checkBox_FlagOrdered.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_FlagOrdered.Location = new System.Drawing.Point(218, 22);
+            this.checkBox_FlagOrdered.Location = new System.Drawing.Point(218, 19);
             this.checkBox_FlagOrdered.Name = "checkBox_FlagOrdered";
-            this.checkBox_FlagOrdered.Size = new System.Drawing.Size(100, 49);
+            this.checkBox_FlagOrdered.Size = new System.Drawing.Size(100, 60);
             this.checkBox_FlagOrdered.TabIndex = 10;
             this.checkBox_FlagOrdered.Text = "Ordered?";
             this.checkBox_FlagOrdered.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -561,6 +582,10 @@
             // groupBox_IntervalRatio
             // 
             this.groupBox_IntervalRatio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_IntervalRatio.Controls.Add(this.label_ZScoreIntervalRatio);
+            this.groupBox_IntervalRatio.Controls.Add(this.label_StandardDeviationIntervalRatio);
+            this.groupBox_IntervalRatio.Controls.Add(this.label_MeanIntervalRatio);
+            this.groupBox_IntervalRatio.Controls.Add(this.label_DatumIntervalRatio);
             this.groupBox_IntervalRatio.Controls.Add(this.textBox_StandardDeviationIntervalRatio);
             this.groupBox_IntervalRatio.Controls.Add(this.textBox_MeanIntervalRatio);
             this.groupBox_IntervalRatio.Controls.Add(this.textBox_ZScoreIntervalRatio);
@@ -585,6 +610,46 @@
             this.groupBox_IntervalRatio.TabStop = false;
             this.groupBox_IntervalRatio.Text = "Interval/Ratio";
             // 
+            // label_ZScoreIntervalRatio
+            // 
+            this.label_ZScoreIntervalRatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ZScoreIntervalRatio.Location = new System.Drawing.Point(174, 187);
+            this.label_ZScoreIntervalRatio.Name = "label_ZScoreIntervalRatio";
+            this.label_ZScoreIntervalRatio.Size = new System.Drawing.Size(78, 10);
+            this.label_ZScoreIntervalRatio.TabIndex = 26;
+            this.label_ZScoreIntervalRatio.Text = "Z Score";
+            this.label_ZScoreIntervalRatio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_StandardDeviationIntervalRatio
+            // 
+            this.label_StandardDeviationIntervalRatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_StandardDeviationIntervalRatio.Location = new System.Drawing.Point(174, 259);
+            this.label_StandardDeviationIntervalRatio.Name = "label_StandardDeviationIntervalRatio";
+            this.label_StandardDeviationIntervalRatio.Size = new System.Drawing.Size(78, 10);
+            this.label_StandardDeviationIntervalRatio.TabIndex = 25;
+            this.label_StandardDeviationIntervalRatio.Text = "St. Dev.";
+            this.label_StandardDeviationIntervalRatio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_MeanIntervalRatio
+            // 
+            this.label_MeanIntervalRatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_MeanIntervalRatio.Location = new System.Drawing.Point(174, 223);
+            this.label_MeanIntervalRatio.Name = "label_MeanIntervalRatio";
+            this.label_MeanIntervalRatio.Size = new System.Drawing.Size(78, 10);
+            this.label_MeanIntervalRatio.TabIndex = 24;
+            this.label_MeanIntervalRatio.Text = "Mean";
+            this.label_MeanIntervalRatio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_DatumIntervalRatio
+            // 
+            this.label_DatumIntervalRatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_DatumIntervalRatio.Location = new System.Drawing.Point(6, 259);
+            this.label_DatumIntervalRatio.Name = "label_DatumIntervalRatio";
+            this.label_DatumIntervalRatio.Size = new System.Drawing.Size(78, 10);
+            this.label_DatumIntervalRatio.TabIndex = 23;
+            this.label_DatumIntervalRatio.Text = "Datum";
+            this.label_DatumIntervalRatio.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // textBox_StandardDeviationIntervalRatio
             // 
             this.textBox_StandardDeviationIntervalRatio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -592,44 +657,44 @@
             this.textBox_StandardDeviationIntervalRatio.Name = "textBox_StandardDeviationIntervalRatio";
             this.textBox_StandardDeviationIntervalRatio.Size = new System.Drawing.Size(78, 20);
             this.textBox_StandardDeviationIntervalRatio.TabIndex = 22;
-            this.textBox_StandardDeviationIntervalRatio.Text = "Standard Deviation";
             this.textBox_StandardDeviationIntervalRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip_General.SetToolTip(this.textBox_StandardDeviationIntervalRatio, "Standard Deviation for TScore calculation");
             // 
             // textBox_MeanIntervalRatio
             // 
             this.textBox_MeanIntervalRatio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_MeanIntervalRatio.Location = new System.Drawing.Point(174, 246);
+            this.textBox_MeanIntervalRatio.Location = new System.Drawing.Point(174, 236);
             this.textBox_MeanIntervalRatio.Name = "textBox_MeanIntervalRatio";
             this.textBox_MeanIntervalRatio.Size = new System.Drawing.Size(78, 20);
             this.textBox_MeanIntervalRatio.TabIndex = 21;
-            this.textBox_MeanIntervalRatio.Text = "Mean";
             this.textBox_MeanIntervalRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip_General.SetToolTip(this.textBox_MeanIntervalRatio, "Mean for TScore calculation");
             // 
             // textBox_ZScoreIntervalRatio
             // 
             this.textBox_ZScoreIntervalRatio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_ZScoreIntervalRatio.Location = new System.Drawing.Point(90, 259);
+            this.textBox_ZScoreIntervalRatio.Location = new System.Drawing.Point(174, 200);
             this.textBox_ZScoreIntervalRatio.Name = "textBox_ZScoreIntervalRatio";
             this.textBox_ZScoreIntervalRatio.Size = new System.Drawing.Size(78, 20);
             this.textBox_ZScoreIntervalRatio.TabIndex = 20;
-            this.textBox_ZScoreIntervalRatio.Text = "Z Score";
             this.textBox_ZScoreIntervalRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip_General.SetToolTip(this.textBox_ZScoreIntervalRatio, "ZScore for TScore calculation");
             // 
             // textBox_DatumIntervalRatio
             // 
             this.textBox_DatumIntervalRatio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_DatumIntervalRatio.Location = new System.Drawing.Point(174, 213);
+            this.textBox_DatumIntervalRatio.Location = new System.Drawing.Point(6, 272);
             this.textBox_DatumIntervalRatio.Name = "textBox_DatumIntervalRatio";
             this.textBox_DatumIntervalRatio.Size = new System.Drawing.Size(78, 20);
             this.textBox_DatumIntervalRatio.TabIndex = 20;
-            this.textBox_DatumIntervalRatio.Text = "Datum";
             this.textBox_DatumIntervalRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip_General.SetToolTip(this.textBox_DatumIntervalRatio, "Datum for ZScore calculation");
             // 
             // button_TScore
             // 
-            this.button_TScore.Location = new System.Drawing.Point(6, 242);
+            this.button_TScore.Location = new System.Drawing.Point(174, 157);
             this.button_TScore.Name = "button_TScore";
-            this.button_TScore.Size = new System.Drawing.Size(78, 50);
+            this.button_TScore.Size = new System.Drawing.Size(78, 23);
             this.button_TScore.TabIndex = 18;
             this.button_TScore.Text = "TScore";
             this.button_TScore.UseVisualStyleBackColor = true;
@@ -758,6 +823,7 @@
             // groupBox_Ordinal
             // 
             this.groupBox_Ordinal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox_Ordinal.Controls.Add(this.label_DatumOrdinal);
             this.groupBox_Ordinal.Controls.Add(this.button_PercentileRank);
             this.groupBox_Ordinal.Controls.Add(this.textBox_DatumOrdinal);
             this.groupBox_Ordinal.Controls.Add(this.numericUpDown_XPercentile);
@@ -776,9 +842,19 @@
             this.groupBox_Ordinal.TabStop = false;
             this.groupBox_Ordinal.Text = "Ordinal";
             // 
+            // label_DatumOrdinal
+            // 
+            this.label_DatumOrdinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_DatumOrdinal.Location = new System.Drawing.Point(6, 259);
+            this.label_DatumOrdinal.Name = "label_DatumOrdinal";
+            this.label_DatumOrdinal.Size = new System.Drawing.Size(78, 10);
+            this.label_DatumOrdinal.TabIndex = 24;
+            this.label_DatumOrdinal.Text = "Datum";
+            this.label_DatumOrdinal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // button_PercentileRank
             // 
-            this.button_PercentileRank.Location = new System.Drawing.Point(90, 216);
+            this.button_PercentileRank.Location = new System.Drawing.Point(8, 174);
             this.button_PercentileRank.Name = "button_PercentileRank";
             this.button_PercentileRank.Size = new System.Drawing.Size(78, 35);
             this.button_PercentileRank.TabIndex = 9;
@@ -789,16 +865,16 @@
             // textBox_DatumOrdinal
             // 
             this.textBox_DatumOrdinal.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_DatumOrdinal.Location = new System.Drawing.Point(6, 227);
+            this.textBox_DatumOrdinal.Location = new System.Drawing.Point(6, 272);
             this.textBox_DatumOrdinal.Name = "textBox_DatumOrdinal";
             this.textBox_DatumOrdinal.Size = new System.Drawing.Size(78, 20);
             this.textBox_DatumOrdinal.TabIndex = 5;
-            this.textBox_DatumOrdinal.Text = "Datum";
             this.textBox_DatumOrdinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip_General.SetToolTip(this.textBox_DatumOrdinal, "Datum for Percentile Rank calculation");
             // 
             // numericUpDown_XPercentile
             // 
-            this.numericUpDown_XPercentile.Location = new System.Drawing.Point(6, 267);
+            this.numericUpDown_XPercentile.Location = new System.Drawing.Point(90, 272);
             this.numericUpDown_XPercentile.Maximum = new decimal(new int[] {
             99,
             0,
@@ -813,6 +889,7 @@
             this.numericUpDown_XPercentile.Size = new System.Drawing.Size(78, 20);
             this.numericUpDown_XPercentile.TabIndex = 8;
             this.numericUpDown_XPercentile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip_General.SetToolTip(this.numericUpDown_XPercentile, "Datum for the Xth Percentile");
             this.numericUpDown_XPercentile.Value = new decimal(new int[] {
             1,
             0,
@@ -822,11 +899,11 @@
             // 
             // button_XPercentile
             // 
-            this.button_XPercentile.Location = new System.Drawing.Point(90, 257);
+            this.button_XPercentile.Location = new System.Drawing.Point(90, 174);
             this.button_XPercentile.Name = "button_XPercentile";
             this.button_XPercentile.Size = new System.Drawing.Size(78, 35);
             this.button_XPercentile.TabIndex = 7;
-            this.button_XPercentile.Text = "XPercentile";
+            this.button_XPercentile.Text = "X° Percentile";
             this.button_XPercentile.UseVisualStyleBackColor = true;
             this.button_XPercentile.Click += new System.EventHandler(this.button_XPercentile_Click);
             // 
@@ -1129,8 +1206,9 @@
             // 
             // label_ProbabilityOfX
             // 
+            this.label_ProbabilityOfX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_ProbabilityOfX.AutoSize = true;
-            this.label_ProbabilityOfX.Location = new System.Drawing.Point(6, 182);
+            this.label_ProbabilityOfX.Location = new System.Drawing.Point(6, 495);
             this.label_ProbabilityOfX.Name = "label_ProbabilityOfX";
             this.label_ProbabilityOfX.Size = new System.Drawing.Size(83, 13);
             this.label_ProbabilityOfX.TabIndex = 24;
@@ -1138,21 +1216,21 @@
             // 
             // listBox_SpaceOfEvents
             // 
-            this.listBox_SpaceOfEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.listBox_SpaceOfEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox_SpaceOfEvents.FormattingEnabled = true;
-            this.listBox_SpaceOfEvents.Location = new System.Drawing.Point(102, 32);
+            this.listBox_SpaceOfEvents.Location = new System.Drawing.Point(102, 71);
             this.listBox_SpaceOfEvents.Name = "listBox_SpaceOfEvents";
-            this.listBox_SpaceOfEvents.Size = new System.Drawing.Size(504, 147);
+            this.listBox_SpaceOfEvents.Size = new System.Drawing.Size(644, 420);
             this.listBox_SpaceOfEvents.TabIndex = 23;
             this.toolTip_General.SetToolTip(this.listBox_SpaceOfEvents, "This is the list of elements of the current set.");
             this.listBox_SpaceOfEvents.SelectedIndexChanged += new System.EventHandler(this.listBox_SpaceOfEvents_SelectedIndexChanged);
             // 
             // label_CardinalitySpaceOfEvents
             // 
-            this.label_CardinalitySpaceOfEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_CardinalitySpaceOfEvents.AutoSize = true;
-            this.label_CardinalitySpaceOfEvents.Location = new System.Drawing.Point(612, 34);
+            this.label_CardinalitySpaceOfEvents.Location = new System.Drawing.Point(6, 140);
             this.label_CardinalitySpaceOfEvents.Name = "label_CardinalitySpaceOfEvents";
             this.label_CardinalitySpaceOfEvents.Size = new System.Drawing.Size(29, 13);
             this.label_CardinalitySpaceOfEvents.TabIndex = 21;
@@ -1160,9 +1238,8 @@
             // 
             // label_CardinalityOutcomeSpace
             // 
-            this.label_CardinalityOutcomeSpace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_CardinalityOutcomeSpace.AutoSize = true;
-            this.label_CardinalityOutcomeSpace.Location = new System.Drawing.Point(612, 8);
+            this.label_CardinalityOutcomeSpace.Location = new System.Drawing.Point(6, 34);
             this.label_CardinalityOutcomeSpace.Name = "label_CardinalityOutcomeSpace";
             this.label_CardinalityOutcomeSpace.Size = new System.Drawing.Size(32, 13);
             this.label_CardinalityOutcomeSpace.TabIndex = 20;
@@ -1171,7 +1248,7 @@
             // label_SpaceOfEvents
             // 
             this.label_SpaceOfEvents.AutoSize = true;
-            this.label_SpaceOfEvents.Location = new System.Drawing.Point(6, 34);
+            this.label_SpaceOfEvents.Location = new System.Drawing.Point(6, 71);
             this.label_SpaceOfEvents.Name = "label_SpaceOfEvents";
             this.label_SpaceOfEvents.Size = new System.Drawing.Size(92, 13);
             this.label_SpaceOfEvents.TabIndex = 18;
@@ -1188,12 +1265,11 @@
             // 
             // button_SpaceOfEvents
             // 
-            this.button_SpaceOfEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_SpaceOfEvents.Location = new System.Drawing.Point(668, 6);
+            this.button_SpaceOfEvents.Location = new System.Drawing.Point(6, 87);
             this.button_SpaceOfEvents.Name = "button_SpaceOfEvents";
-            this.button_SpaceOfEvents.Size = new System.Drawing.Size(78, 35);
+            this.button_SpaceOfEvents.Size = new System.Drawing.Size(78, 50);
             this.button_SpaceOfEvents.TabIndex = 5;
-            this.button_SpaceOfEvents.Text = "Space of Events";
+            this.button_SpaceOfEvents.Text = "Calculate the Space of Events";
             this.button_SpaceOfEvents.UseVisualStyleBackColor = true;
             this.button_SpaceOfEvents.Click += new System.EventHandler(this.button_SpaceOfEvents_Click);
             // 
@@ -1202,9 +1278,9 @@
             this.textBox_OutcomeSpace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_OutcomeSpace.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_OutcomeSpace.Location = new System.Drawing.Point(102, 6);
+            this.textBox_OutcomeSpace.Location = new System.Drawing.Point(102, 19);
             this.textBox_OutcomeSpace.Name = "textBox_OutcomeSpace";
-            this.textBox_OutcomeSpace.Size = new System.Drawing.Size(504, 20);
+            this.textBox_OutcomeSpace.Size = new System.Drawing.Size(644, 20);
             this.textBox_OutcomeSpace.TabIndex = 4;
             this.textBox_OutcomeSpace.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
     "Liam";
@@ -1221,7 +1297,7 @@
             this.checkBox_ShowHelp.AutoSize = true;
             this.checkBox_ShowHelp.Checked = true;
             this.checkBox_ShowHelp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_ShowHelp.Location = new System.Drawing.Point(646, 11);
+            this.checkBox_ShowHelp.Location = new System.Drawing.Point(630, 11);
             this.checkBox_ShowHelp.Name = "checkBox_ShowHelp";
             this.checkBox_ShowHelp.Size = new System.Drawing.Size(126, 17);
             this.checkBox_ShowHelp.TabIndex = 1;
@@ -1229,6 +1305,16 @@
             this.checkBox_ShowHelp.UseVisualStyleBackColor = true;
             this.checkBox_ShowHelp.Visible = false;
             this.checkBox_ShowHelp.CheckedChanged += new System.EventHandler(this.checkBox_ShowHelp_CheckedChanged);
+            // 
+            // tabPage_ProbabilityDistributions
+            // 
+            this.tabPage_ProbabilityDistributions.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_ProbabilityDistributions.Name = "tabPage_ProbabilityDistributions";
+            this.tabPage_ProbabilityDistributions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_ProbabilityDistributions.Size = new System.Drawing.Size(752, 511);
+            this.tabPage_ProbabilityDistributions.TabIndex = 4;
+            this.tabPage_ProbabilityDistributions.Text = "Probability Distributions";
+            this.tabPage_ProbabilityDistributions.UseVisualStyleBackColor = true;
             // 
             // FormSpotoMasterRace
             // 
@@ -1359,6 +1445,13 @@
         private System.Windows.Forms.Label label_CardinalitySpaceOfEvents;
         private System.Windows.Forms.ListBox listBox_SpaceOfEvents;
         private System.Windows.Forms.Label label_ProbabilityOfX;
+        private System.Windows.Forms.Label label_ZScoreIntervalRatio;
+        private System.Windows.Forms.Label label_StandardDeviationIntervalRatio;
+        private System.Windows.Forms.Label label_MeanIntervalRatio;
+        private System.Windows.Forms.Label label_DatumIntervalRatio;
+        private System.Windows.Forms.Label label_DatumOrdinal;
+        private System.Windows.Forms.Label label_InsertOneElementAtATime;
+        private System.Windows.Forms.TabPage tabPage_ProbabilityDistributions;
 
     }
 }

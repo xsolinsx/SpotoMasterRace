@@ -9,9 +9,7 @@ namespace SpotoMasterRace
     public partial class FormSpotoMasterRace : Form
     {
         /*TODO:
-         * Sets list of SetTheory in Probability Theory?
-         * Avoid Duplicates in Probability Theory (it's a non-ordered set)
-         * GetFrequency<T>(BindingList<StructSet<T>> collection, StructSet<T> item) check if list A contains at least one of the elements of B
+         * Graphs in probability distributions
          */
 
         private bool showHelp = true;
@@ -21,20 +19,17 @@ namespace SpotoMasterRace
         private int selectedElementIndex;
         private BindingList<StructSet<string>> sets;
         private StructSet<string> tempSet;
-        private StructSet<StructSet<string>> probabilityTempSet;
         private StructSet<string> emptySet = new StructSet<string>('@', new BindingList<string>(), false);
+
         private List<string> stringCollection;
         private List<double> doubleCollection;
+
+        private StructSet<StructSet<string>> probabilityTempSet;
+        private BindingList<StructSet<string>> outcomeSpace;
 
         public FormSpotoMasterRace()
         {
             InitializeComponent();
-
-            this.MinimumSize = new Size(800, 600);
-            this.Size = new Size(800, 600);
-
-            //remove this if debugging
-            tabControl_SpotoMasterRace.TabPages.Remove(tabPage_ProbabilityTheory);
 
             #region Number representation
 
@@ -55,7 +50,6 @@ namespace SpotoMasterRace
             selectedSetIndex = 0;
             selectedElementIndex = 0;
             sets = new BindingList<StructSet<string>>();
-            probabilityTempSet = new StructSet<StructSet<string>>('E');
             tempSet = new StructSet<string>(nextSetName);
             listBox_Sets.DataSource = sets;
             listBox_Set1.DataSource = sets;
@@ -63,6 +57,24 @@ namespace SpotoMasterRace
             nextSetName++;
 
             #endregion Set Theory
+
+            #region Descriptive Statistics
+
+            stringCollection = new List<string>();
+            doubleCollection = new List<double>();
+
+            #endregion Descriptive Statistics
+
+            #region Probability Theory
+
+            outcomeSpace = new BindingList<StructSet<string>>();
+            probabilityTempSet = new StructSet<StructSet<string>>('E');
+
+            #endregion Probability Theory
+
+            tabControl_SpotoMasterRace.TabPages.Remove(tabPage_ProbabilityDistributions);
+
+            MessageBox.Show("THINK and REASON about what you're doing.\nThis is just meant to help, not to do the exam for you.\nI'm not responsible for your grade, it doesn't matter if it is good or bad.", "DISCLAIMER", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         #region Global Misc
@@ -87,6 +99,12 @@ namespace SpotoMasterRace
                     {
                         this.MinimumSize = new Size(594, 353);
                         this.Size = new Size(594, 353);
+                        break;
+                    }
+                case "tabPage_ProbabilityTheory":
+                    {
+                        this.MinimumSize = new Size(690, 274);
+                        this.Size = new Size(690, 274);
                         break;
                     }
                 default: break;
@@ -133,7 +151,7 @@ namespace SpotoMasterRace
                 {
                     foreach (string item in tempSet.Elements)
                         strElements += item + ",";
-                    //remove comma and whitespace
+                    //remove comma
                     strElements = strElements.Remove(strElements.Length - 1);
                 }
                 textBox_CurrentSet.Text = actualSetName + " = " + (checkBox_FlagOrdered.Checked ? "( " : "{ ") + strElements + (checkBox_FlagOrdered.Checked ? " )" : " }");
@@ -497,7 +515,7 @@ namespace SpotoMasterRace
             {
                 //try creating a collection at nominal level
                 commaSeparatedValues = commaSeparatedValues.Replace(" ", "");
-                stringCollection = new List<string>(commaSeparatedValues.Split(new char[] { ',' }));
+                stringCollection = new List<string>(commaSeparatedValues.Split(','));
             }
             catch
             { return "error"; }
@@ -506,7 +524,7 @@ namespace SpotoMasterRace
                 doubleCollection = new List<double>();
                 //try creating a collection at at a higher level
                 commaSeparatedValues = commaSeparatedValues.Replace(" ", "");
-                string[] commaSeparatedValuesArray = commaSeparatedValues.Split(new char[] { ',' });
+                string[] commaSeparatedValuesArray = commaSeparatedValues.Split(',');
                 string[] dividedNumbers = new string[2];
                 foreach (string item in commaSeparatedValuesArray)
                     doubleCollection.Add(Convert.ToDouble(item));
@@ -900,47 +918,51 @@ namespace SpotoMasterRace
 
         private void textBox_OutcomeSpace_TextChanged(object sender, EventArgs e)
         {
-            if (GetCollectionType(textBox_OutcomeSpace.Text) != "error")
-            {
-                BindingList<StructSet<string>> collection = new BindingList<StructSet<string>>();
-                foreach (string item in stringCollection)
-                {
-                    BindingList<string> temp = new BindingList<string>();
-                    temp.Add(item);
-                    collection.Add(new StructSet<string>('X', temp));
-                }
-                probabilityTempSet.Elements = collection;
-            }
-            label_CardinalityOutcomeSpace.Text = "|Ω| = " + probabilityTempSet.Cardinality.ToString();
-            label_CardinalitySpaceOfEvents.Text = "|ε| = " + Math.Pow(2.0, probabilityTempSet.Cardinality).ToString();
+            outcomeSpace = new BindingList<StructSet<string>>();
+            foreach (string item in textBox_OutcomeSpace.Text.Replace(" ", "").Split(','))
+                outcomeSpace.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+
+            label_CardinalityOutcomeSpace.Text = "|Ω| = " + outcomeSpace.Count.ToString();
+            label_CardinalitySpaceOfEvents.Text = "|ε| = " + Math.Pow(2.0, outcomeSpace.Count).ToString();
+            label_ProbabilityOfX.Text = "Probability of X: ";
+            listBox_SpaceOfEvents.DataSource = new StructSet<string>().Elements;
         }
 
         private void listBox_SpaceOfEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int i = ClassSpotoMasterRace.GetFrequency(probabilityTempSet.Elements, ((StructSet<string>)listBox_SpaceOfEvents.SelectedItem));
-            if (((StructSet<string>)listBox_SpaceOfEvents.SelectedItem).Elements.Count == 0)
-                i = 0;
-            label_ProbabilityOfX.Text = "Probability of " + probabilityTempSet.Elements[listBox_SpaceOfEvents.SelectedIndex] + " = " + i + "/" + probabilityTempSet.Cardinality;
+            outcomeSpace = new BindingList<StructSet<string>>();
+            foreach (string item in textBox_OutcomeSpace.Text.Replace(" ", "").Split(','))
+                outcomeSpace.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+
+            if (listBox_SpaceOfEvents.SelectedItem != null)
+            {
+                int frequency = ClassSpotoMasterRace.GetFrequency(outcomeSpace, ((StructSet<string>)listBox_SpaceOfEvents.SelectedItem));
+                if (((StructSet<string>)listBox_SpaceOfEvents.SelectedItem).Elements.Count == 0)
+                    frequency = 0;
+                label_ProbabilityOfX.Text = "Probability of extracting \"";
+                for (int i = 0; i < probabilityTempSet.Elements[listBox_SpaceOfEvents.SelectedIndex].Cardinality; i++)
+                    label_ProbabilityOfX.Text += probabilityTempSet.Elements[listBox_SpaceOfEvents.SelectedIndex].Elements[i] + (i != probabilityTempSet.Elements[listBox_SpaceOfEvents.SelectedIndex].Cardinality - 1 ? "\" OR \"" : "");
+                label_ProbabilityOfX.Text += "\" = " + frequency + "/" + outcomeSpace.Count;
+            }
         }
 
         #endregion Misc
 
         private void button_SpaceOfEvents_Click(object sender, EventArgs e)
         {
-            if (GetCollectionType(textBox_OutcomeSpace.Text) != "error")
+            outcomeSpace = new BindingList<StructSet<string>>();
+            foreach (string item in textBox_OutcomeSpace.Text.Replace(" ", "").Split(','))
+                outcomeSpace.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+
+            bool proceed = true;
+            if (Math.Pow(2.0, outcomeSpace.Count) >= 512)
+                proceed = MessageBox.Show("I need to calculate " + Math.Pow(2.0, outcomeSpace.Count) + " (2^" + outcomeSpace.Count + ") elements.\nThis can take a lot, do you really want to proceed?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+            if (proceed)
             {
-                bool proceed = true;
-                if (Math.Pow(2.0, probabilityTempSet.Cardinality) >= 4096)
-                    proceed = MessageBox.Show("I need to calculate " + Math.Pow(2.0, probabilityTempSet.Cardinality) + " (2^" + probabilityTempSet.Cardinality + ") elements.\nThis can take a lot, do you really want to proceed?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
-                if (proceed)
-                {
-                    probabilityTempSet.Elements = ClassSpotoMasterRace.PowerSet<string>(new StructSet<string>('E', new BindingList<string>(stringCollection), false));
-                    probabilityTempSet.Sort();
-                    listBox_SpaceOfEvents.DataSource = probabilityTempSet.Elements;
-                }
+                probabilityTempSet.Elements = ClassSpotoMasterRace.PowerSet<string>(new StructSet<string>('E', new BindingList<string>(textBox_OutcomeSpace.Text.Replace(" ", "").Split(',')), false));
+                probabilityTempSet.Sort();
+                listBox_SpaceOfEvents.DataSource = probabilityTempSet.Elements;
             }
-            else
-                MessageBox.Show("Invalid Data.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         #endregion Probability Theory

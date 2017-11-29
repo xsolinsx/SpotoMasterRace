@@ -8,64 +8,42 @@ namespace SpotoMasterRace
     {
         #region Utilities
 
-        static internal int GetFrequency<T>(List<T> collection, T item)
+        static internal int GetFrequency(List<string> collection, string item)
         {
-            List<T> list = new List<T>(collection);
-
-            int originalDim = list.Count;
-            while (list.Contains(item))
-                list.Remove(item);
-            int dimWithoutItem = list.Count;
-            return originalDim - dimWithoutItem;
+            int counter = 0;
+            foreach (string obj in collection)
+                if (obj == item)
+                    counter++;
+            return counter;
         }
 
-        /*something that I'm not sure of
-        counts probabilities with repetitions
-        check if all the elements of ITEM are in COLLECTION.ELEMENTS
-        static internal int GetFrequency<T>(BindingList<StructSet<T>> collection, StructSet<T> item)
+        static internal int GetFrequency(List<double> collection, double item)
         {
-            BindingList<StructSet<T>> list = new BindingList<StructSet<T>>();
+            List<string> list = new List<string>();
+            foreach (double obj in collection)
+                list.Add(obj.ToString());
+            return GetFrequency(list, item.ToString());
+        }
 
-            foreach (StructSet<T> obj in collection)
-                list.Add(obj);
-
-            int originalDim = list.Count;
-            for (int i = 0; i < list.Count; i++)
-            {
-                bool contained = true;
-                foreach (T set in item.Elements)
-                {
-                    if (!list[i].Elements.Contains(set))
-                        contained = false;
-                }
-                if (contained)
-                    list.Remove(list[i]);
-            }
-            int dimWithoutItem = list.Count;
-            return originalDim - dimWithoutItem;
-        }*/
-
-        static internal int GetFrequency<T>(BindingList<StructSet<T>> collection, StructSet<T> item)
+        static internal int GetFrequency(BindingList<StructSet<string>> sets, StructSet<string> container)
         {
-            BindingList<StructSet<T>> list = new BindingList<StructSet<T>>();
-
-            foreach (StructSet<T> obj in collection)
-                list.Add(obj);
-
-            int originalDim = list.Count;
-            for (int i = 0; i < list.Count; i++)
-            {
-                bool contained = false;
-                foreach (T element in list[i].Elements)
-                {
-                    if (!item.Elements.Contains(element))
-                        contained = true;
-                }
-                if (!contained)
-                    list.Remove(list[i]);
-            }
-            int dimWithoutItem = list.Count;
-            return originalDim - dimWithoutItem;
+            int counter = 0;
+            List<int> countedElementsIndeces = new List<int>();
+            for (int i = 0; i < container.Cardinality; i++)
+                foreach (StructSet<string> interestingSet in sets)
+                    foreach (string elementInTheSet in interestingSet.Elements)
+                        if (elementInTheSet == container.Elements[i])
+                        {
+                            if (!countedElementsIndeces.Contains(i))
+                                countedElementsIndeces.Add(i);
+                            bool counted = false;
+                            foreach (int index in countedElementsIndeces)
+                                if (container.Elements[i] == container.Elements[index] && i != index)
+                                    counted = true;
+                            if (!counted)
+                                counter++;
+                        }
+            return counter;
         }
 
         static internal List<T> RemoveDuplicates<T>(List<T> collection)
@@ -135,7 +113,7 @@ namespace SpotoMasterRace
 
             for (int setMask = 0; setMask < powerSetCount; setMask++)
             {
-                var s = "{";
+                string s = "{";
                 for (int i = 0; i < n; i++)
                 {
                     // Checking whether i'th element of input collection should go to the current subset.
