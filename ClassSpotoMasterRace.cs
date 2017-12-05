@@ -8,6 +8,24 @@ namespace SpotoMasterRace
     {
         #region Utilities
 
+        static public BindingList<T> RemoveDuplicates<T>(BindingList<T> collection)
+        {
+            BindingList<T> list = new BindingList<T>();
+            foreach (T item in collection)
+                if (!list.Contains(item))
+                    list.Add(item);
+            return list;
+        }
+
+        static internal List<T> RemoveDuplicates<T>(List<T> collection)
+        {
+            List<T> list = new List<T>();
+            foreach (T item in collection)
+                if (!list.Contains(item))
+                    list.Add(item);
+            return list;
+        }
+
         static internal int GetFrequency(List<string> collection, string item)
         {
             int counter = 0;
@@ -23,6 +41,14 @@ namespace SpotoMasterRace
             foreach (double obj in collection)
                 list.Add(obj.ToString());
             return GetFrequency(list, item.ToString());
+        }
+
+        static internal double Sum(List<double> collection)
+        {
+            double sum = 0;
+            foreach (double item in collection)
+                sum += item;
+            return sum;
         }
 
         static internal int GetFrequency(BindingList<StructSet<string>> sets, StructSet<string> container)
@@ -44,32 +70,6 @@ namespace SpotoMasterRace
                                 counter++;
                         }
             return counter;
-        }
-
-        static internal List<T> RemoveDuplicates<T>(List<T> collection)
-        {
-            List<T> list = new List<T>();
-            foreach (T item in collection)
-                if (!list.Contains(item))
-                    list.Add(item);
-            return list;
-        }
-
-        static public BindingList<T> RemoveDuplicates<T>(BindingList<T> collection)
-        {
-            BindingList<T> list = new BindingList<T>();
-            foreach (T item in collection)
-                if (!list.Contains(item))
-                    list.Add(item);
-            return list;
-        }
-
-        static internal double Sum(List<double> collection)
-        {
-            double sum = 0;
-            foreach (double item in collection)
-                sum += item;
-            return sum;
         }
 
         #endregion Utilities
@@ -419,5 +419,34 @@ namespace SpotoMasterRace
         { return FactorialOf(n) / (FactorialOf(k) * FactorialOf(Convert.ToInt16(n - k))); }
 
         #endregion Combinatorics
+
+        #region Probability Distributions
+
+        static internal StructSet<StructSet<string>> MainEvents(BindingList<StructSet<string>> sets)
+        {
+            StructSet<StructSet<string>> mainEvents = new StructSet<StructSet<string>>('X');
+            foreach (StructSet<string> set in sets)
+            {
+                bool alreadyPresent = false;
+                foreach (StructSet<string> ev in mainEvents.Elements)
+                    if (set.Cardinality == ev.Cardinality)
+                        alreadyPresent = true;
+                if (!alreadyPresent)
+                    mainEvents.Elements.Add(set);
+            }
+            return mainEvents;
+        }
+
+        #endregion Probability Distributions
+
+        #region Parametric Distributions
+        static internal double[] BinomialDistribution(short n, double p)
+        {
+            double[] probabilities = new double[n];
+            for (short i = 0; i < probabilities.Length; i++)
+                probabilities[i] = BinomialCoefficient(n, i) * Math.Pow(p, i) * Math.Pow((1 - p), n - i);
+            return probabilities;
+        }
+        #endregion
     }
 }

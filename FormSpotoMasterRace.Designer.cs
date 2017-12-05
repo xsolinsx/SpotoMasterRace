@@ -99,14 +99,14 @@
             this.button_ProportionsPercentage = new System.Windows.Forms.Button();
             this.button_Proportions = new System.Windows.Forms.Button();
             this.button_CheckDataDescriptiveStatistics = new System.Windows.Forms.Button();
-            this.richTextBox_ResultsDescriptiveStatistics = new System.Windows.Forms.RichTextBox();
+            this.richTextBox_DescriptiveStatistics = new System.Windows.Forms.RichTextBox();
             this.groupBox_Nominal = new System.Windows.Forms.GroupBox();
             this.button_NumberOfEquivalentClasses = new System.Windows.Forms.Button();
             this.button_Mode = new System.Windows.Forms.Button();
             this.textBox_CollectionDescriptiveStatistics = new System.Windows.Forms.TextBox();
             this.tabPage_Combinatorics = new System.Windows.Forms.TabPage();
             this.label_CombinatoricsN = new System.Windows.Forms.Label();
-            this.richTextBox_ResultsCombinatorics = new System.Windows.Forms.RichTextBox();
+            this.richTextBox_Combinatorics = new System.Windows.Forms.RichTextBox();
             this.button_CombinationsWithRepetitions = new System.Windows.Forms.Button();
             this.button_CombinationsWithoutRepetitions = new System.Windows.Forms.Button();
             this.button_PermutationsWithRepetitions = new System.Windows.Forms.Button();
@@ -117,15 +117,40 @@
             this.tabPage_ProbabilityTheory = new System.Windows.Forms.TabPage();
             this.label_ProbabilityOfX = new System.Windows.Forms.Label();
             this.listBox_SpaceOfEvents = new System.Windows.Forms.ListBox();
-            this.label_CardinalitySpaceOfEvents = new System.Windows.Forms.Label();
-            this.label_CardinalityOutcomeSpace = new System.Windows.Forms.Label();
+            this.label_CardinalitySpaceOfEventsProbabilityTheory = new System.Windows.Forms.Label();
+            this.label_CardinalityOutcomeSpaceProbabilityTheory = new System.Windows.Forms.Label();
             this.label_SpaceOfEvents = new System.Windows.Forms.Label();
-            this.label_OutcomeSpace = new System.Windows.Forms.Label();
+            this.label_OutcomeSpaceProbabilityTheory = new System.Windows.Forms.Label();
             this.button_SpaceOfEvents = new System.Windows.Forms.Button();
-            this.textBox_OutcomeSpace = new System.Windows.Forms.TextBox();
+            this.textBox_OutcomeSpaceProbabilityTheory = new System.Windows.Forms.TextBox();
+            this.tabPage_ProbabilityDistributions = new System.Windows.Forms.TabPage();
+            this.label_ResizingWarning = new System.Windows.Forms.Label();
+            this.richTextBox_ProbabilityDistributions = new System.Windows.Forms.RichTextBox();
+            this.button_MassFunction = new System.Windows.Forms.Button();
+            this.button_ResetProbabilityDistributions = new System.Windows.Forms.Button();
+            this.button_CumulativeDistributionFunction = new System.Windows.Forms.Button();
+            this.panel_ProbabilityDistributions = new System.Windows.Forms.Panel();
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions = new System.Windows.Forms.Label();
+            this.label_CardinalityOutcomeSpaceProbabilityDistributions = new System.Windows.Forms.Label();
+            this.label_OutcomeSpaceProbabilityDistributions = new System.Windows.Forms.Label();
+            this.textBox_OutcomeSpaceProbabilityDistributions = new System.Windows.Forms.TextBox();
+            this.tabPage_ParametricDistributions = new System.Windows.Forms.TabPage();
+            this.richTextBox_ParametricDistributions = new System.Windows.Forms.RichTextBox();
+            this.textBox_pBinomialDistribution = new System.Windows.Forms.TextBox();
+            this.label_pBinomialDistribution = new System.Windows.Forms.Label();
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution = new System.Windows.Forms.Button();
+            this.button_ResetParametricDistributions = new System.Windows.Forms.Button();
+            this.button_MassFunctionOfBinomialDistribution = new System.Windows.Forms.Button();
+            this.panel_ParametricDistributions = new System.Windows.Forms.Panel();
+            this.label_CardinalitySpaceOfEventsParametricDistributions = new System.Windows.Forms.Label();
+            this.label_OutcomeSpaceCardinalityParametricDistributions = new System.Windows.Forms.Label();
+            this.label_OutcomeSpaceParametricDistributions = new System.Windows.Forms.Label();
+            this.textBox_OutcomeSpaceParametricDistributions = new System.Windows.Forms.TextBox();
+            this.textBox_nBinomialDistribution = new System.Windows.Forms.TextBox();
+            this.label_nBinomialDistribution = new System.Windows.Forms.Label();
             this.toolTip_General = new System.Windows.Forms.ToolTip(this.components);
             this.checkBox_ShowHelp = new System.Windows.Forms.CheckBox();
-            this.tabPage_ProbabilityDistributions = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_SpotoMasterRace.SuspendLayout();
             this.tabPage_SetTheory.SuspendLayout();
             this.groupBox_SetOperations.SuspendLayout();
@@ -140,6 +165,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CombinatoricsN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CombinatoricsK)).BeginInit();
             this.tabPage_ProbabilityTheory.SuspendLayout();
+            this.tabPage_ProbabilityDistributions.SuspendLayout();
+            this.tabPage_ParametricDistributions.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_SpotoMasterRace
@@ -152,6 +179,7 @@
             this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_Combinatorics);
             this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_ProbabilityTheory);
             this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_ProbabilityDistributions);
+            this.tabControl_SpotoMasterRace.Controls.Add(this.tabPage_ParametricDistributions);
             this.tabControl_SpotoMasterRace.Location = new System.Drawing.Point(12, 12);
             this.tabControl_SpotoMasterRace.Name = "tabControl_SpotoMasterRace";
             this.tabControl_SpotoMasterRace.SelectedIndex = 0;
@@ -568,7 +596,7 @@
             this.tabPage_DescriptiveStatistics.Controls.Add(this.groupBox_IntervalRatio);
             this.tabPage_DescriptiveStatistics.Controls.Add(this.groupBox_Ordinal);
             this.tabPage_DescriptiveStatistics.Controls.Add(this.button_CheckDataDescriptiveStatistics);
-            this.tabPage_DescriptiveStatistics.Controls.Add(this.richTextBox_ResultsDescriptiveStatistics);
+            this.tabPage_DescriptiveStatistics.Controls.Add(this.richTextBox_DescriptiveStatistics);
             this.tabPage_DescriptiveStatistics.Controls.Add(this.groupBox_Nominal);
             this.tabPage_DescriptiveStatistics.Controls.Add(this.textBox_CollectionDescriptiveStatistics);
             this.tabPage_DescriptiveStatistics.Location = new System.Drawing.Point(4, 22);
@@ -989,17 +1017,17 @@
             this.button_CheckDataDescriptiveStatistics.UseVisualStyleBackColor = true;
             this.button_CheckDataDescriptiveStatistics.Click += new System.EventHandler(this.button_CheckDataDescriptiveStatistics_Click);
             // 
-            // richTextBox_ResultsDescriptiveStatistics
+            // richTextBox_DescriptiveStatistics
             // 
-            this.richTextBox_ResultsDescriptiveStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.richTextBox_DescriptiveStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox_ResultsDescriptiveStatistics.Location = new System.Drawing.Point(6, 336);
-            this.richTextBox_ResultsDescriptiveStatistics.Name = "richTextBox_ResultsDescriptiveStatistics";
-            this.richTextBox_ResultsDescriptiveStatistics.ReadOnly = true;
-            this.richTextBox_ResultsDescriptiveStatistics.Size = new System.Drawing.Size(740, 169);
-            this.richTextBox_ResultsDescriptiveStatistics.TabIndex = 2;
-            this.richTextBox_ResultsDescriptiveStatistics.Text = "";
+            this.richTextBox_DescriptiveStatistics.Location = new System.Drawing.Point(6, 336);
+            this.richTextBox_DescriptiveStatistics.Name = "richTextBox_DescriptiveStatistics";
+            this.richTextBox_DescriptiveStatistics.ReadOnly = true;
+            this.richTextBox_DescriptiveStatistics.Size = new System.Drawing.Size(740, 169);
+            this.richTextBox_DescriptiveStatistics.TabIndex = 2;
+            this.richTextBox_DescriptiveStatistics.Text = "";
             // 
             // groupBox_Nominal
             // 
@@ -1048,7 +1076,7 @@
             // tabPage_Combinatorics
             // 
             this.tabPage_Combinatorics.Controls.Add(this.label_CombinatoricsN);
-            this.tabPage_Combinatorics.Controls.Add(this.richTextBox_ResultsCombinatorics);
+            this.tabPage_Combinatorics.Controls.Add(this.richTextBox_Combinatorics);
             this.tabPage_Combinatorics.Controls.Add(this.button_CombinationsWithRepetitions);
             this.tabPage_Combinatorics.Controls.Add(this.button_CombinationsWithoutRepetitions);
             this.tabPage_Combinatorics.Controls.Add(this.button_PermutationsWithRepetitions);
@@ -1073,17 +1101,17 @@
             this.label_CombinatoricsN.TabIndex = 30;
             this.label_CombinatoricsN.Text = "N =";
             // 
-            // richTextBox_ResultsCombinatorics
+            // richTextBox_Combinatorics
             // 
-            this.richTextBox_ResultsCombinatorics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.richTextBox_Combinatorics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox_ResultsCombinatorics.Location = new System.Drawing.Point(6, 103);
-            this.richTextBox_ResultsCombinatorics.Name = "richTextBox_ResultsCombinatorics";
-            this.richTextBox_ResultsCombinatorics.ReadOnly = true;
-            this.richTextBox_ResultsCombinatorics.Size = new System.Drawing.Size(740, 402);
-            this.richTextBox_ResultsCombinatorics.TabIndex = 27;
-            this.richTextBox_ResultsCombinatorics.Text = "";
+            this.richTextBox_Combinatorics.Location = new System.Drawing.Point(6, 103);
+            this.richTextBox_Combinatorics.Name = "richTextBox_Combinatorics";
+            this.richTextBox_Combinatorics.ReadOnly = true;
+            this.richTextBox_Combinatorics.Size = new System.Drawing.Size(740, 402);
+            this.richTextBox_Combinatorics.TabIndex = 27;
+            this.richTextBox_Combinatorics.Text = "";
             // 
             // button_CombinationsWithRepetitions
             // 
@@ -1190,12 +1218,12 @@
             // 
             this.tabPage_ProbabilityTheory.Controls.Add(this.label_ProbabilityOfX);
             this.tabPage_ProbabilityTheory.Controls.Add(this.listBox_SpaceOfEvents);
-            this.tabPage_ProbabilityTheory.Controls.Add(this.label_CardinalitySpaceOfEvents);
-            this.tabPage_ProbabilityTheory.Controls.Add(this.label_CardinalityOutcomeSpace);
+            this.tabPage_ProbabilityTheory.Controls.Add(this.label_CardinalitySpaceOfEventsProbabilityTheory);
+            this.tabPage_ProbabilityTheory.Controls.Add(this.label_CardinalityOutcomeSpaceProbabilityTheory);
             this.tabPage_ProbabilityTheory.Controls.Add(this.label_SpaceOfEvents);
-            this.tabPage_ProbabilityTheory.Controls.Add(this.label_OutcomeSpace);
+            this.tabPage_ProbabilityTheory.Controls.Add(this.label_OutcomeSpaceProbabilityTheory);
             this.tabPage_ProbabilityTheory.Controls.Add(this.button_SpaceOfEvents);
-            this.tabPage_ProbabilityTheory.Controls.Add(this.textBox_OutcomeSpace);
+            this.tabPage_ProbabilityTheory.Controls.Add(this.textBox_OutcomeSpaceProbabilityTheory);
             this.tabPage_ProbabilityTheory.Location = new System.Drawing.Point(4, 22);
             this.tabPage_ProbabilityTheory.Name = "tabPage_ProbabilityTheory";
             this.tabPage_ProbabilityTheory.Padding = new System.Windows.Forms.Padding(3);
@@ -1227,23 +1255,23 @@
             this.toolTip_General.SetToolTip(this.listBox_SpaceOfEvents, "This is the list of elements of the current set.");
             this.listBox_SpaceOfEvents.SelectedIndexChanged += new System.EventHandler(this.listBox_SpaceOfEvents_SelectedIndexChanged);
             // 
-            // label_CardinalitySpaceOfEvents
+            // label_CardinalitySpaceOfEventsProbabilityTheory
             // 
-            this.label_CardinalitySpaceOfEvents.AutoSize = true;
-            this.label_CardinalitySpaceOfEvents.Location = new System.Drawing.Point(6, 140);
-            this.label_CardinalitySpaceOfEvents.Name = "label_CardinalitySpaceOfEvents";
-            this.label_CardinalitySpaceOfEvents.Size = new System.Drawing.Size(29, 13);
-            this.label_CardinalitySpaceOfEvents.TabIndex = 21;
-            this.label_CardinalitySpaceOfEvents.Text = "|ε| = ";
+            this.label_CardinalitySpaceOfEventsProbabilityTheory.AutoSize = true;
+            this.label_CardinalitySpaceOfEventsProbabilityTheory.Location = new System.Drawing.Point(6, 140);
+            this.label_CardinalitySpaceOfEventsProbabilityTheory.Name = "label_CardinalitySpaceOfEventsProbabilityTheory";
+            this.label_CardinalitySpaceOfEventsProbabilityTheory.Size = new System.Drawing.Size(29, 13);
+            this.label_CardinalitySpaceOfEventsProbabilityTheory.TabIndex = 21;
+            this.label_CardinalitySpaceOfEventsProbabilityTheory.Text = "|ε| = ";
             // 
-            // label_CardinalityOutcomeSpace
+            // label_CardinalityOutcomeSpaceProbabilityTheory
             // 
-            this.label_CardinalityOutcomeSpace.AutoSize = true;
-            this.label_CardinalityOutcomeSpace.Location = new System.Drawing.Point(6, 34);
-            this.label_CardinalityOutcomeSpace.Name = "label_CardinalityOutcomeSpace";
-            this.label_CardinalityOutcomeSpace.Size = new System.Drawing.Size(32, 13);
-            this.label_CardinalityOutcomeSpace.TabIndex = 20;
-            this.label_CardinalityOutcomeSpace.Text = "|Ω| = ";
+            this.label_CardinalityOutcomeSpaceProbabilityTheory.AutoSize = true;
+            this.label_CardinalityOutcomeSpaceProbabilityTheory.Location = new System.Drawing.Point(6, 34);
+            this.label_CardinalityOutcomeSpaceProbabilityTheory.Name = "label_CardinalityOutcomeSpaceProbabilityTheory";
+            this.label_CardinalityOutcomeSpaceProbabilityTheory.Size = new System.Drawing.Size(32, 13);
+            this.label_CardinalityOutcomeSpaceProbabilityTheory.TabIndex = 20;
+            this.label_CardinalityOutcomeSpaceProbabilityTheory.Text = "|Ω| = ";
             // 
             // label_SpaceOfEvents
             // 
@@ -1254,14 +1282,14 @@
             this.label_SpaceOfEvents.TabIndex = 18;
             this.label_SpaceOfEvents.Text = "Space of Events: ";
             // 
-            // label_OutcomeSpace
+            // label_OutcomeSpaceProbabilityTheory
             // 
-            this.label_OutcomeSpace.AutoSize = true;
-            this.label_OutcomeSpace.Location = new System.Drawing.Point(6, 8);
-            this.label_OutcomeSpace.Name = "label_OutcomeSpace";
-            this.label_OutcomeSpace.Size = new System.Drawing.Size(90, 13);
-            this.label_OutcomeSpace.TabIndex = 16;
-            this.label_OutcomeSpace.Text = "Outcome Space: ";
+            this.label_OutcomeSpaceProbabilityTheory.AutoSize = true;
+            this.label_OutcomeSpaceProbabilityTheory.Location = new System.Drawing.Point(6, 8);
+            this.label_OutcomeSpaceProbabilityTheory.Name = "label_OutcomeSpaceProbabilityTheory";
+            this.label_OutcomeSpaceProbabilityTheory.Size = new System.Drawing.Size(90, 13);
+            this.label_OutcomeSpaceProbabilityTheory.TabIndex = 16;
+            this.label_OutcomeSpaceProbabilityTheory.Text = "Outcome Space: ";
             // 
             // button_SpaceOfEvents
             // 
@@ -1273,19 +1301,308 @@
             this.button_SpaceOfEvents.UseVisualStyleBackColor = true;
             this.button_SpaceOfEvents.Click += new System.EventHandler(this.button_SpaceOfEvents_Click);
             // 
-            // textBox_OutcomeSpace
+            // textBox_OutcomeSpaceProbabilityTheory
             // 
-            this.textBox_OutcomeSpace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_OutcomeSpaceProbabilityTheory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_OutcomeSpace.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_OutcomeSpace.Location = new System.Drawing.Point(102, 19);
-            this.textBox_OutcomeSpace.Name = "textBox_OutcomeSpace";
-            this.textBox_OutcomeSpace.Size = new System.Drawing.Size(644, 20);
-            this.textBox_OutcomeSpace.TabIndex = 4;
-            this.textBox_OutcomeSpace.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
+            this.textBox_OutcomeSpaceProbabilityTheory.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_OutcomeSpaceProbabilityTheory.Location = new System.Drawing.Point(102, 19);
+            this.textBox_OutcomeSpaceProbabilityTheory.Name = "textBox_OutcomeSpaceProbabilityTheory";
+            this.textBox_OutcomeSpaceProbabilityTheory.Size = new System.Drawing.Size(644, 20);
+            this.textBox_OutcomeSpaceProbabilityTheory.TabIndex = 4;
+            this.textBox_OutcomeSpaceProbabilityTheory.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
     "Liam";
-            this.textBox_OutcomeSpace.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_OutcomeSpace.TextChanged += new System.EventHandler(this.textBox_OutcomeSpace_TextChanged);
+            this.textBox_OutcomeSpaceProbabilityTheory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_OutcomeSpaceProbabilityTheory.TextChanged += new System.EventHandler(this.textBox_OutcomeSpaceProbabilityTheory_TextChanged);
+            // 
+            // tabPage_ProbabilityDistributions
+            // 
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.label_ResizingWarning);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.richTextBox_ProbabilityDistributions);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.button_MassFunction);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.button_ResetProbabilityDistributions);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.button_CumulativeDistributionFunction);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.panel_ProbabilityDistributions);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.label_CardinalitySpaceOfEventsProbabilityDistributions);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.label_CardinalityOutcomeSpaceProbabilityDistributions);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.label_OutcomeSpaceProbabilityDistributions);
+            this.tabPage_ProbabilityDistributions.Controls.Add(this.textBox_OutcomeSpaceProbabilityDistributions);
+            this.tabPage_ProbabilityDistributions.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_ProbabilityDistributions.Name = "tabPage_ProbabilityDistributions";
+            this.tabPage_ProbabilityDistributions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_ProbabilityDistributions.Size = new System.Drawing.Size(752, 511);
+            this.tabPage_ProbabilityDistributions.TabIndex = 4;
+            this.tabPage_ProbabilityDistributions.Text = "Probability Distributions";
+            this.tabPage_ProbabilityDistributions.UseVisualStyleBackColor = true;
+            // 
+            // label_ResizingWarning
+            // 
+            this.label_ResizingWarning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_ResizingWarning.Location = new System.Drawing.Point(174, 452);
+            this.label_ResizingWarning.Name = "label_ResizingWarning";
+            this.label_ResizingWarning.Size = new System.Drawing.Size(488, 56);
+            this.label_ResizingWarning.TabIndex = 31;
+            this.label_ResizingWarning.Text = "You should not resize/minimize the window while a graph is plotted.\r\nIf you do it" +
+    " the graph will be erased and you will need to draw it again.";
+            this.label_ResizingWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // richTextBox_ProbabilityDistributions
+            // 
+            this.richTextBox_ProbabilityDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox_ProbabilityDistributions.Location = new System.Drawing.Point(6, 344);
+            this.richTextBox_ProbabilityDistributions.Name = "richTextBox_ProbabilityDistributions";
+            this.richTextBox_ProbabilityDistributions.ReadOnly = true;
+            this.richTextBox_ProbabilityDistributions.Size = new System.Drawing.Size(740, 105);
+            this.richTextBox_ProbabilityDistributions.TabIndex = 30;
+            this.richTextBox_ProbabilityDistributions.Text = "";
+            // 
+            // button_MassFunction
+            // 
+            this.button_MassFunction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_MassFunction.Location = new System.Drawing.Point(90, 463);
+            this.button_MassFunction.Name = "button_MassFunction";
+            this.button_MassFunction.Size = new System.Drawing.Size(78, 35);
+            this.button_MassFunction.TabIndex = 29;
+            this.button_MassFunction.Text = "Mass Function";
+            this.button_MassFunction.UseVisualStyleBackColor = true;
+            this.button_MassFunction.Click += new System.EventHandler(this.button_MassFunction_Click);
+            // 
+            // button_ResetProbabilityDistributions
+            // 
+            this.button_ResetProbabilityDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_ResetProbabilityDistributions.Location = new System.Drawing.Point(668, 469);
+            this.button_ResetProbabilityDistributions.Name = "button_ResetProbabilityDistributions";
+            this.button_ResetProbabilityDistributions.Size = new System.Drawing.Size(78, 23);
+            this.button_ResetProbabilityDistributions.TabIndex = 28;
+            this.button_ResetProbabilityDistributions.Text = "Reset";
+            this.button_ResetProbabilityDistributions.UseVisualStyleBackColor = true;
+            this.button_ResetProbabilityDistributions.Click += new System.EventHandler(this.button_ResetProbabilityDistributions_Click);
+            // 
+            // button_CumulativeDistributionFunction
+            // 
+            this.button_CumulativeDistributionFunction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_CumulativeDistributionFunction.Location = new System.Drawing.Point(6, 455);
+            this.button_CumulativeDistributionFunction.Name = "button_CumulativeDistributionFunction";
+            this.button_CumulativeDistributionFunction.Size = new System.Drawing.Size(78, 50);
+            this.button_CumulativeDistributionFunction.TabIndex = 27;
+            this.button_CumulativeDistributionFunction.Text = "Cumulative Distribution Function";
+            this.button_CumulativeDistributionFunction.UseVisualStyleBackColor = true;
+            this.button_CumulativeDistributionFunction.Click += new System.EventHandler(this.button_CumulativeDistributionFunction_Click);
+            // 
+            // panel_ProbabilityDistributions
+            // 
+            this.panel_ProbabilityDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_ProbabilityDistributions.Location = new System.Drawing.Point(6, 50);
+            this.panel_ProbabilityDistributions.Name = "panel_ProbabilityDistributions";
+            this.panel_ProbabilityDistributions.Size = new System.Drawing.Size(740, 288);
+            this.panel_ProbabilityDistributions.TabIndex = 26;
+            // 
+            // label_CardinalitySpaceOfEventsProbabilityDistributions
+            // 
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions.AutoSize = true;
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions.Location = new System.Drawing.Point(678, 34);
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions.Name = "label_CardinalitySpaceOfEventsProbabilityDistributions";
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions.Size = new System.Drawing.Size(29, 13);
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions.TabIndex = 25;
+            this.label_CardinalitySpaceOfEventsProbabilityDistributions.Text = "|ε| = ";
+            // 
+            // label_CardinalityOutcomeSpaceProbabilityDistributions
+            // 
+            this.label_CardinalityOutcomeSpaceProbabilityDistributions.AutoSize = true;
+            this.label_CardinalityOutcomeSpaceProbabilityDistributions.Location = new System.Drawing.Point(6, 34);
+            this.label_CardinalityOutcomeSpaceProbabilityDistributions.Name = "label_CardinalityOutcomeSpaceProbabilityDistributions";
+            this.label_CardinalityOutcomeSpaceProbabilityDistributions.Size = new System.Drawing.Size(32, 13);
+            this.label_CardinalityOutcomeSpaceProbabilityDistributions.TabIndex = 24;
+            this.label_CardinalityOutcomeSpaceProbabilityDistributions.Text = "|Ω| = ";
+            // 
+            // label_OutcomeSpaceProbabilityDistributions
+            // 
+            this.label_OutcomeSpaceProbabilityDistributions.AutoSize = true;
+            this.label_OutcomeSpaceProbabilityDistributions.Location = new System.Drawing.Point(6, 8);
+            this.label_OutcomeSpaceProbabilityDistributions.Name = "label_OutcomeSpaceProbabilityDistributions";
+            this.label_OutcomeSpaceProbabilityDistributions.Size = new System.Drawing.Size(90, 13);
+            this.label_OutcomeSpaceProbabilityDistributions.TabIndex = 23;
+            this.label_OutcomeSpaceProbabilityDistributions.Text = "Outcome Space: ";
+            // 
+            // textBox_OutcomeSpaceProbabilityDistributions
+            // 
+            this.textBox_OutcomeSpaceProbabilityDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_OutcomeSpaceProbabilityDistributions.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_OutcomeSpaceProbabilityDistributions.Location = new System.Drawing.Point(102, 6);
+            this.textBox_OutcomeSpaceProbabilityDistributions.Name = "textBox_OutcomeSpaceProbabilityDistributions";
+            this.textBox_OutcomeSpaceProbabilityDistributions.Size = new System.Drawing.Size(644, 20);
+            this.textBox_OutcomeSpaceProbabilityDistributions.TabIndex = 22;
+            this.textBox_OutcomeSpaceProbabilityDistributions.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
+    "Liam";
+            this.textBox_OutcomeSpaceProbabilityDistributions.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_OutcomeSpaceProbabilityDistributions.TextChanged += new System.EventHandler(this.textBox_OutcomeSpaceProbabilityDistributions_TextChanged);
+            // 
+            // tabPage_ParametricDistributions
+            // 
+            this.tabPage_ParametricDistributions.Controls.Add(this.panel1);
+            this.tabPage_ParametricDistributions.Controls.Add(this.richTextBox_ParametricDistributions);
+            this.tabPage_ParametricDistributions.Controls.Add(this.textBox_pBinomialDistribution);
+            this.tabPage_ParametricDistributions.Controls.Add(this.label_pBinomialDistribution);
+            this.tabPage_ParametricDistributions.Controls.Add(this.button_CumulativeDistributionFunctionOfBinomialDistribution);
+            this.tabPage_ParametricDistributions.Controls.Add(this.button_ResetParametricDistributions);
+            this.tabPage_ParametricDistributions.Controls.Add(this.button_MassFunctionOfBinomialDistribution);
+            this.tabPage_ParametricDistributions.Controls.Add(this.panel_ParametricDistributions);
+            this.tabPage_ParametricDistributions.Controls.Add(this.label_CardinalitySpaceOfEventsParametricDistributions);
+            this.tabPage_ParametricDistributions.Controls.Add(this.label_OutcomeSpaceCardinalityParametricDistributions);
+            this.tabPage_ParametricDistributions.Controls.Add(this.label_OutcomeSpaceParametricDistributions);
+            this.tabPage_ParametricDistributions.Controls.Add(this.textBox_OutcomeSpaceParametricDistributions);
+            this.tabPage_ParametricDistributions.Controls.Add(this.textBox_nBinomialDistribution);
+            this.tabPage_ParametricDistributions.Controls.Add(this.label_nBinomialDistribution);
+            this.tabPage_ParametricDistributions.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_ParametricDistributions.Name = "tabPage_ParametricDistributions";
+            this.tabPage_ParametricDistributions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_ParametricDistributions.Size = new System.Drawing.Size(752, 511);
+            this.tabPage_ParametricDistributions.TabIndex = 5;
+            this.tabPage_ParametricDistributions.Text = "Parametric Distributions";
+            this.tabPage_ParametricDistributions.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox_ParametricDistributions
+            // 
+            this.richTextBox_ParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox_ParametricDistributions.Location = new System.Drawing.Point(6, 344);
+            this.richTextBox_ParametricDistributions.Name = "richTextBox_ParametricDistributions";
+            this.richTextBox_ParametricDistributions.ReadOnly = true;
+            this.richTextBox_ParametricDistributions.Size = new System.Drawing.Size(740, 105);
+            this.richTextBox_ParametricDistributions.TabIndex = 31;
+            this.richTextBox_ParametricDistributions.Text = "";
+            // 
+            // textBox_pBinomialDistribution
+            // 
+            this.textBox_pBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox_pBinomialDistribution.Location = new System.Drawing.Point(28, 485);
+            this.textBox_pBinomialDistribution.Name = "textBox_pBinomialDistribution";
+            this.textBox_pBinomialDistribution.Size = new System.Drawing.Size(47, 20);
+            this.textBox_pBinomialDistribution.TabIndex = 40;
+            this.textBox_pBinomialDistribution.Text = "0";
+            this.textBox_pBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_pBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_pBinomialDistribution_TextChanged);
+            // 
+            // label_pBinomialDistribution
+            // 
+            this.label_pBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label_pBinomialDistribution.AutoSize = true;
+            this.label_pBinomialDistribution.Location = new System.Drawing.Point(6, 488);
+            this.label_pBinomialDistribution.Name = "label_pBinomialDistribution";
+            this.label_pBinomialDistribution.Size = new System.Drawing.Size(16, 13);
+            this.label_pBinomialDistribution.TabIndex = 39;
+            this.label_pBinomialDistribution.Text = "p:";
+            // 
+            // button_CumulativeDistributionFunctionOfBinomialDistribution
+            // 
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Location = new System.Drawing.Point(81, 455);
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Name = "button_CumulativeDistributionFunctionOfBinomialDistribution";
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Size = new System.Drawing.Size(78, 50);
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.TabIndex = 37;
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Text = "CDF of Binomial Distribution";
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.UseVisualStyleBackColor = true;
+            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Click += new System.EventHandler(this.button_CumulativeDistributionFunctionOfBinomialDistribution_Click);
+            // 
+            // button_ResetParametricDistributions
+            // 
+            this.button_ResetParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_ResetParametricDistributions.Location = new System.Drawing.Point(668, 469);
+            this.button_ResetParametricDistributions.Name = "button_ResetParametricDistributions";
+            this.button_ResetParametricDistributions.Size = new System.Drawing.Size(78, 23);
+            this.button_ResetParametricDistributions.TabIndex = 36;
+            this.button_ResetParametricDistributions.Text = "Reset";
+            this.button_ResetParametricDistributions.UseVisualStyleBackColor = true;
+            this.button_ResetParametricDistributions.Click += new System.EventHandler(this.button_ResetParametricDistributions_Click);
+            // 
+            // button_MassFunctionOfBinomialDistribution
+            // 
+            this.button_MassFunctionOfBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_MassFunctionOfBinomialDistribution.Location = new System.Drawing.Point(165, 455);
+            this.button_MassFunctionOfBinomialDistribution.Name = "button_MassFunctionOfBinomialDistribution";
+            this.button_MassFunctionOfBinomialDistribution.Size = new System.Drawing.Size(78, 50);
+            this.button_MassFunctionOfBinomialDistribution.TabIndex = 35;
+            this.button_MassFunctionOfBinomialDistribution.Text = "MF of Binomial Distribution";
+            this.button_MassFunctionOfBinomialDistribution.UseVisualStyleBackColor = true;
+            this.button_MassFunctionOfBinomialDistribution.Click += new System.EventHandler(this.button_MassFunctionOfBinomialDistribution_Click);
+            // 
+            // panel_ParametricDistributions
+            // 
+            this.panel_ParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_ParametricDistributions.Location = new System.Drawing.Point(6, 50);
+            this.panel_ParametricDistributions.Name = "panel_ParametricDistributions";
+            this.panel_ParametricDistributions.Size = new System.Drawing.Size(370, 288);
+            this.panel_ParametricDistributions.TabIndex = 34;
+            // 
+            // label_CardinalitySpaceOfEventsParametricDistributions
+            // 
+            this.label_CardinalitySpaceOfEventsParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_CardinalitySpaceOfEventsParametricDistributions.AutoSize = true;
+            this.label_CardinalitySpaceOfEventsParametricDistributions.Location = new System.Drawing.Point(678, 34);
+            this.label_CardinalitySpaceOfEventsParametricDistributions.Name = "label_CardinalitySpaceOfEventsParametricDistributions";
+            this.label_CardinalitySpaceOfEventsParametricDistributions.Size = new System.Drawing.Size(29, 13);
+            this.label_CardinalitySpaceOfEventsParametricDistributions.TabIndex = 33;
+            this.label_CardinalitySpaceOfEventsParametricDistributions.Text = "|ε| = ";
+            // 
+            // label_OutcomeSpaceCardinalityParametricDistributions
+            // 
+            this.label_OutcomeSpaceCardinalityParametricDistributions.AutoSize = true;
+            this.label_OutcomeSpaceCardinalityParametricDistributions.Location = new System.Drawing.Point(6, 34);
+            this.label_OutcomeSpaceCardinalityParametricDistributions.Name = "label_OutcomeSpaceCardinalityParametricDistributions";
+            this.label_OutcomeSpaceCardinalityParametricDistributions.Size = new System.Drawing.Size(32, 13);
+            this.label_OutcomeSpaceCardinalityParametricDistributions.TabIndex = 32;
+            this.label_OutcomeSpaceCardinalityParametricDistributions.Text = "|Ω| = ";
+            // 
+            // label_OutcomeSpaceParametricDistributions
+            // 
+            this.label_OutcomeSpaceParametricDistributions.AutoSize = true;
+            this.label_OutcomeSpaceParametricDistributions.Location = new System.Drawing.Point(6, 8);
+            this.label_OutcomeSpaceParametricDistributions.Name = "label_OutcomeSpaceParametricDistributions";
+            this.label_OutcomeSpaceParametricDistributions.Size = new System.Drawing.Size(90, 13);
+            this.label_OutcomeSpaceParametricDistributions.TabIndex = 31;
+            this.label_OutcomeSpaceParametricDistributions.Text = "Outcome Space: ";
+            // 
+            // textBox_OutcomeSpaceParametricDistributions
+            // 
+            this.textBox_OutcomeSpaceParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_OutcomeSpaceParametricDistributions.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_OutcomeSpaceParametricDistributions.Location = new System.Drawing.Point(102, 6);
+            this.textBox_OutcomeSpaceParametricDistributions.Name = "textBox_OutcomeSpaceParametricDistributions";
+            this.textBox_OutcomeSpaceParametricDistributions.Size = new System.Drawing.Size(644, 20);
+            this.textBox_OutcomeSpaceParametricDistributions.TabIndex = 30;
+            this.textBox_OutcomeSpaceParametricDistributions.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
+    "Liam";
+            this.textBox_OutcomeSpaceParametricDistributions.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_nBinomialDistribution
+            // 
+            this.textBox_nBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox_nBinomialDistribution.Location = new System.Drawing.Point(28, 455);
+            this.textBox_nBinomialDistribution.Name = "textBox_nBinomialDistribution";
+            this.textBox_nBinomialDistribution.Size = new System.Drawing.Size(47, 20);
+            this.textBox_nBinomialDistribution.TabIndex = 42;
+            this.textBox_nBinomialDistribution.Text = "0";
+            this.textBox_nBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_nBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_nBinomialDistribution_TextChanged);
+            // 
+            // label_nBinomialDistribution
+            // 
+            this.label_nBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label_nBinomialDistribution.AutoSize = true;
+            this.label_nBinomialDistribution.Location = new System.Drawing.Point(6, 458);
+            this.label_nBinomialDistribution.Name = "label_nBinomialDistribution";
+            this.label_nBinomialDistribution.Size = new System.Drawing.Size(16, 13);
+            this.label_nBinomialDistribution.TabIndex = 41;
+            this.label_nBinomialDistribution.Text = "n:";
             // 
             // toolTip_General
             // 
@@ -1306,15 +1623,15 @@
             this.checkBox_ShowHelp.Visible = false;
             this.checkBox_ShowHelp.CheckedChanged += new System.EventHandler(this.checkBox_ShowHelp_CheckedChanged);
             // 
-            // tabPage_ProbabilityDistributions
+            // panel1
             // 
-            this.tabPage_ProbabilityDistributions.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_ProbabilityDistributions.Name = "tabPage_ProbabilityDistributions";
-            this.tabPage_ProbabilityDistributions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_ProbabilityDistributions.Size = new System.Drawing.Size(752, 511);
-            this.tabPage_ProbabilityDistributions.TabIndex = 4;
-            this.tabPage_ProbabilityDistributions.Text = "Probability Distributions";
-            this.tabPage_ProbabilityDistributions.UseVisualStyleBackColor = true;
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Location = new System.Drawing.Point(376, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(370, 288);
+            this.panel1.TabIndex = 43;
             // 
             // FormSpotoMasterRace
             // 
@@ -1326,6 +1643,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "FormSpotoMasterRace";
             this.Text = "SpotoMasterRace";
+            this.SizeChanged += new System.EventHandler(this.FormSpotoMasterRace_SizeChanged);
             this.tabControl_SpotoMasterRace.ResumeLayout(false);
             this.tabPage_SetTheory.ResumeLayout(false);
             this.tabPage_SetTheory.PerformLayout();
@@ -1348,6 +1666,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CombinatoricsK)).EndInit();
             this.tabPage_ProbabilityTheory.ResumeLayout(false);
             this.tabPage_ProbabilityTheory.PerformLayout();
+            this.tabPage_ProbabilityDistributions.ResumeLayout(false);
+            this.tabPage_ProbabilityDistributions.PerformLayout();
+            this.tabPage_ParametricDistributions.ResumeLayout(false);
+            this.tabPage_ParametricDistributions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1361,7 +1683,7 @@
         private System.Windows.Forms.GroupBox groupBox_Nominal;
         private System.Windows.Forms.Button button_NumberOfEquivalentClasses;
         private System.Windows.Forms.Button button_Mode;
-        private System.Windows.Forms.RichTextBox richTextBox_ResultsDescriptiveStatistics;
+        private System.Windows.Forms.RichTextBox richTextBox_DescriptiveStatistics;
         private System.Windows.Forms.Button button_CheckDataDescriptiveStatistics;
         private System.Windows.Forms.GroupBox groupBox_Ordinal;
         private System.Windows.Forms.Button button_ProportionsPercentage;
@@ -1395,7 +1717,7 @@
         private System.Windows.Forms.Button button_CombinationsWithoutRepetitions;
         private System.Windows.Forms.Button button_PermutationsWithRepetitions;
         private System.Windows.Forms.Button button_PermutationsWithoutRepetitions;
-        private System.Windows.Forms.RichTextBox richTextBox_ResultsCombinatorics;
+        private System.Windows.Forms.RichTextBox richTextBox_Combinatorics;
         private System.Windows.Forms.NumericUpDown numericUpDown_CombinatoricsK;
         private System.Windows.Forms.NumericUpDown numericUpDown_CombinatoricsN;
         private System.Windows.Forms.Label label_CombinatoricsK;
@@ -1437,12 +1759,12 @@
         private System.Windows.Forms.ToolTip toolTip_General;
         private System.Windows.Forms.CheckBox checkBox_ShowHelp;
         private System.Windows.Forms.TabPage tabPage_ProbabilityTheory;
-        private System.Windows.Forms.Label label_OutcomeSpace;
+        private System.Windows.Forms.Label label_OutcomeSpaceProbabilityTheory;
         private System.Windows.Forms.Button button_SpaceOfEvents;
-        private System.Windows.Forms.TextBox textBox_OutcomeSpace;
+        private System.Windows.Forms.TextBox textBox_OutcomeSpaceProbabilityTheory;
         private System.Windows.Forms.Label label_SpaceOfEvents;
-        private System.Windows.Forms.Label label_CardinalityOutcomeSpace;
-        private System.Windows.Forms.Label label_CardinalitySpaceOfEvents;
+        private System.Windows.Forms.Label label_CardinalityOutcomeSpaceProbabilityTheory;
+        private System.Windows.Forms.Label label_CardinalitySpaceOfEventsProbabilityTheory;
         private System.Windows.Forms.ListBox listBox_SpaceOfEvents;
         private System.Windows.Forms.Label label_ProbabilityOfX;
         private System.Windows.Forms.Label label_ZScoreIntervalRatio;
@@ -1452,6 +1774,31 @@
         private System.Windows.Forms.Label label_DatumOrdinal;
         private System.Windows.Forms.Label label_InsertOneElementAtATime;
         private System.Windows.Forms.TabPage tabPage_ProbabilityDistributions;
+        private System.Windows.Forms.Label label_CardinalitySpaceOfEventsProbabilityDistributions;
+        private System.Windows.Forms.Label label_CardinalityOutcomeSpaceProbabilityDistributions;
+        private System.Windows.Forms.Label label_OutcomeSpaceProbabilityDistributions;
+        private System.Windows.Forms.TextBox textBox_OutcomeSpaceProbabilityDistributions;
+        private System.Windows.Forms.Panel panel_ProbabilityDistributions;
+        private System.Windows.Forms.Button button_CumulativeDistributionFunction;
+        private System.Windows.Forms.Button button_ResetProbabilityDistributions;
+        private System.Windows.Forms.Button button_MassFunction;
+        private System.Windows.Forms.TabPage tabPage_ParametricDistributions;
+        private System.Windows.Forms.Button button_CumulativeDistributionFunctionOfBinomialDistribution;
+        private System.Windows.Forms.Button button_ResetParametricDistributions;
+        private System.Windows.Forms.Button button_MassFunctionOfBinomialDistribution;
+        private System.Windows.Forms.Panel panel_ParametricDistributions;
+        private System.Windows.Forms.Label label_CardinalitySpaceOfEventsParametricDistributions;
+        private System.Windows.Forms.Label label_OutcomeSpaceCardinalityParametricDistributions;
+        private System.Windows.Forms.Label label_OutcomeSpaceParametricDistributions;
+        private System.Windows.Forms.TextBox textBox_OutcomeSpaceParametricDistributions;
+        private System.Windows.Forms.RichTextBox richTextBox_ProbabilityDistributions;
+        private System.Windows.Forms.Label label_ResizingWarning;
+        private System.Windows.Forms.Label label_pBinomialDistribution;
+        private System.Windows.Forms.TextBox textBox_nBinomialDistribution;
+        private System.Windows.Forms.Label label_nBinomialDistribution;
+        private System.Windows.Forms.TextBox textBox_pBinomialDistribution;
+        private System.Windows.Forms.RichTextBox richTextBox_ParametricDistributions;
+        private System.Windows.Forms.Panel panel1;
 
     }
 }
