@@ -440,6 +440,9 @@ namespace SpotoMasterRace
         #endregion Probability Distributions
 
         #region Parametric Distributions
+
+        #region Discrete
+
         static internal double[] BinomialDistribution(short n, double p)
         {
             double[] probabilities = new double[n];
@@ -447,6 +450,24 @@ namespace SpotoMasterRace
                 probabilities[i] = BinomialCoefficient(n, i) * Math.Pow(p, i) * Math.Pow((1 - p), n - i);
             return probabilities;
         }
+
+        static internal double[] HypergeometricDistribution(short Q, short q, short n)
+        {
+            double[] probabilities = new double[n];
+            for (short i = 0; i < probabilities.Length; i++)
+                probabilities[i] = FactorialOf(n) * BinomialCoefficient(q, i) * BinomialCoefficient(Convert.ToInt16(Q - q), Convert.ToInt16(n - i)) * (FactorialOf(Convert.ToInt16(Q - n)) / FactorialOf(Q));
+            return probabilities;
+        }
+
+        #endregion Discrete
+
+        #region Continuous
+
+        static internal double NormalDistributionValue(double value, double mean, double variance)
+        { return (1 / (Math.Sqrt(variance) * Math.Sqrt(2 * Math.PI))) * Math.Pow(Math.E, -(Math.Pow((value - mean), 2) / (2 * variance))); }
+
         #endregion
+
+        #endregion Parametric Distributions
     }
 }

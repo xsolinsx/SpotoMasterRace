@@ -135,22 +135,33 @@
             this.label_OutcomeSpaceProbabilityDistributions = new System.Windows.Forms.Label();
             this.textBox_OutcomeSpaceProbabilityDistributions = new System.Windows.Forms.TextBox();
             this.tabPage_ParametricDistributions = new System.Windows.Forms.TabPage();
-            this.richTextBox_ParametricDistributions = new System.Windows.Forms.RichTextBox();
-            this.textBox_pBinomialDistribution = new System.Windows.Forms.TextBox();
-            this.label_pBinomialDistribution = new System.Windows.Forms.Label();
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution = new System.Windows.Forms.Button();
-            this.button_ResetParametricDistributions = new System.Windows.Forms.Button();
-            this.button_MassFunctionOfBinomialDistribution = new System.Windows.Forms.Button();
-            this.panel_ParametricDistributions = new System.Windows.Forms.Panel();
-            this.label_CardinalitySpaceOfEventsParametricDistributions = new System.Windows.Forms.Label();
-            this.label_OutcomeSpaceCardinalityParametricDistributions = new System.Windows.Forms.Label();
-            this.label_OutcomeSpaceParametricDistributions = new System.Windows.Forms.Label();
-            this.textBox_OutcomeSpaceParametricDistributions = new System.Windows.Forms.TextBox();
-            this.textBox_nBinomialDistribution = new System.Windows.Forms.TextBox();
+            this.tabControl_ParametricDistributions = new System.Windows.Forms.TabControl();
+            this.tabPage_DiscreteParametricDistributions = new System.Windows.Forms.TabPage();
+            this.button_ResetDiscreteParametricDistributions = new System.Windows.Forms.Button();
+            this.groupBox_HypergeometricDistribution = new System.Windows.Forms.GroupBox();
+            this.label_nHypergeometricDistribution = new System.Windows.Forms.Label();
+            this.textBox_nHypergeometricDistribution = new System.Windows.Forms.TextBox();
+            this.label_qUpHypergeometricDistribution = new System.Windows.Forms.Label();
+            this.textBox_qUpHypergeometricDistribution = new System.Windows.Forms.TextBox();
+            this.textBox_qDownHypergeometricDistribution = new System.Windows.Forms.TextBox();
+            this.button_MFOfHypergeometricDistribution = new System.Windows.Forms.Button();
+            this.label_qDownHypergeometricDistribution = new System.Windows.Forms.Label();
+            this.button_CDFOfHypergeometricDistribution = new System.Windows.Forms.Button();
+            this.panel_DiscreteParametricDistributions = new System.Windows.Forms.Panel();
+            this.groupBox_BinomialDistribution = new System.Windows.Forms.GroupBox();
             this.label_nBinomialDistribution = new System.Windows.Forms.Label();
+            this.textBox_nBinomialDistribution = new System.Windows.Forms.TextBox();
+            this.textBox_pBinomialDistribution = new System.Windows.Forms.TextBox();
+            this.button_MFOfBinomialDistribution = new System.Windows.Forms.Button();
+            this.label_pBinomialDistribution = new System.Windows.Forms.Label();
+            this.button_CDFOfBinomialDistribution = new System.Windows.Forms.Button();
+            this.richTextBox_DiscreteParametricDistributions = new System.Windows.Forms.RichTextBox();
+            this.tabPage_ContinuousParametricDistributions = new System.Windows.Forms.TabPage();
+            this.button_ResetContinuousParametricDistributions = new System.Windows.Forms.Button();
+            this.panel_ContinuousParametricDistributions = new System.Windows.Forms.Panel();
+            this.richTextBox_ContinuousParametricDistributions = new System.Windows.Forms.RichTextBox();
             this.toolTip_General = new System.Windows.Forms.ToolTip(this.components);
             this.checkBox_ShowHelp = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_SpotoMasterRace.SuspendLayout();
             this.tabPage_SetTheory.SuspendLayout();
             this.groupBox_SetOperations.SuspendLayout();
@@ -167,6 +178,11 @@
             this.tabPage_ProbabilityTheory.SuspendLayout();
             this.tabPage_ProbabilityDistributions.SuspendLayout();
             this.tabPage_ParametricDistributions.SuspendLayout();
+            this.tabControl_ParametricDistributions.SuspendLayout();
+            this.tabPage_DiscreteParametricDistributions.SuspendLayout();
+            this.groupBox_HypergeometricDistribution.SuspendLayout();
+            this.groupBox_BinomialDistribution.SuspendLayout();
+            this.tabPage_ContinuousParametricDistributions.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_SpotoMasterRace
@@ -1445,20 +1461,7 @@
             // 
             // tabPage_ParametricDistributions
             // 
-            this.tabPage_ParametricDistributions.Controls.Add(this.panel1);
-            this.tabPage_ParametricDistributions.Controls.Add(this.richTextBox_ParametricDistributions);
-            this.tabPage_ParametricDistributions.Controls.Add(this.textBox_pBinomialDistribution);
-            this.tabPage_ParametricDistributions.Controls.Add(this.label_pBinomialDistribution);
-            this.tabPage_ParametricDistributions.Controls.Add(this.button_CumulativeDistributionFunctionOfBinomialDistribution);
-            this.tabPage_ParametricDistributions.Controls.Add(this.button_ResetParametricDistributions);
-            this.tabPage_ParametricDistributions.Controls.Add(this.button_MassFunctionOfBinomialDistribution);
-            this.tabPage_ParametricDistributions.Controls.Add(this.panel_ParametricDistributions);
-            this.tabPage_ParametricDistributions.Controls.Add(this.label_CardinalitySpaceOfEventsParametricDistributions);
-            this.tabPage_ParametricDistributions.Controls.Add(this.label_OutcomeSpaceCardinalityParametricDistributions);
-            this.tabPage_ParametricDistributions.Controls.Add(this.label_OutcomeSpaceParametricDistributions);
-            this.tabPage_ParametricDistributions.Controls.Add(this.textBox_OutcomeSpaceParametricDistributions);
-            this.tabPage_ParametricDistributions.Controls.Add(this.textBox_nBinomialDistribution);
-            this.tabPage_ParametricDistributions.Controls.Add(this.label_nBinomialDistribution);
+            this.tabPage_ParametricDistributions.Controls.Add(this.tabControl_ParametricDistributions);
             this.tabPage_ParametricDistributions.Location = new System.Drawing.Point(4, 22);
             this.tabPage_ParametricDistributions.Name = "tabPage_ParametricDistributions";
             this.tabPage_ParametricDistributions.Padding = new System.Windows.Forms.Padding(3);
@@ -1467,126 +1470,180 @@
             this.tabPage_ParametricDistributions.Text = "Parametric Distributions";
             this.tabPage_ParametricDistributions.UseVisualStyleBackColor = true;
             // 
-            // richTextBox_ParametricDistributions
+            // tabControl_ParametricDistributions
             // 
-            this.richTextBox_ParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox_ParametricDistributions.Location = new System.Drawing.Point(6, 344);
-            this.richTextBox_ParametricDistributions.Name = "richTextBox_ParametricDistributions";
-            this.richTextBox_ParametricDistributions.ReadOnly = true;
-            this.richTextBox_ParametricDistributions.Size = new System.Drawing.Size(740, 105);
-            this.richTextBox_ParametricDistributions.TabIndex = 31;
-            this.richTextBox_ParametricDistributions.Text = "";
-            // 
-            // textBox_pBinomialDistribution
-            // 
-            this.textBox_pBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox_pBinomialDistribution.Location = new System.Drawing.Point(28, 485);
-            this.textBox_pBinomialDistribution.Name = "textBox_pBinomialDistribution";
-            this.textBox_pBinomialDistribution.Size = new System.Drawing.Size(47, 20);
-            this.textBox_pBinomialDistribution.TabIndex = 40;
-            this.textBox_pBinomialDistribution.Text = "0";
-            this.textBox_pBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_pBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_pBinomialDistribution_TextChanged);
-            // 
-            // label_pBinomialDistribution
-            // 
-            this.label_pBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label_pBinomialDistribution.AutoSize = true;
-            this.label_pBinomialDistribution.Location = new System.Drawing.Point(6, 488);
-            this.label_pBinomialDistribution.Name = "label_pBinomialDistribution";
-            this.label_pBinomialDistribution.Size = new System.Drawing.Size(16, 13);
-            this.label_pBinomialDistribution.TabIndex = 39;
-            this.label_pBinomialDistribution.Text = "p:";
-            // 
-            // button_CumulativeDistributionFunctionOfBinomialDistribution
-            // 
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Location = new System.Drawing.Point(81, 455);
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Name = "button_CumulativeDistributionFunctionOfBinomialDistribution";
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Size = new System.Drawing.Size(78, 50);
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.TabIndex = 37;
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Text = "CDF of Binomial Distribution";
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.UseVisualStyleBackColor = true;
-            this.button_CumulativeDistributionFunctionOfBinomialDistribution.Click += new System.EventHandler(this.button_CumulativeDistributionFunctionOfBinomialDistribution_Click);
-            // 
-            // button_ResetParametricDistributions
-            // 
-            this.button_ResetParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ResetParametricDistributions.Location = new System.Drawing.Point(668, 469);
-            this.button_ResetParametricDistributions.Name = "button_ResetParametricDistributions";
-            this.button_ResetParametricDistributions.Size = new System.Drawing.Size(78, 23);
-            this.button_ResetParametricDistributions.TabIndex = 36;
-            this.button_ResetParametricDistributions.Text = "Reset";
-            this.button_ResetParametricDistributions.UseVisualStyleBackColor = true;
-            this.button_ResetParametricDistributions.Click += new System.EventHandler(this.button_ResetParametricDistributions_Click);
-            // 
-            // button_MassFunctionOfBinomialDistribution
-            // 
-            this.button_MassFunctionOfBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_MassFunctionOfBinomialDistribution.Location = new System.Drawing.Point(165, 455);
-            this.button_MassFunctionOfBinomialDistribution.Name = "button_MassFunctionOfBinomialDistribution";
-            this.button_MassFunctionOfBinomialDistribution.Size = new System.Drawing.Size(78, 50);
-            this.button_MassFunctionOfBinomialDistribution.TabIndex = 35;
-            this.button_MassFunctionOfBinomialDistribution.Text = "MF of Binomial Distribution";
-            this.button_MassFunctionOfBinomialDistribution.UseVisualStyleBackColor = true;
-            this.button_MassFunctionOfBinomialDistribution.Click += new System.EventHandler(this.button_MassFunctionOfBinomialDistribution_Click);
-            // 
-            // panel_ParametricDistributions
-            // 
-            this.panel_ParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabControl_ParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel_ParametricDistributions.Location = new System.Drawing.Point(6, 50);
-            this.panel_ParametricDistributions.Name = "panel_ParametricDistributions";
-            this.panel_ParametricDistributions.Size = new System.Drawing.Size(370, 288);
-            this.panel_ParametricDistributions.TabIndex = 34;
+            this.tabControl_ParametricDistributions.Controls.Add(this.tabPage_DiscreteParametricDistributions);
+            this.tabControl_ParametricDistributions.Controls.Add(this.tabPage_ContinuousParametricDistributions);
+            this.tabControl_ParametricDistributions.Location = new System.Drawing.Point(6, 6);
+            this.tabControl_ParametricDistributions.Name = "tabControl_ParametricDistributions";
+            this.tabControl_ParametricDistributions.SelectedIndex = 0;
+            this.tabControl_ParametricDistributions.Size = new System.Drawing.Size(740, 499);
+            this.tabControl_ParametricDistributions.TabIndex = 45;
+            this.tabControl_ParametricDistributions.SelectedIndexChanged += new System.EventHandler(this.tabControl_ParametricDistributions_SelectedIndexChanged);
             // 
-            // label_CardinalitySpaceOfEventsParametricDistributions
+            // tabPage_DiscreteParametricDistributions
             // 
-            this.label_CardinalitySpaceOfEventsParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_CardinalitySpaceOfEventsParametricDistributions.AutoSize = true;
-            this.label_CardinalitySpaceOfEventsParametricDistributions.Location = new System.Drawing.Point(678, 34);
-            this.label_CardinalitySpaceOfEventsParametricDistributions.Name = "label_CardinalitySpaceOfEventsParametricDistributions";
-            this.label_CardinalitySpaceOfEventsParametricDistributions.Size = new System.Drawing.Size(29, 13);
-            this.label_CardinalitySpaceOfEventsParametricDistributions.TabIndex = 33;
-            this.label_CardinalitySpaceOfEventsParametricDistributions.Text = "|ε| = ";
+            this.tabPage_DiscreteParametricDistributions.Controls.Add(this.button_ResetDiscreteParametricDistributions);
+            this.tabPage_DiscreteParametricDistributions.Controls.Add(this.groupBox_HypergeometricDistribution);
+            this.tabPage_DiscreteParametricDistributions.Controls.Add(this.panel_DiscreteParametricDistributions);
+            this.tabPage_DiscreteParametricDistributions.Controls.Add(this.groupBox_BinomialDistribution);
+            this.tabPage_DiscreteParametricDistributions.Controls.Add(this.richTextBox_DiscreteParametricDistributions);
+            this.tabPage_DiscreteParametricDistributions.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_DiscreteParametricDistributions.Name = "tabPage_DiscreteParametricDistributions";
+            this.tabPage_DiscreteParametricDistributions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_DiscreteParametricDistributions.Size = new System.Drawing.Size(732, 473);
+            this.tabPage_DiscreteParametricDistributions.TabIndex = 0;
+            this.tabPage_DiscreteParametricDistributions.Text = "Discrete";
+            this.tabPage_DiscreteParametricDistributions.UseVisualStyleBackColor = true;
             // 
-            // label_OutcomeSpaceCardinalityParametricDistributions
+            // button_ResetDiscreteParametricDistributions
             // 
-            this.label_OutcomeSpaceCardinalityParametricDistributions.AutoSize = true;
-            this.label_OutcomeSpaceCardinalityParametricDistributions.Location = new System.Drawing.Point(6, 34);
-            this.label_OutcomeSpaceCardinalityParametricDistributions.Name = "label_OutcomeSpaceCardinalityParametricDistributions";
-            this.label_OutcomeSpaceCardinalityParametricDistributions.Size = new System.Drawing.Size(32, 13);
-            this.label_OutcomeSpaceCardinalityParametricDistributions.TabIndex = 32;
-            this.label_OutcomeSpaceCardinalityParametricDistributions.Text = "|Ω| = ";
+            this.button_ResetDiscreteParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_ResetDiscreteParametricDistributions.Location = new System.Drawing.Point(623, 425);
+            this.button_ResetDiscreteParametricDistributions.Name = "button_ResetDiscreteParametricDistributions";
+            this.button_ResetDiscreteParametricDistributions.Size = new System.Drawing.Size(103, 23);
+            this.button_ResetDiscreteParametricDistributions.TabIndex = 36;
+            this.button_ResetDiscreteParametricDistributions.Text = "Reset";
+            this.button_ResetDiscreteParametricDistributions.UseVisualStyleBackColor = true;
+            this.button_ResetDiscreteParametricDistributions.Click += new System.EventHandler(this.button_ResetDiscreteParametricDistributions_Click);
             // 
-            // label_OutcomeSpaceParametricDistributions
+            // groupBox_HypergeometricDistribution
             // 
-            this.label_OutcomeSpaceParametricDistributions.AutoSize = true;
-            this.label_OutcomeSpaceParametricDistributions.Location = new System.Drawing.Point(6, 8);
-            this.label_OutcomeSpaceParametricDistributions.Name = "label_OutcomeSpaceParametricDistributions";
-            this.label_OutcomeSpaceParametricDistributions.Size = new System.Drawing.Size(90, 13);
-            this.label_OutcomeSpaceParametricDistributions.TabIndex = 31;
-            this.label_OutcomeSpaceParametricDistributions.Text = "Outcome Space: ";
+            this.groupBox_HypergeometricDistribution.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.label_nHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.textBox_nHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.label_qUpHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.textBox_qUpHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.textBox_qDownHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.button_MFOfHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.label_qDownHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.button_CDFOfHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Location = new System.Drawing.Point(263, 392);
+            this.groupBox_HypergeometricDistribution.Name = "groupBox_HypergeometricDistribution";
+            this.groupBox_HypergeometricDistribution.Size = new System.Drawing.Size(354, 75);
+            this.groupBox_HypergeometricDistribution.TabIndex = 44;
+            this.groupBox_HypergeometricDistribution.TabStop = false;
+            this.groupBox_HypergeometricDistribution.Text = "Hypergeometric Distribution";
             // 
-            // textBox_OutcomeSpaceParametricDistributions
+            // label_nHypergeometricDistribution
             // 
-            this.textBox_OutcomeSpaceParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label_nHypergeometricDistribution.AutoSize = true;
+            this.label_nHypergeometricDistribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_nHypergeometricDistribution.Location = new System.Drawing.Point(85, 38);
+            this.label_nHypergeometricDistribution.Name = "label_nHypergeometricDistribution";
+            this.label_nHypergeometricDistribution.Size = new System.Drawing.Size(18, 13);
+            this.label_nHypergeometricDistribution.TabIndex = 43;
+            this.label_nHypergeometricDistribution.Text = "n:";
+            // 
+            // textBox_nHypergeometricDistribution
+            // 
+            this.textBox_nHypergeometricDistribution.Location = new System.Drawing.Point(109, 35);
+            this.textBox_nHypergeometricDistribution.Name = "textBox_nHypergeometricDistribution";
+            this.textBox_nHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
+            this.textBox_nHypergeometricDistribution.TabIndex = 44;
+            this.textBox_nHypergeometricDistribution.Text = "0";
+            this.textBox_nHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label_qUpHypergeometricDistribution
+            // 
+            this.label_qUpHypergeometricDistribution.AutoSize = true;
+            this.label_qUpHypergeometricDistribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_qUpHypergeometricDistribution.Location = new System.Drawing.Point(6, 22);
+            this.label_qUpHypergeometricDistribution.Name = "label_qUpHypergeometricDistribution";
+            this.label_qUpHypergeometricDistribution.Size = new System.Drawing.Size(20, 13);
+            this.label_qUpHypergeometricDistribution.TabIndex = 41;
+            this.label_qUpHypergeometricDistribution.Text = "Q:";
+            // 
+            // textBox_qUpHypergeometricDistribution
+            // 
+            this.textBox_qUpHypergeometricDistribution.Location = new System.Drawing.Point(32, 19);
+            this.textBox_qUpHypergeometricDistribution.Name = "textBox_qUpHypergeometricDistribution";
+            this.textBox_qUpHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
+            this.textBox_qUpHypergeometricDistribution.TabIndex = 42;
+            this.textBox_qUpHypergeometricDistribution.Text = "0";
+            this.textBox_qUpHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_qDownHypergeometricDistribution
+            // 
+            this.textBox_qDownHypergeometricDistribution.Location = new System.Drawing.Point(32, 49);
+            this.textBox_qDownHypergeometricDistribution.Name = "textBox_qDownHypergeometricDistribution";
+            this.textBox_qDownHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
+            this.textBox_qDownHypergeometricDistribution.TabIndex = 40;
+            this.textBox_qDownHypergeometricDistribution.Text = "0";
+            this.textBox_qDownHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button_MFOfHypergeometricDistribution
+            // 
+            this.button_MFOfHypergeometricDistribution.Location = new System.Drawing.Point(257, 19);
+            this.button_MFOfHypergeometricDistribution.Name = "button_MFOfHypergeometricDistribution";
+            this.button_MFOfHypergeometricDistribution.Size = new System.Drawing.Size(91, 50);
+            this.button_MFOfHypergeometricDistribution.TabIndex = 35;
+            this.button_MFOfHypergeometricDistribution.Text = "MF of Hypergeometric Distribution";
+            this.button_MFOfHypergeometricDistribution.UseVisualStyleBackColor = true;
+            this.button_MFOfHypergeometricDistribution.Click += new System.EventHandler(this.button_MFOfHypergeometricDistribution_Click);
+            // 
+            // label_qDownHypergeometricDistribution
+            // 
+            this.label_qDownHypergeometricDistribution.AutoSize = true;
+            this.label_qDownHypergeometricDistribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_qDownHypergeometricDistribution.Location = new System.Drawing.Point(6, 52);
+            this.label_qDownHypergeometricDistribution.Name = "label_qDownHypergeometricDistribution";
+            this.label_qDownHypergeometricDistribution.Size = new System.Drawing.Size(18, 13);
+            this.label_qDownHypergeometricDistribution.TabIndex = 39;
+            this.label_qDownHypergeometricDistribution.Text = "q:";
+            // 
+            // button_CDFOfHypergeometricDistribution
+            // 
+            this.button_CDFOfHypergeometricDistribution.Location = new System.Drawing.Point(162, 19);
+            this.button_CDFOfHypergeometricDistribution.Name = "button_CDFOfHypergeometricDistribution";
+            this.button_CDFOfHypergeometricDistribution.Size = new System.Drawing.Size(89, 50);
+            this.button_CDFOfHypergeometricDistribution.TabIndex = 37;
+            this.button_CDFOfHypergeometricDistribution.Text = "CDF of Hypergeometric Distribution";
+            this.button_CDFOfHypergeometricDistribution.UseVisualStyleBackColor = true;
+            this.button_CDFOfHypergeometricDistribution.Click += new System.EventHandler(this.button_CDFOfHypergeometricDistribution_Click);
+            // 
+            // panel_DiscreteParametricDistributions
+            // 
+            this.panel_DiscreteParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_OutcomeSpaceParametricDistributions.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_OutcomeSpaceParametricDistributions.Location = new System.Drawing.Point(102, 6);
-            this.textBox_OutcomeSpaceParametricDistributions.Name = "textBox_OutcomeSpaceParametricDistributions";
-            this.textBox_OutcomeSpaceParametricDistributions.Size = new System.Drawing.Size(644, 20);
-            this.textBox_OutcomeSpaceParametricDistributions.TabIndex = 30;
-            this.textBox_OutcomeSpaceParametricDistributions.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
-    "Liam";
-            this.textBox_OutcomeSpaceParametricDistributions.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.panel_DiscreteParametricDistributions.Location = new System.Drawing.Point(6, 6);
+            this.panel_DiscreteParametricDistributions.Name = "panel_DiscreteParametricDistributions";
+            this.panel_DiscreteParametricDistributions.Size = new System.Drawing.Size(720, 269);
+            this.panel_DiscreteParametricDistributions.TabIndex = 34;
+            // 
+            // groupBox_BinomialDistribution
+            // 
+            this.groupBox_BinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox_BinomialDistribution.Controls.Add(this.label_nBinomialDistribution);
+            this.groupBox_BinomialDistribution.Controls.Add(this.textBox_nBinomialDistribution);
+            this.groupBox_BinomialDistribution.Controls.Add(this.textBox_pBinomialDistribution);
+            this.groupBox_BinomialDistribution.Controls.Add(this.button_MFOfBinomialDistribution);
+            this.groupBox_BinomialDistribution.Controls.Add(this.label_pBinomialDistribution);
+            this.groupBox_BinomialDistribution.Controls.Add(this.button_CDFOfBinomialDistribution);
+            this.groupBox_BinomialDistribution.Location = new System.Drawing.Point(6, 392);
+            this.groupBox_BinomialDistribution.Name = "groupBox_BinomialDistribution";
+            this.groupBox_BinomialDistribution.Size = new System.Drawing.Size(251, 75);
+            this.groupBox_BinomialDistribution.TabIndex = 43;
+            this.groupBox_BinomialDistribution.TabStop = false;
+            this.groupBox_BinomialDistribution.Text = "Binomial Distribution";
+            // 
+            // label_nBinomialDistribution
+            // 
+            this.label_nBinomialDistribution.AutoSize = true;
+            this.label_nBinomialDistribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_nBinomialDistribution.Location = new System.Drawing.Point(6, 22);
+            this.label_nBinomialDistribution.Name = "label_nBinomialDistribution";
+            this.label_nBinomialDistribution.Size = new System.Drawing.Size(18, 13);
+            this.label_nBinomialDistribution.TabIndex = 41;
+            this.label_nBinomialDistribution.Text = "n:";
             // 
             // textBox_nBinomialDistribution
             // 
-            this.textBox_nBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox_nBinomialDistribution.Location = new System.Drawing.Point(28, 455);
+            this.textBox_nBinomialDistribution.Location = new System.Drawing.Point(30, 19);
             this.textBox_nBinomialDistribution.Name = "textBox_nBinomialDistribution";
             this.textBox_nBinomialDistribution.Size = new System.Drawing.Size(47, 20);
             this.textBox_nBinomialDistribution.TabIndex = 42;
@@ -1594,15 +1651,101 @@
             this.textBox_nBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_nBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_nBinomialDistribution_TextChanged);
             // 
-            // label_nBinomialDistribution
+            // textBox_pBinomialDistribution
             // 
-            this.label_nBinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label_nBinomialDistribution.AutoSize = true;
-            this.label_nBinomialDistribution.Location = new System.Drawing.Point(6, 458);
-            this.label_nBinomialDistribution.Name = "label_nBinomialDistribution";
-            this.label_nBinomialDistribution.Size = new System.Drawing.Size(16, 13);
-            this.label_nBinomialDistribution.TabIndex = 41;
-            this.label_nBinomialDistribution.Text = "n:";
+            this.textBox_pBinomialDistribution.Location = new System.Drawing.Point(30, 49);
+            this.textBox_pBinomialDistribution.Name = "textBox_pBinomialDistribution";
+            this.textBox_pBinomialDistribution.Size = new System.Drawing.Size(47, 20);
+            this.textBox_pBinomialDistribution.TabIndex = 40;
+            this.textBox_pBinomialDistribution.Text = "0";
+            this.textBox_pBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_pBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_pBinomialDistribution_TextChanged);
+            // 
+            // button_MFOfBinomialDistribution
+            // 
+            this.button_MFOfBinomialDistribution.Location = new System.Drawing.Point(167, 19);
+            this.button_MFOfBinomialDistribution.Name = "button_MFOfBinomialDistribution";
+            this.button_MFOfBinomialDistribution.Size = new System.Drawing.Size(78, 50);
+            this.button_MFOfBinomialDistribution.TabIndex = 35;
+            this.button_MFOfBinomialDistribution.Text = "MF of Binomial Distribution";
+            this.button_MFOfBinomialDistribution.UseVisualStyleBackColor = true;
+            this.button_MFOfBinomialDistribution.Click += new System.EventHandler(this.button_MFOfBinomialDistribution_Click);
+            // 
+            // label_pBinomialDistribution
+            // 
+            this.label_pBinomialDistribution.AutoSize = true;
+            this.label_pBinomialDistribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_pBinomialDistribution.Location = new System.Drawing.Point(6, 52);
+            this.label_pBinomialDistribution.Name = "label_pBinomialDistribution";
+            this.label_pBinomialDistribution.Size = new System.Drawing.Size(18, 13);
+            this.label_pBinomialDistribution.TabIndex = 39;
+            this.label_pBinomialDistribution.Text = "p:";
+            // 
+            // button_CDFOfBinomialDistribution
+            // 
+            this.button_CDFOfBinomialDistribution.Location = new System.Drawing.Point(83, 19);
+            this.button_CDFOfBinomialDistribution.Name = "button_CDFOfBinomialDistribution";
+            this.button_CDFOfBinomialDistribution.Size = new System.Drawing.Size(78, 50);
+            this.button_CDFOfBinomialDistribution.TabIndex = 37;
+            this.button_CDFOfBinomialDistribution.Text = "CDF of Binomial Distribution";
+            this.button_CDFOfBinomialDistribution.UseVisualStyleBackColor = true;
+            this.button_CDFOfBinomialDistribution.Click += new System.EventHandler(this.button_CDFOfBinomialDistribution_Click);
+            // 
+            // richTextBox_DiscreteParametricDistributions
+            // 
+            this.richTextBox_DiscreteParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox_DiscreteParametricDistributions.Location = new System.Drawing.Point(6, 281);
+            this.richTextBox_DiscreteParametricDistributions.Name = "richTextBox_DiscreteParametricDistributions";
+            this.richTextBox_DiscreteParametricDistributions.ReadOnly = true;
+            this.richTextBox_DiscreteParametricDistributions.Size = new System.Drawing.Size(720, 105);
+            this.richTextBox_DiscreteParametricDistributions.TabIndex = 31;
+            this.richTextBox_DiscreteParametricDistributions.Text = "";
+            // 
+            // tabPage_ContinuousParametricDistributions
+            // 
+            this.tabPage_ContinuousParametricDistributions.Controls.Add(this.button_ResetContinuousParametricDistributions);
+            this.tabPage_ContinuousParametricDistributions.Controls.Add(this.panel_ContinuousParametricDistributions);
+            this.tabPage_ContinuousParametricDistributions.Controls.Add(this.richTextBox_ContinuousParametricDistributions);
+            this.tabPage_ContinuousParametricDistributions.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_ContinuousParametricDistributions.Name = "tabPage_ContinuousParametricDistributions";
+            this.tabPage_ContinuousParametricDistributions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_ContinuousParametricDistributions.Size = new System.Drawing.Size(732, 473);
+            this.tabPage_ContinuousParametricDistributions.TabIndex = 1;
+            this.tabPage_ContinuousParametricDistributions.Text = "Continuous";
+            this.tabPage_ContinuousParametricDistributions.UseVisualStyleBackColor = true;
+            // 
+            // button_ResetContinuousParametricDistributions
+            // 
+            this.button_ResetContinuousParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_ResetContinuousParametricDistributions.Location = new System.Drawing.Point(623, 425);
+            this.button_ResetContinuousParametricDistributions.Name = "button_ResetContinuousParametricDistributions";
+            this.button_ResetContinuousParametricDistributions.Size = new System.Drawing.Size(103, 23);
+            this.button_ResetContinuousParametricDistributions.TabIndex = 39;
+            this.button_ResetContinuousParametricDistributions.Text = "Reset";
+            this.button_ResetContinuousParametricDistributions.UseVisualStyleBackColor = true;
+            this.button_ResetContinuousParametricDistributions.Click += new System.EventHandler(this.button_ResetContinuousParametricDistributions_Click);
+            // 
+            // panel_ContinuousParametricDistributions
+            // 
+            this.panel_ContinuousParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_ContinuousParametricDistributions.Location = new System.Drawing.Point(6, 6);
+            this.panel_ContinuousParametricDistributions.Name = "panel_ContinuousParametricDistributions";
+            this.panel_ContinuousParametricDistributions.Size = new System.Drawing.Size(720, 269);
+            this.panel_ContinuousParametricDistributions.TabIndex = 38;
+            // 
+            // richTextBox_ContinuousParametricDistributions
+            // 
+            this.richTextBox_ContinuousParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox_ContinuousParametricDistributions.Location = new System.Drawing.Point(6, 281);
+            this.richTextBox_ContinuousParametricDistributions.Name = "richTextBox_ContinuousParametricDistributions";
+            this.richTextBox_ContinuousParametricDistributions.ReadOnly = true;
+            this.richTextBox_ContinuousParametricDistributions.Size = new System.Drawing.Size(720, 105);
+            this.richTextBox_ContinuousParametricDistributions.TabIndex = 37;
+            this.richTextBox_ContinuousParametricDistributions.Text = "";
             // 
             // toolTip_General
             // 
@@ -1622,16 +1765,6 @@
             this.checkBox_ShowHelp.UseVisualStyleBackColor = true;
             this.checkBox_ShowHelp.Visible = false;
             this.checkBox_ShowHelp.CheckedChanged += new System.EventHandler(this.checkBox_ShowHelp_CheckedChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Location = new System.Drawing.Point(376, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(370, 288);
-            this.panel1.TabIndex = 43;
             // 
             // FormSpotoMasterRace
             // 
@@ -1669,7 +1802,13 @@
             this.tabPage_ProbabilityDistributions.ResumeLayout(false);
             this.tabPage_ProbabilityDistributions.PerformLayout();
             this.tabPage_ParametricDistributions.ResumeLayout(false);
-            this.tabPage_ParametricDistributions.PerformLayout();
+            this.tabControl_ParametricDistributions.ResumeLayout(false);
+            this.tabPage_DiscreteParametricDistributions.ResumeLayout(false);
+            this.groupBox_HypergeometricDistribution.ResumeLayout(false);
+            this.groupBox_HypergeometricDistribution.PerformLayout();
+            this.groupBox_BinomialDistribution.ResumeLayout(false);
+            this.groupBox_BinomialDistribution.PerformLayout();
+            this.tabPage_ContinuousParametricDistributions.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1783,22 +1922,33 @@
         private System.Windows.Forms.Button button_ResetProbabilityDistributions;
         private System.Windows.Forms.Button button_MassFunction;
         private System.Windows.Forms.TabPage tabPage_ParametricDistributions;
-        private System.Windows.Forms.Button button_CumulativeDistributionFunctionOfBinomialDistribution;
-        private System.Windows.Forms.Button button_ResetParametricDistributions;
-        private System.Windows.Forms.Button button_MassFunctionOfBinomialDistribution;
-        private System.Windows.Forms.Panel panel_ParametricDistributions;
-        private System.Windows.Forms.Label label_CardinalitySpaceOfEventsParametricDistributions;
-        private System.Windows.Forms.Label label_OutcomeSpaceCardinalityParametricDistributions;
-        private System.Windows.Forms.Label label_OutcomeSpaceParametricDistributions;
-        private System.Windows.Forms.TextBox textBox_OutcomeSpaceParametricDistributions;
+        private System.Windows.Forms.Button button_CDFOfBinomialDistribution;
+        private System.Windows.Forms.Button button_ResetDiscreteParametricDistributions;
+        private System.Windows.Forms.Button button_MFOfBinomialDistribution;
+        private System.Windows.Forms.Panel panel_DiscreteParametricDistributions;
         private System.Windows.Forms.RichTextBox richTextBox_ProbabilityDistributions;
         private System.Windows.Forms.Label label_ResizingWarning;
         private System.Windows.Forms.Label label_pBinomialDistribution;
         private System.Windows.Forms.TextBox textBox_nBinomialDistribution;
         private System.Windows.Forms.Label label_nBinomialDistribution;
         private System.Windows.Forms.TextBox textBox_pBinomialDistribution;
-        private System.Windows.Forms.RichTextBox richTextBox_ParametricDistributions;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RichTextBox richTextBox_DiscreteParametricDistributions;
+        private System.Windows.Forms.GroupBox groupBox_HypergeometricDistribution;
+        private System.Windows.Forms.Label label_qUpHypergeometricDistribution;
+        private System.Windows.Forms.TextBox textBox_qUpHypergeometricDistribution;
+        private System.Windows.Forms.TextBox textBox_qDownHypergeometricDistribution;
+        private System.Windows.Forms.Button button_MFOfHypergeometricDistribution;
+        private System.Windows.Forms.Label label_qDownHypergeometricDistribution;
+        private System.Windows.Forms.Button button_CDFOfHypergeometricDistribution;
+        private System.Windows.Forms.GroupBox groupBox_BinomialDistribution;
+        private System.Windows.Forms.Label label_nHypergeometricDistribution;
+        private System.Windows.Forms.TextBox textBox_nHypergeometricDistribution;
+        private System.Windows.Forms.TabControl tabControl_ParametricDistributions;
+        private System.Windows.Forms.TabPage tabPage_DiscreteParametricDistributions;
+        private System.Windows.Forms.TabPage tabPage_ContinuousParametricDistributions;
+        private System.Windows.Forms.Button button_ResetContinuousParametricDistributions;
+        private System.Windows.Forms.Panel panel_ContinuousParametricDistributions;
+        private System.Windows.Forms.RichTextBox richTextBox_ContinuousParametricDistributions;
 
     }
 }

@@ -13,11 +13,18 @@ namespace SpotoMasterRace
          */
 
         #region Common
+
         private Pen functionPen;
         private Pen axisPen;
-        #endregion
+        private double XFMIN = -1;
+        private double XFMAX = 1;
+        private double YFMIN = -1;
+        private double YFMAX = 1;
+
+        #endregion Common
 
         #region Set Theory
+
         private bool showHelp = true;
         private char actualSetName;
         private char nextSetName;
@@ -26,39 +33,55 @@ namespace SpotoMasterRace
         private BindingList<StructSet<string>> sets;
         private StructSet<string> tempSetSetTheory;
         private StructSet<string> emptySet = new StructSet<string>('@', new BindingList<string>(), false);
-        #endregion
+
+        #endregion Set Theory
 
         #region Descriptive Statistics
+
         private List<string> stringCollectionDescriptiveStatistics;
         private List<double> doubleCollectionDescriptiveStatistics;
-        #endregion
+
+        #endregion Descriptive Statistics
 
         #region Probability Theory
+
         private BindingList<StructSet<string>> outcomeSpaceProbabilityTheory;
         private StructSet<StructSet<string>> spaceOfEventsProbabilityTheory;
-        #endregion
+
+        #endregion Probability Theory
 
         #region Probability Distributions
+
         private ClassDraw viewProbabilityDistributions;
-        private double XFMINProbabilityDistributions = -1;
-        private double XFMAXProbabilityDistributions = 1;
-        private double YFMINProbabilityDistributions = -1;
-        private double YFMAXProbabilityDistributions = 1;
         private Graphics videoProbabilityDistributions;
         private Bitmap drawingProbabilityDistributions;
         private Graphics sheetProbabilityDistributions;
         private BindingList<StructSet<string>> outcomeSpaceProbabilityDistributions;
         private StructSet<StructSet<string>> spaceOfEventsProbabilityDistributions;
-        #endregion
+
+        #endregion Probability Distributions
 
         #region Parametric Distributions
-        private ClassDraw viewParametricDistributions;
-        private Graphics videoParametricDistributions;
-        private Bitmap drawingParametricDistributions;
-        private Graphics sheetParametricDistributions;
-        private BindingList<StructSet<string>> outcomeSpaceParametricDistributions;
-        private StructSet<StructSet<string>> spaceOfEventsParametricDistributions;
-        #endregion
+
+        #region Discrete
+
+        private ClassDraw viewDiscreteParametricDistributions;
+        private Graphics videoDiscreteParametricDistributions;
+        private Bitmap drawingDiscreteParametricDistributions;
+        private Graphics sheetDiscreteParametricDistributions;
+
+        #endregion Discrete
+
+        #region Continuous
+
+        private ClassDraw viewContinuousParametricDistributions;
+        private Graphics videoContinuousParametricDistributions;
+        private Bitmap drawingContinuousParametricDistributions;
+        private Graphics sheetContinuousParametricDistributions;
+
+        #endregion Continuous
+
+        #endregion Parametric Distributions
 
         public FormSpotoMasterRace()
         {
@@ -75,6 +98,13 @@ namespace SpotoMasterRace
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
             #endregion Number representation
+
+            #region Common
+
+            functionPen = new Pen(Color.Black, 2);
+            axisPen = new Pen(Color.Black, 1);
+
+            #endregion Common
 
             #region Set Theory
 
@@ -108,42 +138,40 @@ namespace SpotoMasterRace
             #region Probability Distributions
 
             viewProbabilityDistributions = new ClassDraw();
-            functionPen = new Pen(Color.Black, 2);
-            axisPen = new Pen(Color.Black, 1);
             videoProbabilityDistributions = panel_ProbabilityDistributions.CreateGraphics();
             drawingProbabilityDistributions = new Bitmap(panel_ProbabilityDistributions.Width, panel_ProbabilityDistributions.Height, videoProbabilityDistributions);
             sheetProbabilityDistributions = Graphics.FromImage(drawingProbabilityDistributions);
 
             #endregion Probability Distributions
 
-            tabControl_SpotoMasterRace.TabPages.Remove(tabPage_ParametricDistributions);
+            #region Parametric Distributions
+
+            #region Discrete
+
+            viewDiscreteParametricDistributions = new ClassDraw();
+            videoDiscreteParametricDistributions = panel_DiscreteParametricDistributions.CreateGraphics();
+            drawingDiscreteParametricDistributions = new Bitmap(panel_DiscreteParametricDistributions.Width, panel_DiscreteParametricDistributions.Height, videoDiscreteParametricDistributions);
+            sheetDiscreteParametricDistributions = Graphics.FromImage(drawingDiscreteParametricDistributions);
+
+            #endregion Discrete
+
+            #region Continuous
+
+            viewContinuousParametricDistributions = new ClassDraw();
+            videoContinuousParametricDistributions = panel_ContinuousParametricDistributions.CreateGraphics();
+            drawingContinuousParametricDistributions = new Bitmap(panel_ContinuousParametricDistributions.Width, panel_ContinuousParametricDistributions.Height, videoContinuousParametricDistributions);
+            sheetContinuousParametricDistributions = Graphics.FromImage(drawingContinuousParametricDistributions);
+
+            #endregion Continuous
+
+            #endregion Parametric Distributions
+
+            tabControl_ParametricDistributions.TabPages.Remove(tabPage_ContinuousParametricDistributions);
 
             MessageBox.Show("THINK and REASON about what you're doing.\nThis is just meant to help, not to do the exam for you.\nI'm not responsible for your grade, it doesn't matter if it is good or bad.", "DISCLAIMER", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         #region Global Misc
-
-        private List<string> InitializeStringCollection(string commaSeparatedValues)
-        {
-            try
-            { return new List<string>(commaSeparatedValues.Replace(" ", "").Split(',')); }
-            catch
-            { return null; }
-        }
-
-        private List<double> InitializeDoubleCollection(List<string> collection)
-        {
-            try
-            {
-                List<double> doubleCollection = new List<double>();
-                //try creating a collection at at a higher level
-                foreach (string item in collection)
-                    doubleCollection.Add(Convert.ToDouble(item));
-                return doubleCollection;
-            }
-            catch
-            { return null; }
-        }
 
         private void tabControl_SpotoMasterRace_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -175,12 +203,43 @@ namespace SpotoMasterRace
                     }
                 case "tabPage_ProbabilityDistributions":
                     {
+                        button_ResetProbabilityDistributions_Click(sender, e);
                         this.MinimumSize = new Size(550, 600);
                         this.Size = new Size(550, 600);
                         break;
                     }
+                case "tabPage_ParametricDistributions":
+                    {
+                        button_ResetDiscreteParametricDistributions_Click(sender, e);
+                        button_ResetContinuousParametricDistributions_Click(sender, e);
+                        this.MinimumSize = new Size(800, 600);
+                        this.Size = new Size(800, 600);
+                        break;
+                    }
                 default: break;
             }
+        }
+
+        private List<string> InitializeStringCollection(string commaSeparatedValues)
+        {
+            try
+            { return new List<string>(commaSeparatedValues.Replace(" ", "").Split(',')); }
+            catch
+            { return null; }
+        }
+
+        private List<double> InitializeDoubleCollection(List<string> collection)
+        {
+            try
+            {
+                List<double> doubleCollection = new List<double>();
+                //try creating a collection at at a higher level
+                foreach (string item in collection)
+                    doubleCollection.Add(Convert.ToDouble(item));
+                return doubleCollection;
+            }
+            catch
+            { return null; }
         }
 
         private void checkBox_ShowHelp_CheckedChanged(object sender, EventArgs e)
@@ -213,7 +272,7 @@ namespace SpotoMasterRace
             {
                 x++;
                 string xs = x.ToString();
-                video.DrawString("-" + xs, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo(-x), view.YVideo((view.yFoglioMin + view.yFoglioMax) / 2)));
+                //video.DrawString("-" + xs, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo(-x), view.YVideo((view.yFoglioMin + view.yFoglioMax) / 2)));
                 video.DrawString(xs, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo(+x), view.YVideo((view.yFoglioMin + view.yFoglioMax) / 2)));
             }
             while (x <= view.yVideoMin);
@@ -226,7 +285,7 @@ namespace SpotoMasterRace
                     if (y != 0)
                     {
                         string ys = y.ToString();
-                        video.DrawString("-" + ys, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo((view.xFoglioMin + view.xFoglioMax) / 2), view.YVideo(-y)));
+                        //video.DrawString("-" + ys, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo((view.xFoglioMin + view.xFoglioMax) / 2), view.YVideo(-y)));
                         video.DrawString(ys, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo((view.xFoglioMin + view.xFoglioMax) / 2), view.YVideo(+y)));
                     }
                 }
@@ -237,7 +296,7 @@ namespace SpotoMasterRace
                 {
                     y++;
                     string ys = y.ToString();
-                    video.DrawString("-" + ys, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo((view.xFoglioMin + view.xFoglioMax) / 2), view.YVideo(-y)));
+                    //video.DrawString("-" + ys, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo((view.xFoglioMin + view.xFoglioMax) / 2), view.YVideo(-y)));
                     video.DrawString(ys, FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), new Point(view.XVideo((view.xFoglioMin + view.xFoglioMax) / 2), view.YVideo(+y)));
                 }
                 while (y <= view.xVideoMax);
@@ -246,14 +305,14 @@ namespace SpotoMasterRace
 
         private void FixView(ClassDraw view, Panel panel, Graphics sheet, double xfmin = -1, double xfmax = 1, double yfmin = -1, double yfmax = 1)
         {
-            XFMINProbabilityDistributions = xfmin;
-            XFMAXProbabilityDistributions = xfmax;
-            YFMINProbabilityDistributions = yfmin;
-            YFMAXProbabilityDistributions = yfmax;
-            view.xFoglioMin = XFMINProbabilityDistributions;
-            view.xFoglioMax = XFMAXProbabilityDistributions;
-            view.yFoglioMin = YFMINProbabilityDistributions;
-            view.yFoglioMax = YFMAXProbabilityDistributions;
+            XFMIN = xfmin;
+            XFMAX = xfmax;
+            YFMIN = yfmin;
+            YFMAX = yfmax;
+            view.xFoglioMin = XFMIN;
+            view.xFoglioMax = XFMAX;
+            view.yFoglioMin = YFMIN;
+            view.yFoglioMax = YFMAX;
             view.xVideoMin = 0;
             view.xVideoMax = panel.Width;
             view.yVideoMin = panel.Height;
@@ -264,7 +323,8 @@ namespace SpotoMasterRace
         private void FormSpotoMasterRace_SizeChanged(object sender, EventArgs e)
         {
             button_ResetProbabilityDistributions_Click(sender, e);
-            button_ResetProbabilityDistributions_Click(sender, e);
+            button_ResetDiscreteParametricDistributions_Click(sender, e);
+            button_ResetContinuousParametricDistributions_Click(sender, e);
         }
 
         #endregion Global Misc
@@ -1153,6 +1213,7 @@ namespace SpotoMasterRace
             DrawAxes(sheetProbabilityDistributions, viewProbabilityDistributions);
             DrawCoordinates(videoProbabilityDistributions, viewProbabilityDistributions);
             videoProbabilityDistributions.DrawImageUnscaled(drawingProbabilityDistributions, 0, 0);
+            richTextBox_ProbabilityDistributions.Text = "";
         }
 
         #endregion Misc
@@ -1289,18 +1350,33 @@ namespace SpotoMasterRace
         #region Parametric Distribution
 
         #region Misc
-        private void button_ResetParametricDistributions_Click(object sender, EventArgs e)
+
+        private void tabControl_ParametricDistributions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            videoParametricDistributions = panel_ParametricDistributions.CreateGraphics();
-            try
-            { drawingParametricDistributions = new Bitmap(panel_ParametricDistributions.Width, panel_ParametricDistributions.Height, videoParametricDistributions); }
-            catch { }
-            sheetParametricDistributions = Graphics.FromImage(drawingParametricDistributions);
-            FixView(viewParametricDistributions, panel_ParametricDistributions, sheetParametricDistributions);
-            DrawAxes(sheetParametricDistributions, viewParametricDistributions);
-            DrawCoordinates(videoParametricDistributions, viewParametricDistributions);
-            videoParametricDistributions.DrawImageUnscaled(drawingParametricDistributions, 0, 0);
+            button_ResetDiscreteParametricDistributions_Click(sender, e);
+            button_ResetContinuousParametricDistributions_Click(sender, e);
         }
+
+        #endregion Misc
+
+        #region Discrete
+
+        #region Misc
+
+        private void button_ResetDiscreteParametricDistributions_Click(object sender, EventArgs e)
+        {
+            videoDiscreteParametricDistributions = panel_DiscreteParametricDistributions.CreateGraphics();
+            try
+            { drawingDiscreteParametricDistributions = new Bitmap(panel_DiscreteParametricDistributions.Width, panel_DiscreteParametricDistributions.Height, videoDiscreteParametricDistributions); }
+            catch { }
+            sheetDiscreteParametricDistributions = Graphics.FromImage(drawingDiscreteParametricDistributions);
+            FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions);
+            DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
+            DrawCoordinates(videoDiscreteParametricDistributions, viewDiscreteParametricDistributions);
+            videoDiscreteParametricDistributions.DrawImageUnscaled(drawingDiscreteParametricDistributions, 0, 0);
+            richTextBox_DiscreteParametricDistributions.Text = "";
+        }
+
         private void textBox_nBinomialDistribution_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1314,6 +1390,7 @@ namespace SpotoMasterRace
                 textBox_nBinomialDistribution.Text = "0";
             }
         }
+
         private void textBox_pBinomialDistribution_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1331,9 +1408,8 @@ namespace SpotoMasterRace
                 textBox_pBinomialDistribution.Text = "0.0";
             }
         }
-        #endregion
 
-        private double[] BinomialDistributionIntro()
+        private List<double> BinomialDistributionIntro()
         {
             short n = 0;
             double p = 0;
@@ -1344,7 +1420,7 @@ namespace SpotoMasterRace
             }
             catch
             {
-                MessageBox.Show("Incorrect input.\nn must be a Natural number", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect input.\nn must be a Natural number.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             try
@@ -1358,108 +1434,254 @@ namespace SpotoMasterRace
             }
             catch
             {
-                MessageBox.Show("Incorrect input.\np must be a number included in the interval [0, 1]", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect input.\np must be a number included in the interval [0, 1].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            double[] probabilities = ClassSpotoMasterRace.BinomialDistribution(n, p);
-            richTextBox_ParametricDistributions.Text = "These are the values of the Binomial Distribution with n = " + n + " and p = " + p + "\n";
-            foreach (double item in probabilities)
-                richTextBox_ParametricDistributions.Text += item + "\n";
-            foreach (double item in probabilities)
-                richTextBox_ParametricDistributions.Text += item + ",";
+            List<double> probabilities = new List<double>(ClassSpotoMasterRace.BinomialDistribution(n, p));
             return probabilities;
         }
 
-        private void button_CumulativeDistributionFunctionOfBinomialDistribution_Click(object sender, EventArgs e)
+        private List<double> HypergeometricDistributionIntro()
         {
-            double[] probabilities = BinomialDistributionIntro();
-            if (textBox_OutcomeSpaceProbabilityDistributions.Text != "")
+            short Q = 0, q = 0, n = 0;
+            try
             {
-                outcomeSpaceProbabilityDistributions = new BindingList<StructSet<string>>();
-                foreach (string item in textBox_OutcomeSpaceProbabilityDistributions.Text.Replace(" ", "").Split(','))
-                    outcomeSpaceProbabilityDistributions.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+                if (textBox_qUpHypergeometricDistribution.Text != "")
+                    Q = Convert.ToInt16(textBox_qUpHypergeometricDistribution.Text);
+                if (textBox_qDownHypergeometricDistribution.Text != "")
+                    q = Convert.ToInt16(textBox_qDownHypergeometricDistribution.Text);
+                if (textBox_nHypergeometricDistribution.Text != "")
+                    n = Convert.ToInt16(textBox_nHypergeometricDistribution.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Incorrect input.\nQ, q, n must be Natural numbers.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            List<double> probabilities = new List<double>(ClassSpotoMasterRace.HypergeometricDistribution(Q, q, n));
+            return probabilities;
+        }
 
-                bool proceed = true;
-                if (Math.Pow(2.0, outcomeSpaceProbabilityDistributions.Count) >= 512)
-                    proceed = MessageBox.Show("I need to calculate " + Math.Pow(2.0, outcomeSpaceProbabilityDistributions.Count) + " (2^" + outcomeSpaceProbabilityDistributions.Count + ") elements.\nThis can take a lot, do you really want to proceed?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
-                if (proceed)
+        #endregion Misc
+
+        private void button_CDFOfBinomialDistribution_Click(object sender, EventArgs e)
+        {
+            List<double> probabilities = new List<double>(BinomialDistributionIntro());
+            probabilities.Sort();
+            double previous = 0;
+            probabilities.Insert(0, 0);
+            for (int i = 0; i < probabilities.Count; i++)
+            {
+                probabilities[i] += previous;
+                previous = probabilities[i];
+            }
+            probabilities.Add(1);
+            richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Binomial Distribution with n = " + textBox_nBinomialDistribution.Text + " and p = " + textBox_pBinomialDistribution.Text + "\n";
+            for (int i = 0; i < probabilities.Count; i++)
+            {
+                richTextBox_DiscreteParametricDistributions.Text += "The extraction of the element with a probability of\"";
+                if (probabilities[i] == 0)
+                    richTextBox_DiscreteParametricDistributions.Text += "∅";
+                else
+                    for (int j = 0; j < i; j++)
+                        richTextBox_DiscreteParametricDistributions.Text += probabilities[j + 1] + (probabilities[j + 1] != probabilities[i] ? "\" OR \"" : "");
+                richTextBox_DiscreteParametricDistributions.Text += "\" to " + i + "\n";
+            }
+            FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
+            DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
+            for (int x = 0; x < probabilities.Count; x++)
+            {
+                double xBis = x;
+                double probability = probabilities[x];
+                Point P1 = new Point(viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(probability));
+                Point P2;
+
+                if (x == 0)
+                //from -infinite
                 {
-                    spaceOfEventsProbabilityDistributions.Elements = ClassSpotoMasterRace.PowerSet<string>(new StructSet<string>('E', new BindingList<string>(textBox_OutcomeSpaceProbabilityDistributions.Text.Replace(" ", "").Split(',')), false));
-                    spaceOfEventsProbabilityDistributions.Sort();
-                    StructSet<StructSet<string>> mainEvents = ClassSpotoMasterRace.MainEvents(spaceOfEventsProbabilityDistributions.Elements);
-                    string result = "The random variable X assings:\n";
-                    for (int i = 0; i < mainEvents.Cardinality; i++)
+                    xBis = -viewDiscreteParametricDistributions.xVideoMax;
+                    while (xBis < x + 1)
                     {
-                        result += "The extraction of \"";
-                        if (mainEvents.Elements[i].Cardinality == 0)
-                            result += "∅";
-                        else
-                            for (int j = 0; j < mainEvents.Elements[i].Cardinality; j++)
-                                result += mainEvents.Elements[i].Elements[j] + (j != mainEvents.Elements[i].Cardinality - 1 ? "\" OR \"" : "");
-                        result += "\" to " + i + "\n";
+                        sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability), 1, 1);
+                        xBis += 0.01;
+                        P2 = new Point(viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability));
+                        sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                        P1 = P2;
                     }
-                    richTextBox_ProbabilityDistributions.Text = result;
-                    probabilities = new double[mainEvents.Elements.Count];
-                    FixView(viewProbabilityDistributions, panel_ProbabilityDistributions, sheetProbabilityDistributions, -mainEvents.Elements.Count - 1, mainEvents.Elements.Count + 1);
-                    DrawAxes(sheetProbabilityDistributions, viewProbabilityDistributions);
-                    for (int x = 0; x < mainEvents.Elements.Count; x++)
+                }
+                while ((xBis < x + 1) && xBis <= viewDiscreteParametricDistributions.xFoglioMax)
+                {
+                    sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability), 1, 1);
+                    xBis += 0.01;
+                    P2 = new Point(viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability));
+                    sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                    P1 = P2;
+                }
+                if (x == probabilities.Count - 1)
+                {
+                    //to +infinite
+                    while (xBis <= viewDiscreteParametricDistributions.xFoglioMax)
                     {
-                        double xBis = x;
-                        int frequency = ClassSpotoMasterRace.GetFrequency(outcomeSpaceProbabilityDistributions, mainEvents.Elements[x]);
-                        if (mainEvents.Elements[x].Elements.Count == 0)
-                            frequency = 0;
-                        double probability = Convert.ToDouble(frequency) / Convert.ToDouble(outcomeSpaceProbabilityDistributions.Count);
-                        probabilities[x] = probability;
-                        Point P1 = new Point(viewProbabilityDistributions.XVideo(x), viewProbabilityDistributions.YVideo(probability));
-                        Point P2;
-
-                        if (x == 0)
-                        //from -infinite
-                        {
-                            xBis = -viewProbabilityDistributions.xVideoMax;
-                            while (xBis < x + 1)
-                            {
-                                sheetProbabilityDistributions.DrawEllipse(functionPen, viewProbabilityDistributions.XVideo(xBis), viewProbabilityDistributions.YVideo(probability), 1, 1);
-                                xBis += 0.01;
-                                P2 = new Point(viewProbabilityDistributions.XVideo(xBis), viewProbabilityDistributions.YVideo(probability));
-                                sheetProbabilityDistributions.DrawLine(functionPen, P1, P2);
-                                P1 = P2;
-                            }
-                        }
-                        while ((xBis < x + 1) && xBis <= viewProbabilityDistributions.xFoglioMax)
-                        {
-                            sheetProbabilityDistributions.DrawEllipse(functionPen, viewProbabilityDistributions.XVideo(xBis), viewProbabilityDistributions.YVideo(probability), 1, 1);
-                            xBis += 0.01;
-                            P2 = new Point(viewProbabilityDistributions.XVideo(xBis), viewProbabilityDistributions.YVideo(probability));
-                            sheetProbabilityDistributions.DrawLine(functionPen, P1, P2);
-                            P1 = P2;
-                        }
-                        if (x == mainEvents.Elements.Count - 1)
-                        {
-                            //to +infinite
-                            while (xBis <= viewProbabilityDistributions.xFoglioMax)
-                            {
-                                sheetProbabilityDistributions.DrawEllipse(functionPen, viewProbabilityDistributions.XVideo(xBis), viewProbabilityDistributions.YVideo(probability), 1, 1);
-                                xBis += 0.01;
-                                P2 = new Point(viewProbabilityDistributions.XVideo(xBis), viewProbabilityDistributions.YVideo(probability));
-                                sheetProbabilityDistributions.DrawLine(functionPen, P1, P2);
-                                P1 = P2;
-                            }
-                        }
+                        sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability), 1, 1);
+                        xBis += 0.01;
+                        P2 = new Point(viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability));
+                        sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                        P1 = P2;
                     }
-                    videoProbabilityDistributions.DrawImageUnscaled(drawingProbabilityDistributions, 0, 0);
-                    DrawCoordinates(videoProbabilityDistributions, viewProbabilityDistributions, probabilities);
                 }
             }
-            else
-                MessageBox.Show("It is pointless to use the empty set in this case!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            videoDiscreteParametricDistributions.DrawImageUnscaled(drawingDiscreteParametricDistributions, 0, 0);
+            DrawCoordinates(videoDiscreteParametricDistributions, viewDiscreteParametricDistributions, probabilities.ToArray());
         }
 
-        private void button_MassFunctionOfBinomialDistribution_Click(object sender, EventArgs e)
+        private void button_MFOfBinomialDistribution_Click(object sender, EventArgs e)
         {
-            double[] probabilities = BinomialDistributionIntro();
+            List<double> probabilities = new List<double>(BinomialDistributionIntro());
+            probabilities.Add(1 - ClassSpotoMasterRace.Sum(probabilities));
+            richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Binomial Distribution with n = " + textBox_nBinomialDistribution.Text + " and p = " + textBox_pBinomialDistribution.Text + "\n";
+            for (int i = 0; i < probabilities.Count; i++)
+                richTextBox_DiscreteParametricDistributions.Text += "The element with a probability of \"" + probabilities[i] + "\" to " + i + "\n";
+            FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
+            DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
+            for (int x = 0; x < probabilities.Count; x++)
+            {
+                double probability = probabilities[x];
+                Point P1 = new Point(viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(probability));
+                Point P2;
+
+                double y = 0;
+                while ((y < probability) && y <= viewDiscreteParametricDistributions.yFoglioMax)
+                {
+                    sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(y), 1, 1);
+                    y += 0.01;
+                    P2 = new Point(viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(y));
+                    sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                    P1 = P2;
+                }
+            }
+            videoDiscreteParametricDistributions.DrawImageUnscaled(drawingDiscreteParametricDistributions, 0, 0);
+            DrawCoordinates(videoDiscreteParametricDistributions, viewDiscreteParametricDistributions, probabilities.ToArray());
         }
 
-        #endregion
+        private void button_CDFOfHypergeometricDistribution_Click(object sender, EventArgs e)
+        {
+            List<double> probabilities = new List<double>(HypergeometricDistributionIntro());
+            probabilities.Sort();
+            double previous = 0;
+            probabilities.Insert(0, 0);
+            for (int i = 0; i < probabilities.Count; i++)
+            {
+                probabilities[i] += previous;
+                previous = probabilities[i];
+            }
+            probabilities.Add(1);
+            richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Hypergeometric Distribution with Q = " + textBox_qUpHypergeometricDistribution.Text + " and q = " + textBox_qDownHypergeometricDistribution.Text + " and n = " + textBox_nHypergeometricDistribution.Text + "\n";
+            for (int i = 0; i < probabilities.Count; i++)
+            {
+                richTextBox_DiscreteParametricDistributions.Text += "The extraction of the element with a probability of\"";
+                if (probabilities[i] == 0)
+                    richTextBox_DiscreteParametricDistributions.Text += "∅";
+                else
+                    for (int j = 0; j < i; j++)
+                        richTextBox_DiscreteParametricDistributions.Text += probabilities[j + 1] + (probabilities[j + 1] != probabilities[i] ? "\" OR \"" : "");
+                richTextBox_DiscreteParametricDistributions.Text += "\" to " + i + "\n";
+            }
+            FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
+            DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
+            for (int x = 0; x < probabilities.Count; x++)
+            {
+                double xBis = x;
+                double probability = probabilities[x];
+                Point P1 = new Point(viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(probability));
+                Point P2;
+
+                if (x == 0)
+                //from -infinite
+                {
+                    xBis = -viewDiscreteParametricDistributions.xVideoMax;
+                    while (xBis < x + 1)
+                    {
+                        sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability), 1, 1);
+                        xBis += 0.01;
+                        P2 = new Point(viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability));
+                        sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                        P1 = P2;
+                    }
+                }
+                while ((xBis < x + 1) && xBis <= viewDiscreteParametricDistributions.xFoglioMax)
+                {
+                    sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability), 1, 1);
+                    xBis += 0.01;
+                    P2 = new Point(viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability));
+                    sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                    P1 = P2;
+                }
+                if (x == probabilities.Count - 1)
+                {
+                    //to +infinite
+                    while (xBis <= viewDiscreteParametricDistributions.xFoglioMax)
+                    {
+                        sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability), 1, 1);
+                        xBis += 0.01;
+                        P2 = new Point(viewDiscreteParametricDistributions.XVideo(xBis), viewDiscreteParametricDistributions.YVideo(probability));
+                        sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                        P1 = P2;
+                    }
+                }
+            }
+            videoDiscreteParametricDistributions.DrawImageUnscaled(drawingDiscreteParametricDistributions, 0, 0);
+            DrawCoordinates(videoDiscreteParametricDistributions, viewDiscreteParametricDistributions, probabilities.ToArray());
+        }
+
+        private void button_MFOfHypergeometricDistribution_Click(object sender, EventArgs e)
+        {
+            List<double> probabilities = new List<double>(HypergeometricDistributionIntro());
+            probabilities.Add(1 - ClassSpotoMasterRace.Sum(probabilities));
+            richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Hypergeometric Distribution with Q = " + textBox_qUpHypergeometricDistribution.Text + " and q = " + textBox_qDownHypergeometricDistribution.Text + " and n = " + textBox_nHypergeometricDistribution.Text + "\n";
+            for (int i = 0; i < probabilities.Count; i++)
+                richTextBox_DiscreteParametricDistributions.Text += "The element with a probability of \"" + probabilities[i] + "\" to " + i + "\n";
+            FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
+            DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
+            for (int x = 0; x < probabilities.Count; x++)
+            {
+                double probability = probabilities[x];
+                Point P1 = new Point(viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(probability));
+                Point P2;
+
+                double y = 0;
+                while ((y < probability) && y <= viewDiscreteParametricDistributions.yFoglioMax)
+                {
+                    sheetDiscreteParametricDistributions.DrawEllipse(functionPen, viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(y), 1, 1);
+                    y += 0.01;
+                    P2 = new Point(viewDiscreteParametricDistributions.XVideo(x), viewDiscreteParametricDistributions.YVideo(y));
+                    sheetDiscreteParametricDistributions.DrawLine(functionPen, P1, P2);
+                    P1 = P2;
+                }
+            }
+            videoDiscreteParametricDistributions.DrawImageUnscaled(drawingDiscreteParametricDistributions, 0, 0);
+            DrawCoordinates(videoDiscreteParametricDistributions, viewDiscreteParametricDistributions, probabilities.ToArray());
+        }
+
+        #endregion Discrete
+
+        #region Continuous
+
+        private void button_ResetContinuousParametricDistributions_Click(object sender, EventArgs e)
+        {
+            videoContinuousParametricDistributions = panel_ContinuousParametricDistributions.CreateGraphics();
+            try
+            { drawingContinuousParametricDistributions = new Bitmap(panel_ContinuousParametricDistributions.Width, panel_ContinuousParametricDistributions.Height, videoContinuousParametricDistributions); }
+            catch { }
+            sheetContinuousParametricDistributions = Graphics.FromImage(drawingContinuousParametricDistributions);
+            FixView(viewContinuousParametricDistributions, panel_ContinuousParametricDistributions, sheetContinuousParametricDistributions);
+            DrawAxes(sheetContinuousParametricDistributions, viewContinuousParametricDistributions);
+            DrawCoordinates(videoContinuousParametricDistributions, viewContinuousParametricDistributions);
+            videoContinuousParametricDistributions.DrawImageUnscaled(drawingContinuousParametricDistributions, 0, 0);
+            richTextBox_ContinuousParametricDistributions.Text = "";
+        }
+
+        #endregion Continuous
+
+        #endregion Parametric Distribution
     }
 }
