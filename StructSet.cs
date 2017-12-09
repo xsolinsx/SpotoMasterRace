@@ -45,6 +45,26 @@ internal struct StructSet<T>
     public int Cardinality
     { get { return elements.Count; } }
 
+    static public bool operator ==(StructSet<T> set1, StructSet<T> set2)
+    {
+        if (set1.Cardinality != set2.Cardinality)
+            return false;
+        for (int i = 0; i < set1.Cardinality; i++)
+            if (!set1.Elements.Contains(set2.Elements[i]) || !set2.Elements.Contains(set1.Elements[i]))
+                return false;
+        return true;
+    }
+
+    static public bool operator !=(StructSet<T> set1, StructSet<T> set2)
+    { return !(set1 == set2); }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+        return this == ((StructSet<T>)obj);
+    }
+
     public override string ToString()
     {
         try

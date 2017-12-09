@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set di attributi. Per modificare le informazioni associate a un assembly
 // occorre quindi modificare i valori di questi attributi.
 [assembly: AssemblyTitle("SpotoMasterRace")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Psychometrics Program")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Solinas Eric")]
 [assembly: AssemblyProduct("SpotoMasterRace")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
