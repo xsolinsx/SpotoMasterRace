@@ -79,6 +79,15 @@ namespace SpotoMasterRace
 
         #endregion Parametric Distributions
 
+        #region Covariance and Correlation
+
+        private Pen covarianceAndCorrelationPen;
+        private ClassDraw viewCovarianceAndCorrelation;
+        private Graphics videoCovarianceAndCorrelation;
+        private Bitmap drawingCovarianceAndCorrelation;
+        private Graphics sheetCovarianceAndCorrelation;
+
+        #endregion Covariance and Correlation
         public FormSpotoMasterRace()
         {
             InitializeComponent();
@@ -162,6 +171,16 @@ namespace SpotoMasterRace
 
             #endregion Parametric Distributions
 
+            #region Covariance and Correlation
+
+            covarianceAndCorrelationPen = new Pen(Color.Black, 4);
+            viewCovarianceAndCorrelation = new ClassDraw();
+            videoCovarianceAndCorrelation = panel_CovarianceAndCorrelation.CreateGraphics();
+            drawingCovarianceAndCorrelation = new Bitmap(panel_CovarianceAndCorrelation.Width, panel_CovarianceAndCorrelation.Height, videoCovarianceAndCorrelation);
+            sheetCovarianceAndCorrelation = Graphics.FromImage(drawingCovarianceAndCorrelation);
+
+            #endregion Covariance and Correlation
+
             MessageBox.Show("THINK and REASON about what you're doing.\nThis is just meant to help, not to do the exam for you.\nI'm not responsible for your grade, it doesn't matter if it is good or bad.", "DISCLAIMER", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
@@ -193,20 +212,38 @@ namespace SpotoMasterRace
                     }
                 case "tabPage_ProbabilityDistributions":
                     {
-                        this.MinimumSize = new Size(550, 600);
+                        this.MinimumSize = new Size(600, 600);
                         button_ResetProbabilityDistributions_Click(sender, e);
                         break;
                     }
                 case "tabPage_ParametricDistributions":
                     {
                         this.MinimumSize = new Size(800, 600);
-                        button_ResetDiscreteParametricDistributions_Click(sender, e);
-                        button_ResetContinuousParametricDistributions_Click(sender, e);
+                        switch (tabControl_ParametricDistributions.SelectedTab.Name)
+                        {
+                            case "tabPage_DiscreteParametricDistributions":
+                                {
+                                    button_ResetDiscreteParametricDistributions_Click(sender, e);
+                                    break;
+                                }
+                            case "tabPage_ContinuousParametricDistributions":
+                                {
+                                    button_ResetContinuousParametricDistributions_Click(sender, e);
+                                    break;
+                                }
+                            default:
+                                {
+                                    button_ResetDiscreteParametricDistributions_Click(sender, e);
+                                    button_ResetContinuousParametricDistributions_Click(sender, e);
+                                    break;
+                                }
+                        }
                         break;
                     }
                 case "tabPage_CovarianceAndCorrelation":
                     {
-                        this.MinimumSize = new Size(750, 400);
+                        this.MinimumSize = new Size(750, 600);
+                        button_ResetCovarianceAndCorrelation_Click(sender, e);
                         break;
                     }
                 case "tabPage_Tables":
@@ -219,7 +256,14 @@ namespace SpotoMasterRace
                         this.MinimumSize = new Size(500, 600);
                         break;
                     }
-                default: break;
+                default:
+                    {
+                        button_ResetProbabilityDistributions_Click(sender, e);
+                        button_ResetDiscreteParametricDistributions_Click(sender, e);
+                        button_ResetContinuousParametricDistributions_Click(sender, e);
+                        button_ResetCovarianceAndCorrelation_Click(sender, e);
+                        break;
+                    }
             }
         }
 
@@ -274,10 +318,14 @@ namespace SpotoMasterRace
         {
             double x = 0;
             double y = 0;
-            double weirdValue = 0;
+            double weirdXValue = 0;
+            double weirdYValue = 0;
             do
-                weirdValue += 0.1;
-            while (weirdValue * 10 <= view.xSheetMax || view.xSheetMax >= weirdValue * 15);
+                weirdXValue += 0.1;
+            while (weirdXValue * 10 <= view.xSheetMax || view.xSheetMax >= weirdXValue * 15);
+            do
+                weirdYValue += 0.1;
+            while (weirdYValue * 10 <= view.ySheetMax || view.ySheetMax >= weirdYValue * 15);
 
             if (xValues != null)
                 for (int i = 0; i < xValues.Length; i++)
@@ -293,7 +341,7 @@ namespace SpotoMasterRace
                     if (x != 0)
                         video.DrawString("-" + string.Format("{0:0.00}", x), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo(-x), view.YVideo((view.ySheetMin + view.ySheetMax) / 2));
                     video.DrawString(string.Format("{0:0.00}", x), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo(+x), view.YVideo((view.ySheetMin + view.ySheetMax) / 2));
-                    x += weirdValue;
+                    x += weirdXValue;
                 }
                 while (x <= view.yVideoMin);
 
@@ -308,18 +356,60 @@ namespace SpotoMasterRace
             else
                 do
                 {
-                    y++;
-                    video.DrawString("-" + string.Format("{0:0.00}", y), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo((view.xSheetMin + view.xSheetMax) / 2), view.YVideo(-y));
+                    if (y != 0)
+                        video.DrawString("-" + string.Format("{0:0.00}", y), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo((view.xSheetMin + view.xSheetMax) / 2), view.YVideo(-y));
                     video.DrawString(string.Format("{0:0.00}", y), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo((view.xSheetMin + view.xSheetMax) / 2), view.YVideo(+y));
+                    y += weirdYValue;
                 }
                 while (y <= view.xVideoMax);
         }
 
         private void FormSpotoMasterRace_SizeChanged(object sender, EventArgs e)
         {
-            button_ResetProbabilityDistributions_Click(sender, e);
-            button_ResetDiscreteParametricDistributions_Click(sender, e);
-            button_ResetContinuousParametricDistributions_Click(sender, e);
+            switch (tabControl_SpotoMasterRace.SelectedTab.Name)
+            {
+                case "tabPage_ProbabilityDistributions":
+                    {
+                        button_ResetProbabilityDistributions_Click(sender, e);
+                        break;
+                    }
+                case "tabPage_ParametricDistributions":
+                    {
+                        switch (tabControl_ParametricDistributions.SelectedTab.Name)
+                        {
+                            case "tabPage_DiscreteParametricDistributions":
+                                {
+                                    button_ResetDiscreteParametricDistributions_Click(sender, e);
+                                    break;
+                                }
+                            case "tabPage_ContinuousParametricDistributions":
+                                {
+                                    button_ResetContinuousParametricDistributions_Click(sender, e);
+                                    break;
+                                }
+                            default:
+                                {
+                                    button_ResetDiscreteParametricDistributions_Click(sender, e);
+                                    button_ResetContinuousParametricDistributions_Click(sender, e);
+                                    break;
+                                }
+                        }
+                        break;
+                    }
+                case "tabPage_CovarianceAndCorrelation":
+                    {
+                        button_ResetCovarianceAndCorrelation_Click(sender, e);
+                        break;
+                    }
+                default:
+                    {
+                        button_ResetProbabilityDistributions_Click(sender, e);
+                        button_ResetDiscreteParametricDistributions_Click(sender, e);
+                        button_ResetContinuousParametricDistributions_Click(sender, e);
+                        button_ResetCovarianceAndCorrelation_Click(sender, e);
+                        break;
+                    }
+            }
         }
 
         #endregion Global Misc
@@ -1209,8 +1299,8 @@ namespace SpotoMasterRace
             sheetProbabilityDistributions = Graphics.FromImage(drawingProbabilityDistributions);
             FixView(viewProbabilityDistributions, panel_ProbabilityDistributions, sheetProbabilityDistributions);
             DrawAxes(sheetProbabilityDistributions, viewProbabilityDistributions);
-            DrawCoordinates(videoProbabilityDistributions, viewProbabilityDistributions);
             videoProbabilityDistributions.DrawImageUnscaled(drawingProbabilityDistributions, 0, 0);
+            DrawCoordinates(videoProbabilityDistributions, viewProbabilityDistributions);
             richTextBox_ProbabilityDistributions.Text = "";
         }
 
@@ -1355,8 +1445,25 @@ namespace SpotoMasterRace
 
         private void tabControl_ParametricDistributions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button_ResetDiscreteParametricDistributions_Click(sender, e);
-            button_ResetContinuousParametricDistributions_Click(sender, e);
+            switch ((sender as TabControl).SelectedTab.Name)
+            {
+                case "tabPage_DiscreteParametricDistributions":
+                    {
+                        button_ResetDiscreteParametricDistributions_Click(sender, e);
+                        break;
+                    }
+                case "tabPage_ContinuousParametricDistributions":
+                    {
+                        button_ResetContinuousParametricDistributions_Click(sender, e);
+                        break;
+                    }
+                default:
+                    {
+                        button_ResetDiscreteParametricDistributions_Click(sender, e);
+                        button_ResetContinuousParametricDistributions_Click(sender, e);
+                        break;
+                    }
+            }
         }
 
         #endregion Misc
@@ -1374,8 +1481,8 @@ namespace SpotoMasterRace
             sheetDiscreteParametricDistributions = Graphics.FromImage(drawingDiscreteParametricDistributions);
             FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions);
             DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
-            DrawCoordinates(videoDiscreteParametricDistributions, viewDiscreteParametricDistributions);
             videoDiscreteParametricDistributions.DrawImageUnscaled(drawingDiscreteParametricDistributions, 0, 0);
+            DrawCoordinates(videoDiscreteParametricDistributions, viewDiscreteParametricDistributions);
             richTextBox_DiscreteParametricDistributions.Text = "";
         }
 
@@ -1699,8 +1806,8 @@ namespace SpotoMasterRace
             sheetContinuousParametricDistributions = Graphics.FromImage(drawingContinuousParametricDistributions);
             FixView(viewContinuousParametricDistributions, panel_ContinuousParametricDistributions, sheetContinuousParametricDistributions);
             DrawAxes(sheetContinuousParametricDistributions, viewContinuousParametricDistributions);
-            DrawCoordinates(videoContinuousParametricDistributions, viewContinuousParametricDistributions);
             videoContinuousParametricDistributions.DrawImageUnscaled(drawingContinuousParametricDistributions, 0, 0);
+            DrawCoordinates(videoContinuousParametricDistributions, viewContinuousParametricDistributions);
             richTextBox_ContinuousParametricDistributions.Text = "";
         }
 
@@ -1724,11 +1831,16 @@ namespace SpotoMasterRace
         {
             if (textBox_MeanNormalDistribution.Text == "" || textBox_VarianceNormalDistribution.Text == "")
             {
-                MessageBox.Show("Incorrect input.\nMean and Variance must be Real numbers.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect input.\nMean must be a Real number and Variance must be > 0.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             double mean = Convert.ToDouble(textBox_MeanNormalDistribution.Text);
             double variance = Convert.ToDouble(textBox_VarianceNormalDistribution.Text);
+            if (variance <= 0)
+            {
+                MessageBox.Show("Incorrect input.\nMean must be a Real number and Variance must be > 0.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             richTextBox_ContinuousParametricDistributions.Text = "This is the graph of the Normal Distribution with Mean = " + mean + " and Variance = " + variance + "\n";
             FixView(viewContinuousParametricDistributions, panel_ContinuousParametricDistributions, sheetContinuousParametricDistributions, mean - (variance < 10 ? 9 : variance), mean + (variance < 10 ? 9 : variance), -ClassSpotoMasterRace.NormalDistributionValue(mean, mean, variance), ClassSpotoMasterRace.NormalDistributionValue(mean, mean, variance));
             DrawAxes(sheetContinuousParametricDistributions, viewContinuousParametricDistributions);
@@ -1772,11 +1884,85 @@ namespace SpotoMasterRace
 
         #region Covariance and Correlation
 
+        #region Misc
+
+        private void button_ResetCovarianceAndCorrelation_Click(object sender, EventArgs e)
+        {
+            videoCovarianceAndCorrelation = panel_CovarianceAndCorrelation.CreateGraphics();
+            try
+            { drawingCovarianceAndCorrelation = new Bitmap(panel_CovarianceAndCorrelation.Width, panel_CovarianceAndCorrelation.Height, videoCovarianceAndCorrelation); }
+            catch { }
+            sheetCovarianceAndCorrelation = Graphics.FromImage(drawingCovarianceAndCorrelation);
+            FixView(viewCovarianceAndCorrelation, panel_CovarianceAndCorrelation, sheetCovarianceAndCorrelation);
+            DrawAxes(sheetCovarianceAndCorrelation, viewCovarianceAndCorrelation);
+            videoCovarianceAndCorrelation.DrawImageUnscaled(drawingCovarianceAndCorrelation, 0, 0);
+            DrawCoordinates(videoCovarianceAndCorrelation, viewCovarianceAndCorrelation);
+            richTextBox_CovarianceAndCorrelation.Text = "";
+        }
+
+        private void CovarianceAndCorrelationGraph()
+        {
+            if (textBox_FirstVariableValues.Text == "" || textBox_SecondVariableValues.Text == "")
+            {
+                MessageBox.Show("Incorrect input.\nThe two boxes must be filled with values.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            List<double> firstVariable = InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text));
+            List<double> secondVariable = InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text));
+            if (firstVariable != null && secondVariable != null && firstVariable.Count == secondVariable.Count)
+            {
+                double minX = double.MaxValue;
+                double minY = double.MaxValue;
+                double maxX = double.MinValue;
+                double maxY = double.MinValue;
+                for (int i = 0; i < firstVariable.Count; i++)
+                {
+                    if (minX > firstVariable[i])
+                        minX = firstVariable[i];
+                    if (minY > secondVariable[i])
+                        minY = secondVariable[i];
+                    if (maxX < firstVariable[i])
+                        maxX = firstVariable[i];
+                    if (maxY < secondVariable[i])
+                        maxY = secondVariable[i];
+                }
+                if (Math.Abs(minX) >= Math.Abs(maxX))
+                    maxX = Math.Abs(minX);
+                else
+                    minX = -Math.Abs(maxX);
+                if (Math.Abs(minY) >= Math.Abs(maxY))
+                    maxY = Math.Abs(minY);
+                else
+                    minY = -Math.Abs(maxY);
+                minX--;
+                minY--;
+                maxX++;
+                maxY++;
+                FixView(viewCovarianceAndCorrelation, panel_CovarianceAndCorrelation, sheetCovarianceAndCorrelation, minX, maxX, minY, maxY);
+                DrawAxes(sheetCovarianceAndCorrelation, viewCovarianceAndCorrelation);
+
+                for (int i = 0; i < firstVariable.Count; i++)
+                    sheetCovarianceAndCorrelation.DrawEllipse(covarianceAndCorrelationPen, viewCovarianceAndCorrelation.XVideo(firstVariable[i]), viewCovarianceAndCorrelation.YVideo(secondVariable[i]), 1, 1);
+                //draw line in the middle of the distribution
+                videoCovarianceAndCorrelation.DrawImageUnscaled(drawingCovarianceAndCorrelation, 0, 0);
+                DrawCoordinates(videoCovarianceAndCorrelation, viewCovarianceAndCorrelation);
+                richTextBox_CovarianceAndCorrelation.Text = "The graph is plotted using the two variables.\n1st: " + textBox_FirstVariableValues.Text + "\n2nd: " + textBox_SecondVariableValues.Text + "\n";
+            }
+        }
+
+        #endregion Misc
+
         private void button_Covariance_Click(object sender, EventArgs e)
-        { richTextBox_CovarianceAndCorrelation.Text = "The covariance between the two variables is " + ClassSpotoMasterRace.Covariance(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text))) + "\n\n"; }
+        {
+            CovarianceAndCorrelationGraph();
+            richTextBox_CovarianceAndCorrelation.Text += "The covariance between the two variables is " + ClassSpotoMasterRace.Covariance(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text)));
+        }
 
         private void button_Correlation_Click(object sender, EventArgs e)
-        { richTextBox_CovarianceAndCorrelation.Text = "The correlation between the two variables is " + ClassSpotoMasterRace.Correlation(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text))) + "\n\n"; }
+        {
+            CovarianceAndCorrelationGraph();
+            richTextBox_CovarianceAndCorrelation.Text += "The correlation between the two variables is " + ClassSpotoMasterRace.Correlation(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text)));
+        }
 
         #endregion Covariance and Correlation
 
