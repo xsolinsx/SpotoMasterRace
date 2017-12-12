@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.tabControl_SpotoMasterRace = new System.Windows.Forms.TabControl();
-            this.tabPage_CovarianceAndCorrelation = new System.Windows.Forms.TabPage();
-            this.label_SecondVariableValues = new System.Windows.Forms.Label();
-            this.label_FirstVariableValues = new System.Windows.Forms.Label();
-            this.button_Covariance = new System.Windows.Forms.Button();
-            this.button_Correlation = new System.Windows.Forms.Button();
-            this.textBox_SecondVariableValues = new System.Windows.Forms.TextBox();
-            this.textBox_FirstVariableValues = new System.Windows.Forms.TextBox();
-            this.panel_CovarianceAndCorrelation = new System.Windows.Forms.Panel();
-            this.richTextBox_CovarianceAndCorrelation = new System.Windows.Forms.RichTextBox();
             this.tabPage_SetTheory = new System.Windows.Forms.TabPage();
             this.label_Cardinality = new System.Windows.Forms.Label();
             this.groupBox_SetOperations = new System.Windows.Forms.GroupBox();
@@ -169,6 +160,21 @@
             this.button_ResetContinuousParametricDistributions = new System.Windows.Forms.Button();
             this.panel_ContinuousParametricDistributions = new System.Windows.Forms.Panel();
             this.richTextBox_ContinuousParametricDistributions = new System.Windows.Forms.RichTextBox();
+            this.tabPage_CovarianceAndCorrelation = new System.Windows.Forms.TabPage();
+            this.label_CardinalitySecondVariable = new System.Windows.Forms.Label();
+            this.label_CardinalityFirstVariable = new System.Windows.Forms.Label();
+            this.label_ResizingWarningCovarianceAndCorrelation = new System.Windows.Forms.Label();
+            this.button_ResetCovarianceAndCorrelation = new System.Windows.Forms.Button();
+            this.label_SecondVariable = new System.Windows.Forms.Label();
+            this.label_SecondVariableValues = new System.Windows.Forms.Label();
+            this.label_FirstVariable = new System.Windows.Forms.Label();
+            this.label_FirstVariableValues = new System.Windows.Forms.Label();
+            this.button_Covariance = new System.Windows.Forms.Button();
+            this.button_Correlation = new System.Windows.Forms.Button();
+            this.textBox_SecondVariableValues = new System.Windows.Forms.TextBox();
+            this.textBox_FirstVariableValues = new System.Windows.Forms.TextBox();
+            this.panel_CovarianceAndCorrelation = new System.Windows.Forms.Panel();
+            this.richTextBox_CovarianceAndCorrelation = new System.Windows.Forms.RichTextBox();
             this.tabPage_Tables = new System.Windows.Forms.TabPage();
             this.richTextBox_Tables = new System.Windows.Forms.RichTextBox();
             this.groupBox_TDistribution = new System.Windows.Forms.GroupBox();
@@ -239,12 +245,7 @@
             this.textBox_UtilitiesMeanForTScore = new System.Windows.Forms.TextBox();
             this.label_UtilitiesMeanForTScore = new System.Windows.Forms.Label();
             this.textBox_UtilitiesStandardDeviationForTScore = new System.Windows.Forms.TextBox();
-            this.button_ResetCovarianceAndCorrelation = new System.Windows.Forms.Button();
-            this.label_ResizingWarningCovarianceAndCorrelation = new System.Windows.Forms.Label();
-            this.label_FirstVariable = new System.Windows.Forms.Label();
-            this.label_SecondVariable = new System.Windows.Forms.Label();
             this.tabControl_SpotoMasterRace.SuspendLayout();
-            this.tabPage_CovarianceAndCorrelation.SuspendLayout();
             this.tabPage_SetTheory.SuspendLayout();
             this.groupBox_SetOperations.SuspendLayout();
             this.groupBox_SetTheoryElements.SuspendLayout();
@@ -265,6 +266,7 @@
             this.groupBox_HypergeometricDistribution.SuspendLayout();
             this.groupBox_BinomialDistribution.SuspendLayout();
             this.tabPage_ContinuousParametricDistributions.SuspendLayout();
+            this.tabPage_CovarianceAndCorrelation.SuspendLayout();
             this.tabPage_Tables.SuspendLayout();
             this.groupBox_TDistribution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TDDegreesOfFreedom)).BeginInit();
@@ -299,117 +301,7 @@
             this.tabControl_SpotoMasterRace.Size = new System.Drawing.Size(760, 537);
             this.tabControl_SpotoMasterRace.TabIndex = 0;
             this.tabControl_SpotoMasterRace.SelectedIndexChanged += new System.EventHandler(this.tabControl_SpotoMasterRace_SelectedIndexChanged);
-            // 
-            // tabPage_CovarianceAndCorrelation
-            // 
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_ResizingWarningCovarianceAndCorrelation);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.button_ResetCovarianceAndCorrelation);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_SecondVariable);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_SecondVariableValues);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_FirstVariable);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_FirstVariableValues);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.button_Covariance);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.button_Correlation);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.textBox_SecondVariableValues);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.textBox_FirstVariableValues);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.panel_CovarianceAndCorrelation);
-            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.richTextBox_CovarianceAndCorrelation);
-            this.tabPage_CovarianceAndCorrelation.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_CovarianceAndCorrelation.Name = "tabPage_CovarianceAndCorrelation";
-            this.tabPage_CovarianceAndCorrelation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_CovarianceAndCorrelation.Size = new System.Drawing.Size(752, 511);
-            this.tabPage_CovarianceAndCorrelation.TabIndex = 7;
-            this.tabPage_CovarianceAndCorrelation.Text = "Covariance and Correlation";
-            this.tabPage_CovarianceAndCorrelation.UseVisualStyleBackColor = true;
-            // 
-            // label_SecondVariableValues
-            // 
-            this.label_SecondVariableValues.AutoSize = true;
-            this.label_SecondVariableValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_SecondVariableValues.Location = new System.Drawing.Point(6, 34);
-            this.label_SecondVariableValues.Name = "label_SecondVariableValues";
-            this.label_SecondVariableValues.Size = new System.Drawing.Size(146, 13);
-            this.label_SecondVariableValues.TabIndex = 28;
-            this.label_SecondVariableValues.Text = "Second Variable Values:";
-            this.label_SecondVariableValues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_FirstVariableValues
-            // 
-            this.label_FirstVariableValues.AutoSize = true;
-            this.label_FirstVariableValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_FirstVariableValues.Location = new System.Drawing.Point(6, 10);
-            this.label_FirstVariableValues.Name = "label_FirstVariableValues";
-            this.label_FirstVariableValues.Size = new System.Drawing.Size(127, 13);
-            this.label_FirstVariableValues.TabIndex = 27;
-            this.label_FirstVariableValues.Text = "First Variable Values:";
-            this.label_FirstVariableValues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_Covariance
-            // 
-            this.button_Covariance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Covariance.Location = new System.Drawing.Point(6, 482);
-            this.button_Covariance.Name = "button_Covariance";
-            this.button_Covariance.Size = new System.Drawing.Size(78, 23);
-            this.button_Covariance.TabIndex = 26;
-            this.button_Covariance.Text = "Covariance";
-            this.button_Covariance.UseVisualStyleBackColor = true;
-            this.button_Covariance.Click += new System.EventHandler(this.button_Covariance_Click);
-            // 
-            // button_Correlation
-            // 
-            this.button_Correlation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Correlation.Location = new System.Drawing.Point(90, 482);
-            this.button_Correlation.Name = "button_Correlation";
-            this.button_Correlation.Size = new System.Drawing.Size(78, 23);
-            this.button_Correlation.TabIndex = 25;
-            this.button_Correlation.Text = "Correlation";
-            this.button_Correlation.UseVisualStyleBackColor = true;
-            this.button_Correlation.Click += new System.EventHandler(this.button_Correlation_Click);
-            // 
-            // textBox_SecondVariableValues
-            // 
-            this.textBox_SecondVariableValues.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_SecondVariableValues.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_SecondVariableValues.Location = new System.Drawing.Point(158, 32);
-            this.textBox_SecondVariableValues.Name = "textBox_SecondVariableValues";
-            this.textBox_SecondVariableValues.Size = new System.Drawing.Size(588, 20);
-            this.textBox_SecondVariableValues.TabIndex = 24;
-            this.textBox_SecondVariableValues.Text = "3,4,4,4,5,7,9,8,52444.100,49.5555555";
-            this.textBox_SecondVariableValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox_FirstVariableValues
-            // 
-            this.textBox_FirstVariableValues.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_FirstVariableValues.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_FirstVariableValues.Location = new System.Drawing.Point(158, 8);
-            this.textBox_FirstVariableValues.Name = "textBox_FirstVariableValues";
-            this.textBox_FirstVariableValues.Size = new System.Drawing.Size(588, 20);
-            this.textBox_FirstVariableValues.TabIndex = 23;
-            this.textBox_FirstVariableValues.Text = "3,4,4,4,5,7,9,8,52444.100,49.5555555";
-            this.textBox_FirstVariableValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel_CovarianceAndCorrelation
-            // 
-            this.panel_CovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel_CovarianceAndCorrelation.Location = new System.Drawing.Point(29, 58);
-            this.panel_CovarianceAndCorrelation.Name = "panel_CovarianceAndCorrelation";
-            this.panel_CovarianceAndCorrelation.Size = new System.Drawing.Size(717, 294);
-            this.panel_CovarianceAndCorrelation.TabIndex = 47;
-            // 
-            // richTextBox_CovarianceAndCorrelation
-            // 
-            this.richTextBox_CovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox_CovarianceAndCorrelation.Location = new System.Drawing.Point(6, 371);
-            this.richTextBox_CovarianceAndCorrelation.Name = "richTextBox_CovarianceAndCorrelation";
-            this.richTextBox_CovarianceAndCorrelation.ReadOnly = true;
-            this.richTextBox_CovarianceAndCorrelation.Size = new System.Drawing.Size(585, 105);
-            this.richTextBox_CovarianceAndCorrelation.TabIndex = 38;
-            this.richTextBox_CovarianceAndCorrelation.Text = "";
+            this.tabControl_SpotoMasterRace.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl_SpotoMasterRace_KeyDown);
             // 
             // tabPage_SetTheory
             // 
@@ -710,6 +602,7 @@
             this.textBox_Element.Size = new System.Drawing.Size(218, 20);
             this.textBox_Element.TabIndex = 4;
             this.textBox_Element.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_Element.TextChanged += new System.EventHandler(this.textBox_Element_TextChanged);
             this.textBox_Element.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Element_KeyDown);
             // 
             // button_InsertElement
@@ -1184,6 +1077,7 @@
             this.richTextBox_DescriptiveStatistics.Size = new System.Drawing.Size(740, 169);
             this.richTextBox_DescriptiveStatistics.TabIndex = 2;
             this.richTextBox_DescriptiveStatistics.Text = "";
+            this.richTextBox_DescriptiveStatistics.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // groupBox_Nominal
             // 
@@ -1225,8 +1119,7 @@
             this.textBox_CollectionDescriptiveStatistics.Name = "textBox_CollectionDescriptiveStatistics";
             this.textBox_CollectionDescriptiveStatistics.Size = new System.Drawing.Size(656, 20);
             this.textBox_CollectionDescriptiveStatistics.TabIndex = 1;
-            this.textBox_CollectionDescriptiveStatistics.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
-    "Liam";
+            this.textBox_CollectionDescriptiveStatistics.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,3.5,49.555 or Bryan, Ryan, Liam";
             this.textBox_CollectionDescriptiveStatistics.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabPage_Combinatorics
@@ -1270,6 +1163,7 @@
             this.richTextBox_Combinatorics.Size = new System.Drawing.Size(740, 402);
             this.richTextBox_Combinatorics.TabIndex = 27;
             this.richTextBox_Combinatorics.Text = "";
+            this.richTextBox_Combinatorics.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // button_CombinationsWithRepetitions
             // 
@@ -1356,7 +1250,7 @@
             this.numericUpDown_CombinatoricsK.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
             this.numericUpDown_CombinatoricsK.Location = new System.Drawing.Point(31, 64);
             this.numericUpDown_CombinatoricsK.Maximum = new decimal(new int[] {
-            85,
+            86,
             0,
             0,
             0});
@@ -1481,8 +1375,7 @@
             this.textBox_OutcomeSpaceProbabilityTheory.Name = "textBox_OutcomeSpaceProbabilityTheory";
             this.textBox_OutcomeSpaceProbabilityTheory.Size = new System.Drawing.Size(625, 20);
             this.textBox_OutcomeSpaceProbabilityTheory.TabIndex = 4;
-            this.textBox_OutcomeSpaceProbabilityTheory.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
-    "Liam";
+            this.textBox_OutcomeSpaceProbabilityTheory.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,3.5,49.555 or Bryan, Ryan, Liam";
             this.textBox_OutcomeSpaceProbabilityTheory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_OutcomeSpaceProbabilityTheory.TextChanged += new System.EventHandler(this.textBox_OutcomeSpaceProbabilityTheory_TextChanged);
             // 
@@ -1541,6 +1434,7 @@
             this.richTextBox_ProbabilityDistributions.Size = new System.Drawing.Size(740, 105);
             this.richTextBox_ProbabilityDistributions.TabIndex = 30;
             this.richTextBox_ProbabilityDistributions.Text = "";
+            this.richTextBox_ProbabilityDistributions.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // button_MassFunction
             // 
@@ -1617,8 +1511,7 @@
             this.textBox_OutcomeSpaceProbabilityDistributions.Name = "textBox_OutcomeSpaceProbabilityDistributions";
             this.textBox_OutcomeSpaceProbabilityDistributions.Size = new System.Drawing.Size(633, 20);
             this.textBox_OutcomeSpaceProbabilityDistributions.TabIndex = 22;
-            this.textBox_OutcomeSpaceProbabilityDistributions.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,52444.100,49.5555555 or Bryan, Ryan, " +
-    "Liam";
+            this.textBox_OutcomeSpaceProbabilityDistributions.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,3.5,49.555 or Bryan, Ryan, Liam";
             this.textBox_OutcomeSpaceProbabilityDistributions.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_OutcomeSpaceProbabilityDistributions.TextChanged += new System.EventHandler(this.textBox_OutcomeSpaceProbabilityDistributions_TextChanged);
             // 
@@ -1835,7 +1728,7 @@
             this.textBox_nBinomialDistribution.Name = "textBox_nBinomialDistribution";
             this.textBox_nBinomialDistribution.Size = new System.Drawing.Size(47, 20);
             this.textBox_nBinomialDistribution.TabIndex = 42;
-            this.textBox_nBinomialDistribution.Text = "0";
+            this.textBox_nBinomialDistribution.Text = "1";
             this.textBox_nBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_nBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_nBinomialDistribution_TextChanged);
             // 
@@ -1846,7 +1739,7 @@
             this.textBox_pBinomialDistribution.Name = "textBox_pBinomialDistribution";
             this.textBox_pBinomialDistribution.Size = new System.Drawing.Size(47, 20);
             this.textBox_pBinomialDistribution.TabIndex = 40;
-            this.textBox_pBinomialDistribution.Text = "0";
+            this.textBox_pBinomialDistribution.Text = "0.1";
             this.textBox_pBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_pBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_pBinomialDistribution_TextChanged);
             // 
@@ -1891,6 +1784,7 @@
             this.richTextBox_DiscreteParametricDistributions.Size = new System.Drawing.Size(565, 105);
             this.richTextBox_DiscreteParametricDistributions.TabIndex = 31;
             this.richTextBox_DiscreteParametricDistributions.Text = "";
+            this.richTextBox_DiscreteParametricDistributions.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // tabPage_ContinuousParametricDistributions
             // 
@@ -1947,7 +1841,7 @@
             this.textBox_MeanNormalDistribution.TabIndex = 47;
             this.textBox_MeanNormalDistribution.Text = "0";
             this.textBox_MeanNormalDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_MeanNormalDistribution.TextChanged += new System.EventHandler(this.textBoxes_NormalDistribution_TextChanged);
+            this.textBox_MeanNormalDistribution.TextChanged += new System.EventHandler(this.textBox_MeanNormalDistribution_TextChanged);
             // 
             // textBox_VarianceNormalDistribution
             // 
@@ -1959,7 +1853,7 @@
             this.textBox_VarianceNormalDistribution.TabIndex = 45;
             this.textBox_VarianceNormalDistribution.Text = "0";
             this.textBox_VarianceNormalDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_VarianceNormalDistribution.TextChanged += new System.EventHandler(this.textBoxes_NormalDistribution_TextChanged);
+            this.textBox_VarianceNormalDistribution.TextChanged += new System.EventHandler(this.textBox_VarianceNormalDistribution_TextChanged);
             // 
             // label_VarianceNormalDistribution
             // 
@@ -2015,6 +1909,193 @@
             this.richTextBox_ContinuousParametricDistributions.Size = new System.Drawing.Size(720, 105);
             this.richTextBox_ContinuousParametricDistributions.TabIndex = 37;
             this.richTextBox_ContinuousParametricDistributions.Text = "";
+            this.richTextBox_ContinuousParametricDistributions.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
+            // 
+            // tabPage_CovarianceAndCorrelation
+            // 
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_CardinalitySecondVariable);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_CardinalityFirstVariable);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_ResizingWarningCovarianceAndCorrelation);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.button_ResetCovarianceAndCorrelation);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_SecondVariable);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_SecondVariableValues);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_FirstVariable);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.label_FirstVariableValues);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.button_Covariance);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.button_Correlation);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.textBox_SecondVariableValues);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.textBox_FirstVariableValues);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.panel_CovarianceAndCorrelation);
+            this.tabPage_CovarianceAndCorrelation.Controls.Add(this.richTextBox_CovarianceAndCorrelation);
+            this.tabPage_CovarianceAndCorrelation.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_CovarianceAndCorrelation.Name = "tabPage_CovarianceAndCorrelation";
+            this.tabPage_CovarianceAndCorrelation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_CovarianceAndCorrelation.Size = new System.Drawing.Size(752, 511);
+            this.tabPage_CovarianceAndCorrelation.TabIndex = 7;
+            this.tabPage_CovarianceAndCorrelation.Text = "Covariance and Correlation";
+            this.tabPage_CovarianceAndCorrelation.UseVisualStyleBackColor = true;
+            // 
+            // label_CardinalitySecondVariable
+            // 
+            this.label_CardinalitySecondVariable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_CardinalitySecondVariable.AutoSize = true;
+            this.label_CardinalitySecondVariable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_CardinalitySecondVariable.Location = new System.Drawing.Point(669, 34);
+            this.label_CardinalitySecondVariable.Name = "label_CardinalitySecondVariable";
+            this.label_CardinalitySecondVariable.Size = new System.Drawing.Size(45, 13);
+            this.label_CardinalitySecondVariable.TabIndex = 51;
+            this.label_CardinalitySecondVariable.Text = "|2nd| =";
+            // 
+            // label_CardinalityFirstVariable
+            // 
+            this.label_CardinalityFirstVariable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_CardinalityFirstVariable.AutoSize = true;
+            this.label_CardinalityFirstVariable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_CardinalityFirstVariable.Location = new System.Drawing.Point(669, 10);
+            this.label_CardinalityFirstVariable.Name = "label_CardinalityFirstVariable";
+            this.label_CardinalityFirstVariable.Size = new System.Drawing.Size(41, 13);
+            this.label_CardinalityFirstVariable.TabIndex = 50;
+            this.label_CardinalityFirstVariable.Text = "|1st| =";
+            // 
+            // label_ResizingWarningCovarianceAndCorrelation
+            // 
+            this.label_ResizingWarningCovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_ResizingWarningCovarianceAndCorrelation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_ResizingWarningCovarianceAndCorrelation.Location = new System.Drawing.Point(597, 371);
+            this.label_ResizingWarningCovarianceAndCorrelation.Name = "label_ResizingWarningCovarianceAndCorrelation";
+            this.label_ResizingWarningCovarianceAndCorrelation.Size = new System.Drawing.Size(149, 105);
+            this.label_ResizingWarningCovarianceAndCorrelation.TabIndex = 49;
+            this.label_ResizingWarningCovarianceAndCorrelation.Text = "You should neither resize/minimize the window nor changing tab while a graph is p" +
+    "lotted. If you do it the graph will be erased and you will need to draw it again" +
+    ".\r\n";
+            this.label_ResizingWarningCovarianceAndCorrelation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_ResetCovarianceAndCorrelation
+            // 
+            this.button_ResetCovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_ResetCovarianceAndCorrelation.Location = new System.Drawing.Point(643, 482);
+            this.button_ResetCovarianceAndCorrelation.Name = "button_ResetCovarianceAndCorrelation";
+            this.button_ResetCovarianceAndCorrelation.Size = new System.Drawing.Size(103, 23);
+            this.button_ResetCovarianceAndCorrelation.TabIndex = 48;
+            this.button_ResetCovarianceAndCorrelation.Text = "Reset";
+            this.button_ResetCovarianceAndCorrelation.UseVisualStyleBackColor = true;
+            this.button_ResetCovarianceAndCorrelation.Click += new System.EventHandler(this.button_ResetCovarianceAndCorrelation_Click);
+            // 
+            // label_SecondVariable
+            // 
+            this.label_SecondVariable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label_SecondVariable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_SecondVariable.Location = new System.Drawing.Point(6, 58);
+            this.label_SecondVariable.Name = "label_SecondVariable";
+            this.label_SecondVariable.Size = new System.Drawing.Size(17, 283);
+            this.label_SecondVariable.TabIndex = 28;
+            this.label_SecondVariable.Text = "S\r\ne\r\nc\r\no\r\nn\r\nd\r\n \r\nV\r\na\r\nr\r\ni\r\na\r\nb\r\nl\r\ne";
+            this.label_SecondVariable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SecondVariableValues
+            // 
+            this.label_SecondVariableValues.AutoSize = true;
+            this.label_SecondVariableValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_SecondVariableValues.Location = new System.Drawing.Point(6, 34);
+            this.label_SecondVariableValues.Name = "label_SecondVariableValues";
+            this.label_SecondVariableValues.Size = new System.Drawing.Size(146, 13);
+            this.label_SecondVariableValues.TabIndex = 28;
+            this.label_SecondVariableValues.Text = "Second Variable Values:";
+            this.label_SecondVariableValues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_FirstVariable
+            // 
+            this.label_FirstVariable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_FirstVariable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_FirstVariable.Location = new System.Drawing.Point(26, 355);
+            this.label_FirstVariable.Name = "label_FirstVariable";
+            this.label_FirstVariable.Size = new System.Drawing.Size(720, 13);
+            this.label_FirstVariable.TabIndex = 27;
+            this.label_FirstVariable.Text = "F i r s t   V a r i a b l e";
+            this.label_FirstVariable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_FirstVariableValues
+            // 
+            this.label_FirstVariableValues.AutoSize = true;
+            this.label_FirstVariableValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_FirstVariableValues.Location = new System.Drawing.Point(6, 10);
+            this.label_FirstVariableValues.Name = "label_FirstVariableValues";
+            this.label_FirstVariableValues.Size = new System.Drawing.Size(127, 13);
+            this.label_FirstVariableValues.TabIndex = 27;
+            this.label_FirstVariableValues.Text = "First Variable Values:";
+            this.label_FirstVariableValues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_Covariance
+            // 
+            this.button_Covariance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Covariance.Location = new System.Drawing.Point(6, 482);
+            this.button_Covariance.Name = "button_Covariance";
+            this.button_Covariance.Size = new System.Drawing.Size(78, 23);
+            this.button_Covariance.TabIndex = 26;
+            this.button_Covariance.Text = "Covariance";
+            this.button_Covariance.UseVisualStyleBackColor = true;
+            this.button_Covariance.Click += new System.EventHandler(this.button_Covariance_Click);
+            // 
+            // button_Correlation
+            // 
+            this.button_Correlation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Correlation.Location = new System.Drawing.Point(90, 482);
+            this.button_Correlation.Name = "button_Correlation";
+            this.button_Correlation.Size = new System.Drawing.Size(78, 23);
+            this.button_Correlation.TabIndex = 25;
+            this.button_Correlation.Text = "Correlation";
+            this.button_Correlation.UseVisualStyleBackColor = true;
+            this.button_Correlation.Click += new System.EventHandler(this.button_Correlation_Click);
+            // 
+            // textBox_SecondVariableValues
+            // 
+            this.textBox_SecondVariableValues.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_SecondVariableValues.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.textBox_SecondVariableValues.Location = new System.Drawing.Point(158, 32);
+            this.textBox_SecondVariableValues.Name = "textBox_SecondVariableValues";
+            this.textBox_SecondVariableValues.Size = new System.Drawing.Size(505, 20);
+            this.textBox_SecondVariableValues.TabIndex = 24;
+            this.textBox_SecondVariableValues.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,3.5,49.555";
+            this.textBox_SecondVariableValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_SecondVariableValues.TextChanged += new System.EventHandler(this.textBoxes_Variables_TextChanged);
+            // 
+            // textBox_FirstVariableValues
+            // 
+            this.textBox_FirstVariableValues.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_FirstVariableValues.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.textBox_FirstVariableValues.Location = new System.Drawing.Point(158, 8);
+            this.textBox_FirstVariableValues.Name = "textBox_FirstVariableValues";
+            this.textBox_FirstVariableValues.Size = new System.Drawing.Size(505, 20);
+            this.textBox_FirstVariableValues.TabIndex = 23;
+            this.textBox_FirstVariableValues.Text = "Comma Separated Values like 3,4,4,4,5,7,9,8,3.5,49.555";
+            this.textBox_FirstVariableValues.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_FirstVariableValues.TextChanged += new System.EventHandler(this.textBoxes_Variables_TextChanged);
+            // 
+            // panel_CovarianceAndCorrelation
+            // 
+            this.panel_CovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_CovarianceAndCorrelation.Location = new System.Drawing.Point(29, 58);
+            this.panel_CovarianceAndCorrelation.Name = "panel_CovarianceAndCorrelation";
+            this.panel_CovarianceAndCorrelation.Size = new System.Drawing.Size(717, 294);
+            this.panel_CovarianceAndCorrelation.TabIndex = 47;
+            // 
+            // richTextBox_CovarianceAndCorrelation
+            // 
+            this.richTextBox_CovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox_CovarianceAndCorrelation.Location = new System.Drawing.Point(6, 371);
+            this.richTextBox_CovarianceAndCorrelation.Name = "richTextBox_CovarianceAndCorrelation";
+            this.richTextBox_CovarianceAndCorrelation.ReadOnly = true;
+            this.richTextBox_CovarianceAndCorrelation.Size = new System.Drawing.Size(585, 105);
+            this.richTextBox_CovarianceAndCorrelation.TabIndex = 38;
+            this.richTextBox_CovarianceAndCorrelation.Text = "";
+            this.richTextBox_CovarianceAndCorrelation.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // tabPage_Tables
             // 
@@ -2041,6 +2122,7 @@
             this.richTextBox_Tables.Size = new System.Drawing.Size(740, 286);
             this.richTextBox_Tables.TabIndex = 48;
             this.richTextBox_Tables.Text = "";
+            this.richTextBox_Tables.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // groupBox_TDistribution
             // 
@@ -2474,6 +2556,7 @@
             this.richTextBox_Utilities.Size = new System.Drawing.Size(740, 148);
             this.richTextBox_Utilities.TabIndex = 39;
             this.richTextBox_Utilities.Text = "";
+            this.richTextBox_Utilities.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // groupBox_UtilitiesVariance
             // 
@@ -2512,9 +2595,9 @@
             this.textBox_UtilitiesN.Name = "textBox_UtilitiesN";
             this.textBox_UtilitiesN.Size = new System.Drawing.Size(78, 20);
             this.textBox_UtilitiesN.TabIndex = 29;
-            this.textBox_UtilitiesN.Text = "0";
+            this.textBox_UtilitiesN.Text = "1";
             this.textBox_UtilitiesN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_UtilitiesN.TextChanged += new System.EventHandler(this.textBoxes_Utilities_TextChanged);
+            this.textBox_UtilitiesN.TextChanged += new System.EventHandler(this.textBox_UtilitiesN_TextChanged);
             // 
             // label_UtilitiesDeviance
             // 
@@ -2622,7 +2705,7 @@
             this.textBox_UtilitiesStandardDeviationForCoefficientOfVariation.TabIndex = 29;
             this.textBox_UtilitiesStandardDeviationForCoefficientOfVariation.Text = "0";
             this.textBox_UtilitiesStandardDeviationForCoefficientOfVariation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_UtilitiesStandardDeviationForCoefficientOfVariation.TextChanged += new System.EventHandler(this.textBoxes_Utilities_TextChanged);
+            this.textBox_UtilitiesStandardDeviationForCoefficientOfVariation.TextChanged += new System.EventHandler(this.textBoxes_UtilitiesStandardDeviations_TextChanged);
             // 
             // label_UtilitiesStandardDeviationForCoefficientOfVariation
             // 
@@ -2671,7 +2754,7 @@
             this.textBox_UtilitiesVariance.TabIndex = 28;
             this.textBox_UtilitiesVariance.Text = "0";
             this.textBox_UtilitiesVariance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_UtilitiesVariance.TextChanged += new System.EventHandler(this.textBoxes_Utilities_TextChanged);
+            this.textBox_UtilitiesVariance.TextChanged += new System.EventHandler(this.textBox_UtilitiesVariance_TextChanged);
             // 
             // label_UtilitiesVariance
             // 
@@ -2782,7 +2865,7 @@
             this.textBox_UtilitiesStandardDeviationForZScore.TabIndex = 29;
             this.textBox_UtilitiesStandardDeviationForZScore.Text = "0";
             this.textBox_UtilitiesStandardDeviationForZScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_UtilitiesStandardDeviationForZScore.TextChanged += new System.EventHandler(this.textBoxes_Utilities_TextChanged);
+            this.textBox_UtilitiesStandardDeviationForZScore.TextChanged += new System.EventHandler(this.textBoxes_UtilitiesStandardDeviations_TextChanged);
             // 
             // textBox_UtilitiesItemForZScore
             // 
@@ -2896,55 +2979,7 @@
             this.textBox_UtilitiesStandardDeviationForTScore.TabIndex = 30;
             this.textBox_UtilitiesStandardDeviationForTScore.Text = "0";
             this.textBox_UtilitiesStandardDeviationForTScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_UtilitiesStandardDeviationForTScore.TextChanged += new System.EventHandler(this.textBoxes_Utilities_TextChanged);
-            // 
-            // button_ResetCovarianceAndCorrelation
-            // 
-            this.button_ResetCovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ResetCovarianceAndCorrelation.Location = new System.Drawing.Point(643, 482);
-            this.button_ResetCovarianceAndCorrelation.Name = "button_ResetCovarianceAndCorrelation";
-            this.button_ResetCovarianceAndCorrelation.Size = new System.Drawing.Size(103, 23);
-            this.button_ResetCovarianceAndCorrelation.TabIndex = 48;
-            this.button_ResetCovarianceAndCorrelation.Text = "Reset";
-            this.button_ResetCovarianceAndCorrelation.UseVisualStyleBackColor = true;
-            this.button_ResetCovarianceAndCorrelation.Click += new System.EventHandler(this.button_ResetCovarianceAndCorrelation_Click);
-            // 
-            // label_ResizingWarningCovarianceAndCorrelation
-            // 
-            this.label_ResizingWarningCovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_ResizingWarningCovarianceAndCorrelation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_ResizingWarningCovarianceAndCorrelation.Location = new System.Drawing.Point(597, 371);
-            this.label_ResizingWarningCovarianceAndCorrelation.Name = "label_ResizingWarningCovarianceAndCorrelation";
-            this.label_ResizingWarningCovarianceAndCorrelation.Size = new System.Drawing.Size(149, 105);
-            this.label_ResizingWarningCovarianceAndCorrelation.TabIndex = 49;
-            this.label_ResizingWarningCovarianceAndCorrelation.Text = "You should neither resize/minimize the window nor changing tab while a graph is p" +
-    "lotted. If you do it the graph will be erased and you will need to draw it again" +
-    ".\r\n";
-            this.label_ResizingWarningCovarianceAndCorrelation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_FirstVariable
-            // 
-            this.label_FirstVariable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_FirstVariable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_FirstVariable.Location = new System.Drawing.Point(26, 355);
-            this.label_FirstVariable.Name = "label_FirstVariable";
-            this.label_FirstVariable.Size = new System.Drawing.Size(720, 13);
-            this.label_FirstVariable.TabIndex = 27;
-            this.label_FirstVariable.Text = "F i r s t   V a r i a b l e";
-            this.label_FirstVariable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_SecondVariable
-            // 
-            this.label_SecondVariable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label_SecondVariable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_SecondVariable.Location = new System.Drawing.Point(6, 58);
-            this.label_SecondVariable.Name = "label_SecondVariable";
-            this.label_SecondVariable.Size = new System.Drawing.Size(17, 283);
-            this.label_SecondVariable.TabIndex = 28;
-            this.label_SecondVariable.Text = "S\r\ne\r\nc\r\no\r\nn\r\nd\r\n \r\nV\r\na\r\nr\r\ni\r\na\r\nb\r\nl\r\ne";
-            this.label_SecondVariable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.textBox_UtilitiesStandardDeviationForTScore.TextChanged += new System.EventHandler(this.textBoxes_UtilitiesStandardDeviations_TextChanged);
             // 
             // FormSpotoMasterRace
             // 
@@ -2957,8 +2992,6 @@
             this.Text = "SpotoMasterRace";
             this.SizeChanged += new System.EventHandler(this.FormSpotoMasterRace_SizeChanged);
             this.tabControl_SpotoMasterRace.ResumeLayout(false);
-            this.tabPage_CovarianceAndCorrelation.ResumeLayout(false);
-            this.tabPage_CovarianceAndCorrelation.PerformLayout();
             this.tabPage_SetTheory.ResumeLayout(false);
             this.tabPage_SetTheory.PerformLayout();
             this.groupBox_SetOperations.ResumeLayout(false);
@@ -2991,6 +3024,8 @@
             this.groupBox_BinomialDistribution.PerformLayout();
             this.tabPage_ContinuousParametricDistributions.ResumeLayout(false);
             this.tabPage_ContinuousParametricDistributions.PerformLayout();
+            this.tabPage_CovarianceAndCorrelation.ResumeLayout(false);
+            this.tabPage_CovarianceAndCorrelation.PerformLayout();
             this.tabPage_Tables.ResumeLayout(false);
             this.groupBox_TDistribution.ResumeLayout(false);
             this.groupBox_TDistribution.PerformLayout();
@@ -3232,6 +3267,8 @@
         private System.Windows.Forms.Button button_ResetCovarianceAndCorrelation;
         private System.Windows.Forms.Label label_SecondVariable;
         private System.Windows.Forms.Label label_FirstVariable;
+        private System.Windows.Forms.Label label_CardinalitySecondVariable;
+        private System.Windows.Forms.Label label_CardinalityFirstVariable;
 
     }
 }

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SpotoMasterRace
 {
     public partial class FormSpotoMasterRace : Form
     {
+        private bool development = false;
+
         #region Common
 
         private Pen functionPen;
@@ -21,14 +24,12 @@ namespace SpotoMasterRace
 
         #region Set Theory
 
-        private bool showHelp = true;
         private char actualSetName;
         private char nextSetName;
         private int selectedSetIndex;
         private int selectedElementIndex;
-        private BindingList<StructSet<string>> sets;
-        private StructSet<string> tempSetSetTheory;
-        private StructSet<string> emptySet = new StructSet<string>('@', new BindingList<string>(), false);
+        private BindingList<ClassSet<string>> sets;
+        private ClassSet<string> tempSetSetTheory;
 
         #endregion Set Theory
 
@@ -41,8 +42,8 @@ namespace SpotoMasterRace
 
         #region Probability Theory
 
-        private BindingList<StructSet<string>> outcomeSpaceProbabilityTheory;
-        private StructSet<StructSet<string>> spaceOfEventsProbabilityTheory;
+        private BindingList<ClassSet<string>> outcomeSpaceProbabilityTheory;
+        private ClassSet<ClassSet<string>> spaceOfEventsProbabilityTheory;
 
         #endregion Probability Theory
 
@@ -52,8 +53,7 @@ namespace SpotoMasterRace
         private Graphics videoProbabilityDistributions;
         private Bitmap drawingProbabilityDistributions;
         private Graphics sheetProbabilityDistributions;
-        private BindingList<StructSet<string>> outcomeSpaceProbabilityDistributions;
-        private StructSet<StructSet<string>> spaceOfEventsProbabilityDistributions;
+        private BindingList<ClassSet<string>> outcomeSpaceProbabilityDistributions;
 
         #endregion Probability Distributions
 
@@ -88,6 +88,7 @@ namespace SpotoMasterRace
         private Graphics sheetCovarianceAndCorrelation;
 
         #endregion Covariance and Correlation
+
         public FormSpotoMasterRace()
         {
             InitializeComponent();
@@ -117,8 +118,8 @@ namespace SpotoMasterRace
             actualSetName = 'A';
             selectedSetIndex = 0;
             selectedElementIndex = 0;
-            sets = new BindingList<StructSet<string>>();
-            tempSetSetTheory = new StructSet<string>(nextSetName);
+            sets = new BindingList<ClassSet<string>>();
+            tempSetSetTheory = new ClassSet<string>(nextSetName);
             listBox_Sets.DataSource = sets;
             listBox_Set1.DataSource = sets;
             listBox_Elements.DataSource = tempSetSetTheory.Elements;
@@ -135,8 +136,8 @@ namespace SpotoMasterRace
 
             #region Probability Theory
 
-            outcomeSpaceProbabilityTheory = new BindingList<StructSet<string>>();
-            spaceOfEventsProbabilityTheory = new StructSet<StructSet<string>>('E');
+            outcomeSpaceProbabilityTheory = new BindingList<ClassSet<string>>();
+            spaceOfEventsProbabilityTheory = new ClassSet<ClassSet<string>>('E');
 
             #endregion Probability Theory
 
@@ -185,6 +186,38 @@ namespace SpotoMasterRace
         }
 
         #region Global Misc
+
+        private void tabControl_SpotoMasterRace_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.D)
+            {
+                development = !development;
+                if (development)
+                    MessageBox.Show("DEVELOPER MODE ON", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    MessageBox.Show("DEVELOPER MODE OFF", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ExceptionHandler(Exception ex)
+        {
+            if (development)
+            {
+                MessageBox.Show("Error\n" + ex.Source + "\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    string FileName = DateTime.Now.ToFileTime().ToString() + ".rtf";
+                    StreamWriter SW = new StreamWriter(new FileStream(FileName, FileMode.CreateNew, FileAccess.Write, FileShare.None));
+                    SW.WriteLine("SOURCE: " + ex.Source);
+                    SW.WriteLine("MESSAGE: " + ex.Message);
+                    SW.WriteLine("DATA: " + ex.Data);
+                    SW.WriteLine("HELP LINK: " + ex.HelpLink);
+                    SW.WriteLine("STACKTRACE: " + ex.StackTrace);
+                    SW.Close();
+                }
+                catch { }
+            }
+        }
 
         private void tabControl_SpotoMasterRace_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -271,8 +304,11 @@ namespace SpotoMasterRace
         {
             try
             { return new List<string>(commaSeparatedValues.Replace(" ", "").Split(',')); }
-            catch
-            { return null; }
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                return null;
+            }
         }
 
         private List<double> InitializeDoubleCollection(List<string> collection)
@@ -285,8 +321,11 @@ namespace SpotoMasterRace
                     doubleCollection.Add(Convert.ToDouble(item));
                 return doubleCollection;
             }
-            catch
-            { return null; }
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                return null;
+            }
         }
 
         private void FixView(ClassDraw view, Panel panel, Graphics sheet, double xsmin = -1, double xsmax = 1, double ysmin = -1, double ysmax = 1)
@@ -331,8 +370,8 @@ namespace SpotoMasterRace
                 for (int i = 0; i < xValues.Length; i++)
                 {
                     x = xValues[i];
-                    //if (x != 0)
-                    //video.DrawString("-" + string.Format("{0:0.00}", x), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo(-x), view.YVideo((view.ySheetMin + view.ySheetMax) / 2));
+                    if (x != 0)
+                        video.DrawString("-" + string.Format("{0:0.00}", x), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo(-x), view.YVideo((view.ySheetMin + view.ySheetMax) / 2));
                     video.DrawString(string.Format("{0:0.00}", x), FormSpotoMasterRace.DefaultFont, new SolidBrush(Color.Black), view.XVideo(+x), view.YVideo((view.ySheetMin + view.ySheetMax) / 2));
                 }
             else
@@ -412,11 +451,20 @@ namespace SpotoMasterRace
             }
         }
 
+        private void richTextBoxes_TextChanged(object sender, EventArgs e)
+        { ((RichTextBox)sender).ScrollToCaret(); }
+
         #endregion Global Misc
 
         #region Set Theory
 
         #region Misc
+
+        private void textBox_Element_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Element.Text.Contains(","))
+                MessageBox.Show("YOU MUST INSERT ONLY ONE ELEMENT AT A TIME!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
 
         private void checkBox_FlagOrdered_CheckedChanged(object sender, EventArgs e)
         {
@@ -426,7 +474,7 @@ namespace SpotoMasterRace
             for (int i = 0; i < sets.Count; i++)
             {
                 if (sets[i].Name == tempSetSetTheory.Name)
-                    sets[i] = new StructSet<string>(tempSetSetTheory);
+                    sets[i] = new ClassSet<string>(tempSetSetTheory);
             }
             listBox_Elements.DataSource = tempSetSetTheory.Elements;
             Update_TempSet_Listboxes();
@@ -448,8 +496,11 @@ namespace SpotoMasterRace
                 textBox_CurrentSet.Text = actualSetName + " = " + (checkBox_FlagOrdered.Checked ? "( " : "{ ") + strElements + (checkBox_FlagOrdered.Checked ? " )" : " }");
                 label_Cardinality.Text = "Cardinality = " + tempSetSetTheory.Cardinality;
             }
-            catch
-            { textBox_CurrentSet.Text = ""; }
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                textBox_CurrentSet.Text = "";
+            }
             //update listboxes
             try
             {
@@ -457,7 +508,7 @@ namespace SpotoMasterRace
                 {
                     listBox_Sets.Update();
                     List<string> tmp = new List<string>();
-                    foreach (StructSet<string> item in sets)
+                    foreach (ClassSet<string> item in sets)
                         tmp.Add(item.Name.ToString());
 
                     int old1_index = listBox_Set1.SelectedIndex >= 0 ? listBox_Set1.SelectedIndex : 0;
@@ -468,7 +519,7 @@ namespace SpotoMasterRace
                     listBox_Set2.SelectedIndex = old2_index;
 
                     //update the bindings
-                    sets.Add(emptySet);
+                    sets.Add(new ClassSet<string>('@'));
                     sets.RemoveAt(sets.Count - 1);
                 }
                 else
@@ -477,8 +528,9 @@ namespace SpotoMasterRace
                     listBox_Set2.DataSource = new BindingList<string>(new List<string>());
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionHandler(ex);
                 listBox_Set1.DataSource = new BindingList<string>(new List<string>());
                 listBox_Set2.DataSource = new BindingList<string>(new List<string>());
             }
@@ -494,8 +546,8 @@ namespace SpotoMasterRace
                 actualSetName = tempSetSetTheory.Name;
                 checkBox_FlagOrdered.Checked = tempSetSetTheory.Ordered;
             }
-            catch
-            { }
+            catch (Exception ex)
+            { ExceptionHandler(ex); }
             Update_TempSet_Listboxes();
         }
 
@@ -506,8 +558,8 @@ namespace SpotoMasterRace
                 selectedElementIndex = listBox_Elements.SelectedIndex;
                 textBox_Element.Text = listBox_Elements.SelectedItem.ToString();
             }
-            catch
-            { }
+            catch (Exception ex)
+            { ExceptionHandler(ex); }
             Update_TempSet_Listboxes();
         }
 
@@ -552,8 +604,8 @@ namespace SpotoMasterRace
         {
             try
             { tempSetSetTheory.Elements.Remove(listBox_Elements.Items[selectedElementIndex].ToString()); }
-            catch
-            { }
+            catch (Exception ex)
+            { ExceptionHandler(ex); }
             Update_TempSet_Listboxes();
         }
 
@@ -573,7 +625,7 @@ namespace SpotoMasterRace
         {
             nextSetName = sets.Count > 0 ? sets[sets.Count - 1].Name : '@'; //'@' is the character before 'A'
             nextSetName++;
-            tempSetSetTheory = new StructSet<string>(nextSetName, new BindingList<string>(), checkBox_FlagOrdered.Checked);
+            tempSetSetTheory = new ClassSet<string>(nextSetName, new BindingList<string>(), checkBox_FlagOrdered.Checked);
             listBox_Elements.DataSource = tempSetSetTheory.Elements;
             actualSetName = tempSetSetTheory.Name;
             Update_TempSet_Listboxes();
@@ -590,7 +642,7 @@ namespace SpotoMasterRace
                     button_NewSet_Click(sender, e);
                     return;
                 }
-            sets.Add(new StructSet<string>(tempSetSetTheory));
+            sets.Add(new ClassSet<string>(tempSetSetTheory));
             //new set
             button_NewSet_Click(sender, e);
         }
@@ -629,8 +681,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                     textBox_CurrentSet.Text = set1.Name + " = " + set2.Name + ": " + (set1 == set2).ToString();
                 else
@@ -644,8 +696,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                     textBox_CurrentSet.Text = set1.Name + " ⊆ " + set2.Name + ": " + ClassSpotoMasterRace.Inclusion(set1, set2, false).ToString();
                 else
@@ -659,8 +711,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                     textBox_CurrentSet.Text = set1.Name + " ⊂ " + set2.Name + ": " + ClassSpotoMasterRace.Inclusion(set1, set2, true).ToString();
                 else
@@ -697,8 +749,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
@@ -717,8 +769,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
@@ -737,13 +789,13 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
                     button_NewSet_Click(sender, e);
-                    tempSetSetTheory = new StructSet<string>(nextSetName, ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered);
+                    tempSetSetTheory = new ClassSet<string>(nextSetName, ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered);
                 }
                 else
                     MessageBox.Show("You must choose 2 unordered sets from the 2 lists near the button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -757,13 +809,13 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     //new set
                     button_NewSet_Click(sender, e);
-                    tempSetSetTheory.Elements = ClassSpotoMasterRace.Union(new StructSet<string>('A', ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered), new StructSet<string>('A', ClassSpotoMasterRace.Difference(set2, set1), set1.Ordered));
+                    tempSetSetTheory.Elements = ClassSpotoMasterRace.Union(new ClassSet<string>('A', ClassSpotoMasterRace.Difference(set1, set2), set1.Ordered), new ClassSet<string>('A', ClassSpotoMasterRace.Difference(set2, set1), set1.Ordered));
                 }
                 else
                     MessageBox.Show("You must choose 2 unordered sets from the 2 lists near the button.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -777,8 +829,8 @@ namespace SpotoMasterRace
         {
             if (CheckIfSelectedSets())
             {
-                StructSet<string> set1 = sets[listBox_Set1.SelectedIndex];
-                StructSet<string> set2 = sets[listBox_Set2.SelectedIndex];
+                ClassSet<string> set1 = sets[listBox_Set1.SelectedIndex];
+                ClassSet<string> set2 = sets[listBox_Set2.SelectedIndex];
                 if (set1.Ordered == set2.Ordered && !set1.Ordered)
                 {
                     button_NewSet_Click(sender, e);
@@ -854,7 +906,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Invalid Data.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_NumberOfEquivalentClasses_Click(object sender, EventArgs e)
@@ -863,7 +914,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Number of equivalent classes: " + ClassSpotoMasterRace.NumberOfEquivalentClasses(stringCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Invalid Data.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         #endregion Nominal
@@ -884,7 +934,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_Proportions_Click(object sender, EventArgs e)
@@ -898,7 +947,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_ProportionsPercentage_Click(object sender, EventArgs e)
@@ -912,7 +960,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_CumulativeFrequencies_Click(object sender, EventArgs e)
@@ -926,7 +973,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_CumulativeFrequenciesPercentage_Click(object sender, EventArgs e)
@@ -940,7 +986,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_MedianOrdinal_Click(object sender, EventArgs e)
@@ -954,7 +999,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_Quartiles_Click(object sender, EventArgs e)
@@ -968,7 +1012,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_XPercentile_Click(object sender, EventArgs e)
@@ -977,7 +1020,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText(numericUpDown_XPercentile.Value + "° Percentile: " + ClassSpotoMasterRace.XPercentile(doubleCollectionDescriptiveStatistics, Convert.ToInt16(numericUpDown_XPercentile.Value)) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_PercentileRank_Click(object sender, EventArgs e)
@@ -986,8 +1028,9 @@ namespace SpotoMasterRace
             {
                 try
                 { Convert.ToDouble(textBox_DatumOrdinal.Text); }
-                catch
+                catch (Exception ex)
                 {
+                    ExceptionHandler(ex);
                     MessageBox.Show("Need number with this format: IntegerPart.DecimalPartIfPresent", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -995,7 +1038,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE ORDINAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         #endregion Ordinal
@@ -1008,7 +1050,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Mean: " + ClassSpotoMasterRace.Mean(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_MedianInterval_Click(object sender, EventArgs e)
@@ -1017,7 +1058,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Median Interval: " + ClassSpotoMasterRace.MedianInterval(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_Range_Click(object sender, EventArgs e)
@@ -1026,7 +1066,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Range: " + ClassSpotoMasterRace.Range(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_InterquartileDifference_Click(object sender, EventArgs e)
@@ -1035,7 +1074,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Interquartile Difference: " + ClassSpotoMasterRace.InterquartileDifference(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_Deviance_Click(object sender, EventArgs e)
@@ -1044,7 +1082,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Deviance: " + ClassSpotoMasterRace.Deviance(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_VariancePopulation_Click(object sender, EventArgs e)
@@ -1053,7 +1090,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Variance (Population): " + ClassSpotoMasterRace.VariancePopulation(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_VarianceSample_Click(object sender, EventArgs e)
@@ -1062,7 +1098,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Variance (Sample): " + ClassSpotoMasterRace.VarianceSample(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_StandardDeviationPopulation_Click(object sender, EventArgs e)
@@ -1071,7 +1106,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Standard Deviation (Population): " + ClassSpotoMasterRace.StandardDeviationPopulation(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_StandardDeviationSample_Click(object sender, EventArgs e)
@@ -1080,7 +1114,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Standard Deviation (Sample): " + ClassSpotoMasterRace.StandardDeviationSample(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_CoefficientOfVariationPopulation_Click(object sender, EventArgs e)
@@ -1089,7 +1122,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Coefficient of Variation (Population): " + ClassSpotoMasterRace.CoefficientOfVariationPopulation(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_CoefficientOfVariationSample_Click(object sender, EventArgs e)
@@ -1098,7 +1130,6 @@ namespace SpotoMasterRace
                 richTextBox_DescriptiveStatistics.AppendText("Coefficient of Variation (Sample): " + ClassSpotoMasterRace.CoefficientOfVariationSample(doubleCollectionDescriptiveStatistics) + "\n\n");
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_ZScore_Click(object sender, EventArgs e)
@@ -1107,8 +1138,9 @@ namespace SpotoMasterRace
             {
                 try
                 { Convert.ToDouble(textBox_DatumIntervalRatio.Text); }
-                catch
+                catch (Exception ex)
                 {
+                    ExceptionHandler(ex);
                     MessageBox.Show("Need number with this format: IntegerPart.DecimalPartIfPresent", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -1116,7 +1148,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         private void button_TScore_Click(object sender, EventArgs e)
@@ -1129,8 +1160,9 @@ namespace SpotoMasterRace
                     Convert.ToDouble(textBox_UtilitiesMeanForTScore.Text);
                     Convert.ToDouble(textBox_UtilitiesStandardDeviationForTScore.Text);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    ExceptionHandler(ex);
                     MessageBox.Show("Need ZScore, Mean and Standard Deviation with this format: IntegerPart.DecimalPartIfPresent", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -1138,7 +1170,6 @@ namespace SpotoMasterRace
             }
             else
                 MessageBox.Show("Need data validity AT LEAST AT THE INTERVAL level.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_DescriptiveStatistics.ScrollToCaret();
         }
 
         #endregion Interval/Ratio
@@ -1164,36 +1195,32 @@ namespace SpotoMasterRace
 
         private void button_PermutationsWithoutRepetitions_Click(object sender, EventArgs e)
         {
-            short n = Convert.ToInt16(numericUpDown_CombinatoricsN.Value), k = Convert.ToInt16(numericUpDown_CombinatoricsK.Value);
+            uint n = Convert.ToUInt32(numericUpDown_CombinatoricsN.Value), k = Convert.ToUInt32(numericUpDown_CombinatoricsK.Value);
             if (k <= n)
-                richTextBox_Combinatorics.AppendText(k + "-Permutations WITHOUT Repetitions of " + n + " elements: " + ClassSpotoMasterRace.FactorialOf(n) / ClassSpotoMasterRace.FactorialOf(Convert.ToInt16(n - k)) + "\n\n");
+                richTextBox_Combinatorics.AppendText(k + "-Permutations WITHOUT Repetitions of " + n + " elements: " + ClassSpotoMasterRace.FactorialOf(n) / ClassSpotoMasterRace.FactorialOf(n - k) + "\n\n");
             else
                 MessageBox.Show("k can't be higher than n.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_Combinatorics.ScrollToCaret();
         }
 
         private void button_PermutationsWithRepetitions_Click(object sender, EventArgs e)
         {
-            short n = Convert.ToInt16(numericUpDown_CombinatoricsN.Value), k = Convert.ToInt16(numericUpDown_CombinatoricsK.Value);
+            uint n = Convert.ToUInt32(numericUpDown_CombinatoricsN.Value), k = Convert.ToUInt32(numericUpDown_CombinatoricsK.Value);
             richTextBox_Combinatorics.AppendText(k + "-Permutations WITH Repetitions of " + n + " elements: " + Math.Pow(n, k) + "\n\n");
-            richTextBox_Combinatorics.ScrollToCaret();
         }
 
         private void button_CombinationsWithoutRepetitions_Click(object sender, EventArgs e)
         {
-            short n = Convert.ToInt16(numericUpDown_CombinatoricsN.Value), k = Convert.ToInt16(numericUpDown_CombinatoricsK.Value);
+            uint n = Convert.ToUInt32(numericUpDown_CombinatoricsN.Value), k = Convert.ToUInt32(numericUpDown_CombinatoricsK.Value);
             if (k <= n)
                 richTextBox_Combinatorics.AppendText(k + "-Combinations WITHOUT Repetitions of " + n + " elements: " + ClassSpotoMasterRace.BinomialCoefficient(n, k) + "\n\n");
             else
                 MessageBox.Show("k can't be higher than n.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox_Combinatorics.ScrollToCaret();
         }
 
         private void button_CombinationsWithRepetitions_Click(object sender, EventArgs e)
         {
-            short n = Convert.ToInt16(numericUpDown_CombinatoricsN.Value), k = Convert.ToInt16(numericUpDown_CombinatoricsK.Value);
-            richTextBox_Combinatorics.AppendText(k + "-Combinations WITH Repetitions of " + n + " elements: " + ClassSpotoMasterRace.BinomialCoefficient(Convert.ToInt16(n + k - 1), k) + "\n\n");
-            richTextBox_Combinatorics.ScrollToCaret();
+            uint n = Convert.ToUInt32(numericUpDown_CombinatoricsN.Value), k = Convert.ToUInt32(numericUpDown_CombinatoricsK.Value);
+            richTextBox_Combinatorics.AppendText(k + "-Combinations WITH Repetitions of " + n + " elements: " + ClassSpotoMasterRace.BinomialCoefficient(n + k - 1, k) + "\n\n");
         }
 
         #endregion Combinatorics
@@ -1204,9 +1231,9 @@ namespace SpotoMasterRace
 
         private void textBox_OutcomeSpaceProbabilityTheory_TextChanged(object sender, EventArgs e)
         {
-            outcomeSpaceProbabilityTheory = new BindingList<StructSet<string>>();
+            outcomeSpaceProbabilityTheory = new BindingList<ClassSet<string>>();
             foreach (string item in textBox_OutcomeSpaceProbabilityTheory.Text.Replace(" ", "").Split(','))
-                outcomeSpaceProbabilityTheory.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+                outcomeSpaceProbabilityTheory.Add(new ClassSet<string>('X', new BindingList<string>(new string[] { item })));
             if (textBox_OutcomeSpaceProbabilityTheory.Text != "")
             {
                 label_CardinalityOutcomeSpaceProbabilityTheory.Text = "|Ω| = " + outcomeSpaceProbabilityTheory.Count.ToString();
@@ -1218,23 +1245,28 @@ namespace SpotoMasterRace
                 label_CardinalitySpaceOfEventsProbabilityTheory.Text = "|ε| = 1";
             }
             label_ProbabilityOfX.Text = "Probability of X: ";
-            listBox_SpaceOfEvents.DataSource = new StructSet<string>().Elements;
+            listBox_SpaceOfEvents.DataSource = new BindingList<ClassSet<string>>();
         }
 
         private void listBox_SpaceOfEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            outcomeSpaceProbabilityTheory = new BindingList<StructSet<string>>();
+            outcomeSpaceProbabilityTheory = new BindingList<ClassSet<string>>();
             foreach (string item in textBox_OutcomeSpaceProbabilityTheory.Text.Replace(" ", "").Split(','))
-                outcomeSpaceProbabilityTheory.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+                outcomeSpaceProbabilityTheory.Add(new ClassSet<string>('X', new BindingList<string>(new string[] { item })));
 
             if (listBox_SpaceOfEvents.SelectedItem != null)
             {
-                int frequency = ClassSpotoMasterRace.GetFrequency(outcomeSpaceProbabilityTheory, ((StructSet<string>)listBox_SpaceOfEvents.SelectedItem));
-                if (((StructSet<string>)listBox_SpaceOfEvents.SelectedItem).Elements.Count == 0)
+                int frequency = ClassSpotoMasterRace.GetFrequency(outcomeSpaceProbabilityTheory, ((ClassSet<string>)listBox_SpaceOfEvents.SelectedItem));
+                if (((ClassSet<string>)listBox_SpaceOfEvents.SelectedItem).Elements.Count == 0)
                     frequency = 0;
                 label_ProbabilityOfX.Text = "Probability of extracting \"";
-                for (int i = 0; i < spaceOfEventsProbabilityTheory.Elements[listBox_SpaceOfEvents.SelectedIndex].Cardinality; i++)
-                    label_ProbabilityOfX.Text += spaceOfEventsProbabilityTheory.Elements[listBox_SpaceOfEvents.SelectedIndex].Elements[i] + (i != spaceOfEventsProbabilityTheory.Elements[listBox_SpaceOfEvents.SelectedIndex].Cardinality - 1 ? "\" OR \"" : "");
+                if (spaceOfEventsProbabilityTheory.Elements[listBox_SpaceOfEvents.SelectedIndex].Cardinality == 0)
+                    label_ProbabilityOfX.Text += "∅";
+                else
+                    for (int i = 0; i < spaceOfEventsProbabilityTheory.Elements[listBox_SpaceOfEvents.SelectedIndex].Cardinality; i++)
+                        label_ProbabilityOfX.Text +=
+                            spaceOfEventsProbabilityTheory.Elements[listBox_SpaceOfEvents.SelectedIndex].Elements[i] +
+                            (i != spaceOfEventsProbabilityTheory.Elements[listBox_SpaceOfEvents.SelectedIndex].Cardinality - 1 ? "\" OR \"" : "");
                 label_ProbabilityOfX.Text += "\" = " + frequency + "/" + outcomeSpaceProbabilityTheory.Count;
             }
         }
@@ -1245,24 +1277,24 @@ namespace SpotoMasterRace
         {
             if (textBox_OutcomeSpaceProbabilityTheory.Text != "")
             {
-                outcomeSpaceProbabilityTheory = new BindingList<StructSet<string>>();
+                outcomeSpaceProbabilityTheory = new BindingList<ClassSet<string>>();
                 foreach (string item in textBox_OutcomeSpaceProbabilityTheory.Text.Replace(" ", "").Split(','))
-                    outcomeSpaceProbabilityTheory.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+                    outcomeSpaceProbabilityTheory.Add(new ClassSet<string>('X', new BindingList<string>(new string[] { item })));
 
                 bool proceed = true;
                 if (Math.Pow(2.0, outcomeSpaceProbabilityTheory.Count) >= 512)
                     proceed = MessageBox.Show("I need to calculate " + Math.Pow(2.0, outcomeSpaceProbabilityTheory.Count) + " (2^" + outcomeSpaceProbabilityTheory.Count + ") elements.\nThis can take a lot, do you really want to proceed?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
                 if (proceed)
                 {
-                    spaceOfEventsProbabilityTheory.Elements = ClassSpotoMasterRace.PowerSet<string>(new StructSet<string>('E', new BindingList<string>(textBox_OutcomeSpaceProbabilityTheory.Text.Replace(" ", "").Split(',')), false));
+                    spaceOfEventsProbabilityTheory.Elements = ClassSpotoMasterRace.PowerSet<string>(new ClassSet<string>('E', new BindingList<string>(textBox_OutcomeSpaceProbabilityTheory.Text.Replace(" ", "").Split(',')), false));
                     spaceOfEventsProbabilityTheory.Sort();
                     listBox_SpaceOfEvents.DataSource = spaceOfEventsProbabilityTheory.Elements;
                 }
             }
             else
             {
-                outcomeSpaceProbabilityTheory = new BindingList<StructSet<string>>();
-                spaceOfEventsProbabilityTheory.Elements = ClassSpotoMasterRace.PowerSet<string>(new StructSet<string>('E', new BindingList<string>(), false));
+                outcomeSpaceProbabilityTheory = new BindingList<ClassSet<string>>();
+                spaceOfEventsProbabilityTheory.Elements = ClassSpotoMasterRace.PowerSet<string>(new ClassSet<string>('E', new BindingList<string>(), false));
                 listBox_SpaceOfEvents.DataSource = spaceOfEventsProbabilityTheory.Elements;
             }
         }
@@ -1275,9 +1307,9 @@ namespace SpotoMasterRace
 
         private void textBox_OutcomeSpaceProbabilityDistributions_TextChanged(object sender, EventArgs e)
         {
-            outcomeSpaceProbabilityDistributions = new BindingList<StructSet<string>>();
+            outcomeSpaceProbabilityDistributions = new BindingList<ClassSet<string>>();
             foreach (string item in textBox_OutcomeSpaceProbabilityDistributions.Text.Replace(" ", "").Split(','))
-                outcomeSpaceProbabilityDistributions.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+                outcomeSpaceProbabilityDistributions.Add(new ClassSet<string>('X', new BindingList<string>(new string[] { item })));
             if (textBox_OutcomeSpaceProbabilityDistributions.Text != "")
             {
                 label_CardinalityOutcomeSpaceProbabilityDistributions.Text = "|Ω| = " + outcomeSpaceProbabilityDistributions.Count.ToString();
@@ -1295,7 +1327,8 @@ namespace SpotoMasterRace
             videoProbabilityDistributions = panel_ProbabilityDistributions.CreateGraphics();
             try
             { drawingProbabilityDistributions = new Bitmap(panel_ProbabilityDistributions.Width, panel_ProbabilityDistributions.Height, videoProbabilityDistributions); }
-            catch { }
+            catch (Exception ex)
+            { ExceptionHandler(ex); }
             sheetProbabilityDistributions = Graphics.FromImage(drawingProbabilityDistributions);
             FixView(viewProbabilityDistributions, panel_ProbabilityDistributions, sheetProbabilityDistributions);
             DrawAxes(sheetProbabilityDistributions, viewProbabilityDistributions);
@@ -1310,18 +1343,19 @@ namespace SpotoMasterRace
         {
             if (textBox_OutcomeSpaceProbabilityDistributions.Text != "")
             {
-                outcomeSpaceProbabilityDistributions = new BindingList<StructSet<string>>();
+                outcomeSpaceProbabilityDistributions = new BindingList<ClassSet<string>>();
                 foreach (string item in textBox_OutcomeSpaceProbabilityDistributions.Text.Replace(" ", "").Split(','))
-                    outcomeSpaceProbabilityDistributions.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+                    outcomeSpaceProbabilityDistributions.Add(new ClassSet<string>('X', new BindingList<string>(new string[] { item })));
 
                 bool proceed = true;
                 if (Math.Pow(2.0, outcomeSpaceProbabilityDistributions.Count) >= 512)
                     proceed = MessageBox.Show("I need to calculate " + Math.Pow(2.0, outcomeSpaceProbabilityDistributions.Count) + " (2^" + outcomeSpaceProbabilityDistributions.Count + ") elements.\nThis can take a lot, do you really want to proceed?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
                 if (proceed)
                 {
-                    spaceOfEventsProbabilityDistributions.Elements = ClassSpotoMasterRace.PowerSet<string>(new StructSet<string>('E', new BindingList<string>(textBox_OutcomeSpaceProbabilityDistributions.Text.Replace(" ", "").Split(',')), false));
+                    ClassSet<ClassSet<string>> spaceOfEventsProbabilityDistributions = new ClassSet<ClassSet<string>>('E');
+                    spaceOfEventsProbabilityDistributions.Elements = ClassSpotoMasterRace.PowerSet<string>(new ClassSet<string>('E', new BindingList<string>(textBox_OutcomeSpaceProbabilityDistributions.Text.Replace(" ", "").Split(',')), false));
                     spaceOfEventsProbabilityDistributions.Sort();
-                    StructSet<StructSet<string>> mainEvents = ClassSpotoMasterRace.MainEvents(spaceOfEventsProbabilityDistributions.Elements);
+                    ClassSet<ClassSet<string>> mainEvents = ClassSpotoMasterRace.MainEvents(spaceOfEventsProbabilityDistributions.Elements);
                     richTextBox_ProbabilityDistributions.AppendText("The random variable X assings:\n");
                     for (int i = 0; i < mainEvents.Cardinality; i++)
                     {
@@ -1387,21 +1421,20 @@ namespace SpotoMasterRace
                     videoProbabilityDistributions.DrawImageUnscaled(drawingProbabilityDistributions, 0, 0);
                     DrawCoordinates(videoProbabilityDistributions, viewProbabilityDistributions, xValues, probabilities);
                 }
-                richTextBox_ProbabilityDistributions.ScrollToCaret();
             }
             else
-                MessageBox.Show("It is pointless to use the empty set in this case!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("It is pointless to use the empty set in this case!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button_MassFunction_Click(object sender, EventArgs e)
         {
             if (textBox_OutcomeSpaceProbabilityDistributions.Text != "")
             {
-                outcomeSpaceProbabilityDistributions = new BindingList<StructSet<string>>();
+                outcomeSpaceProbabilityDistributions = new BindingList<ClassSet<string>>();
                 foreach (string item in textBox_OutcomeSpaceProbabilityDistributions.Text.Replace(" ", "").Split(','))
-                    outcomeSpaceProbabilityDistributions.Add(new StructSet<string>('X', new BindingList<string>(new string[] { item })));
+                    outcomeSpaceProbabilityDistributions.Add(new ClassSet<string>('X', new BindingList<string>(new string[] { item })));
 
-                BindingList<StructSet<string>> temp = ClassSpotoMasterRace.RemoveDuplicates(outcomeSpaceProbabilityDistributions);
+                BindingList<ClassSet<string>> temp = ClassSpotoMasterRace.RemoveDuplicates(outcomeSpaceProbabilityDistributions);
                 richTextBox_ProbabilityDistributions.AppendText("The random variable X assings:\n");
                 for (int i = 0; i < temp.Count; i++)
                     richTextBox_ProbabilityDistributions.AppendText("The element \"" + temp[i].Elements[0] + "\" to " + (i + 1) + "\n");
@@ -1433,8 +1466,9 @@ namespace SpotoMasterRace
                 }
                 videoProbabilityDistributions.DrawImageUnscaled(drawingProbabilityDistributions, 0, 0);
                 DrawCoordinates(videoProbabilityDistributions, viewProbabilityDistributions, xValues, probabilities);
-                richTextBox_ProbabilityDistributions.ScrollToCaret();
             }
+            else
+                MessageBox.Show("It is pointless to use the empty set in this case!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion Probability Distributions
@@ -1477,7 +1511,8 @@ namespace SpotoMasterRace
             videoDiscreteParametricDistributions = panel_DiscreteParametricDistributions.CreateGraphics();
             try
             { drawingDiscreteParametricDistributions = new Bitmap(panel_DiscreteParametricDistributions.Width, panel_DiscreteParametricDistributions.Height, videoDiscreteParametricDistributions); }
-            catch { }
+            catch (Exception ex)
+            { ExceptionHandler(ex); }
             sheetDiscreteParametricDistributions = Graphics.FromImage(drawingDiscreteParametricDistributions);
             FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions);
             DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
@@ -1491,12 +1526,13 @@ namespace SpotoMasterRace
             try
             {
                 if (textBox_nBinomialDistribution.Text != "")
-                    Convert.ToInt16(textBox_nBinomialDistribution.Text);
+                    Convert.ToUInt32(textBox_nBinomialDistribution.Text);
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionHandler(ex);
                 MessageBox.Show("Incorrect input.\nn must be a Natural number.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox_nBinomialDistribution.Text = "0";
+                textBox_nBinomialDistribution.Text = "1";
             }
         }
 
@@ -1511,35 +1547,18 @@ namespace SpotoMasterRace
                         throw new Exception();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Incorrect input.\np must be a Real number included in the interval [0, 1].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox_pBinomialDistribution.Text = "0.0";
+                ExceptionHandler(ex);
+                MessageBox.Show("Incorrect input.\np must be a Real number in the interval [0, 1].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_pBinomialDistribution.Text = "0.1";
             }
         }
 
         private List<double> BinomialDistributionIntro()
         {
-            short n = 0;
-            double p = 0;
-            try
-            { n = Convert.ToInt16(textBox_nBinomialDistribution.Text); }
-            catch
-            {
-                MessageBox.Show("Incorrect input.\nn must be a Natural number.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            try
-            {
-                p = Convert.ToDouble(textBox_pBinomialDistribution.Text);
-                if (p < 0 || p > 1)
-                    throw new Exception();
-            }
-            catch
-            {
-                MessageBox.Show("Incorrect input.\np must be a Real number included in the interval [0, 1].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            uint n = Convert.ToUInt32(textBox_nBinomialDistribution.Text);
+            double p = Convert.ToDouble(textBox_pBinomialDistribution.Text);
             List<double> probabilities = new List<double>(ClassSpotoMasterRace.BinomialDistribution(n, p));
             return probabilities;
         }
@@ -1549,10 +1568,11 @@ namespace SpotoMasterRace
             try
             {
                 if (((TextBox)sender).Text != "")
-                    Convert.ToInt16(((TextBox)sender).Text);
+                    Convert.ToUInt32(((TextBox)sender).Text);
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionHandler(ex);
                 MessageBox.Show("Incorrect input.\nQ, q, n must be Natural numbers.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ((TextBox)sender).Text = "0";
             }
@@ -1560,21 +1580,9 @@ namespace SpotoMasterRace
 
         private List<double> HypergeometricDistributionIntro()
         {
-            short Q = 0, q = 0, n = 0;
-            try
-            {
-                if (textBox_qUpHypergeometricDistribution.Text != "")
-                    Q = Convert.ToInt16(textBox_qUpHypergeometricDistribution.Text);
-                if (textBox_qDownHypergeometricDistribution.Text != "")
-                    q = Convert.ToInt16(textBox_qDownHypergeometricDistribution.Text);
-                if (textBox_nHypergeometricDistribution.Text != "")
-                    n = Convert.ToInt16(textBox_nHypergeometricDistribution.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Incorrect input.\nQ, q, n must be Natural numbers.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            uint Q = Convert.ToUInt32(textBox_qUpHypergeometricDistribution.Text),
+                q = Convert.ToUInt32(textBox_qDownHypergeometricDistribution.Text),
+                n = Convert.ToUInt32(textBox_nHypergeometricDistribution.Text);
             List<double> probabilities = new List<double>(ClassSpotoMasterRace.HypergeometricDistribution(Q, q, n));
             return probabilities;
         }
@@ -1599,13 +1607,13 @@ namespace SpotoMasterRace
             richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Binomial Distribution with n = " + textBox_nBinomialDistribution.Text + " and p = " + textBox_pBinomialDistribution.Text + "\n";
             for (int i = 0; i < probabilities.Count; i++)
             {
-                richTextBox_DiscreteParametricDistributions.Text += "The extraction of the element with a probability of\"";
+                richTextBox_DiscreteParametricDistributions.AppendText("The extraction of the element with a probability of\"");
                 if (probabilities[i] == 0)
-                    richTextBox_DiscreteParametricDistributions.Text += "∅";
+                    richTextBox_DiscreteParametricDistributions.AppendText("∅");
                 else
                     for (int j = 0; j < i; j++)
-                        richTextBox_DiscreteParametricDistributions.Text += probabilities[j + 1] + (probabilities[j + 1] != probabilities[i] ? "\" OR \"" : "");
-                richTextBox_DiscreteParametricDistributions.Text += "\" to " + i + "\n";
+                        richTextBox_DiscreteParametricDistributions.AppendText(probabilities[j + 1] + (probabilities[j + 1] != probabilities[i] ? "\" OR \"" : ""));
+                richTextBox_DiscreteParametricDistributions.AppendText("\" to " + i + "\n");
             }
             FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
             DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
@@ -1663,7 +1671,7 @@ namespace SpotoMasterRace
                 xValues[i] = i;
             richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Binomial Distribution with n = " + textBox_nBinomialDistribution.Text + " and p = " + textBox_pBinomialDistribution.Text + "\n";
             for (int i = 0; i < probabilities.Count; i++)
-                richTextBox_DiscreteParametricDistributions.Text += "The element with a probability of \"" + probabilities[i] + "\" to " + i + "\n";
+                richTextBox_DiscreteParametricDistributions.AppendText("The element with a probability of \"" + probabilities[i] + "\" to " + i + "\n");
             FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
             DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
             for (int x = 0; x < probabilities.Count; x++)
@@ -1704,13 +1712,13 @@ namespace SpotoMasterRace
             richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Hypergeometric Distribution with Q = " + textBox_qUpHypergeometricDistribution.Text + " and q = " + textBox_qDownHypergeometricDistribution.Text + " and n = " + textBox_nHypergeometricDistribution.Text + "\n";
             for (int i = 0; i < probabilities.Count; i++)
             {
-                richTextBox_DiscreteParametricDistributions.Text += "The extraction of the element with a probability of\"";
+                richTextBox_DiscreteParametricDistributions.AppendText("The extraction of the element with a probability of\"");
                 if (probabilities[i] == 0)
-                    richTextBox_DiscreteParametricDistributions.Text += "∅";
+                    richTextBox_DiscreteParametricDistributions.AppendText("∅");
                 else
                     for (int j = 0; j < i; j++)
-                        richTextBox_DiscreteParametricDistributions.Text += probabilities[j + 1] + (probabilities[j + 1] != probabilities[i] ? "\" OR \"" : "");
-                richTextBox_DiscreteParametricDistributions.Text += "\" to " + i + "\n";
+                        richTextBox_DiscreteParametricDistributions.AppendText(probabilities[j + 1] + (probabilities[j + 1] != probabilities[i] ? "\" OR \"" : ""));
+                richTextBox_DiscreteParametricDistributions.AppendText("\" to " + i + "\n");
             }
             FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
             DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
@@ -1768,7 +1776,7 @@ namespace SpotoMasterRace
                 xValues[i] = i;
             richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Hypergeometric Distribution with Q = " + textBox_qUpHypergeometricDistribution.Text + " and q = " + textBox_qDownHypergeometricDistribution.Text + " and n = " + textBox_nHypergeometricDistribution.Text + "\n";
             for (int i = 0; i < probabilities.Count; i++)
-                richTextBox_DiscreteParametricDistributions.Text += "The element with a probability of \"" + probabilities[i] + "\" to " + i + "\n";
+                richTextBox_DiscreteParametricDistributions.AppendText("The element with a probability of \"" + probabilities[i] + "\" to " + i + "\n");
             FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
             DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
             for (int x = 0; x < probabilities.Count; x++)
@@ -1802,7 +1810,8 @@ namespace SpotoMasterRace
             videoContinuousParametricDistributions = panel_ContinuousParametricDistributions.CreateGraphics();
             try
             { drawingContinuousParametricDistributions = new Bitmap(panel_ContinuousParametricDistributions.Width, panel_ContinuousParametricDistributions.Height, videoContinuousParametricDistributions); }
-            catch { }
+            catch (Exception ex)
+            { ExceptionHandler(ex); }
             sheetContinuousParametricDistributions = Graphics.FromImage(drawingContinuousParametricDistributions);
             FixView(viewContinuousParametricDistributions, panel_ContinuousParametricDistributions, sheetContinuousParametricDistributions);
             DrawAxes(sheetContinuousParametricDistributions, viewContinuousParametricDistributions);
@@ -1811,17 +1820,37 @@ namespace SpotoMasterRace
             richTextBox_ContinuousParametricDistributions.Text = "";
         }
 
-        private void textBoxes_NormalDistribution_TextChanged(object sender, EventArgs e)
+        private void textBox_MeanNormalDistribution_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (((TextBox)sender).Text != "")
-                    Convert.ToDouble(((TextBox)sender).Text);
+                if (textBox_MeanNormalDistribution.Text != "")
+                    Convert.ToDouble(textBox_MeanNormalDistribution.Text);
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Incorrect input.\nMean and Variance must be Real numbers.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ((TextBox)sender).Text = "0.0";
+                ExceptionHandler(ex);
+                MessageBox.Show("Incorrect input.\nMean must be a Real number.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_MeanNormalDistribution.Text = "0.0";
+            }
+        }
+
+        private void textBox_VarianceNormalDistribution_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox_VarianceNormalDistribution.Text != "")
+                {
+                    double variance = Convert.ToDouble(textBox_VarianceNormalDistribution.Text);
+                    if (variance < 0)
+                        throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                MessageBox.Show("Incorrect input.\nVariance must be a Positive Real number.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_VarianceNormalDistribution.Text = "0.0";
             }
         }
 
@@ -1829,18 +1858,9 @@ namespace SpotoMasterRace
 
         private void button_NormalDistribution_Click(object sender, EventArgs e)
         {
-            if (textBox_MeanNormalDistribution.Text == "" || textBox_VarianceNormalDistribution.Text == "")
-            {
-                MessageBox.Show("Incorrect input.\nMean must be a Real number and Variance must be > 0.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            double mean = Convert.ToDouble(textBox_MeanNormalDistribution.Text);
-            double variance = Convert.ToDouble(textBox_VarianceNormalDistribution.Text);
-            if (variance <= 0)
-            {
-                MessageBox.Show("Incorrect input.\nMean must be a Real number and Variance must be > 0.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            double mean = Convert.ToDouble(textBox_MeanNormalDistribution.Text),
+                variance = Convert.ToDouble(textBox_VarianceNormalDistribution.Text);
+
             richTextBox_ContinuousParametricDistributions.Text = "This is the graph of the Normal Distribution with Mean = " + mean + " and Variance = " + variance + "\n";
             FixView(viewContinuousParametricDistributions, panel_ContinuousParametricDistributions, sheetContinuousParametricDistributions, mean - (variance < 10 ? 9 : variance), mean + (variance < 10 ? 9 : variance), -ClassSpotoMasterRace.NormalDistributionValue(mean, mean, variance), ClassSpotoMasterRace.NormalDistributionValue(mean, mean, variance));
             DrawAxes(sheetContinuousParametricDistributions, viewContinuousParametricDistributions);
@@ -1891,7 +1911,8 @@ namespace SpotoMasterRace
             videoCovarianceAndCorrelation = panel_CovarianceAndCorrelation.CreateGraphics();
             try
             { drawingCovarianceAndCorrelation = new Bitmap(panel_CovarianceAndCorrelation.Width, panel_CovarianceAndCorrelation.Height, videoCovarianceAndCorrelation); }
-            catch { }
+            catch (Exception ex)
+            { ExceptionHandler(ex); }
             sheetCovarianceAndCorrelation = Graphics.FromImage(drawingCovarianceAndCorrelation);
             FixView(viewCovarianceAndCorrelation, panel_CovarianceAndCorrelation, sheetCovarianceAndCorrelation);
             DrawAxes(sheetCovarianceAndCorrelation, viewCovarianceAndCorrelation);
@@ -1900,15 +1921,32 @@ namespace SpotoMasterRace
             richTextBox_CovarianceAndCorrelation.Text = "";
         }
 
-        private void CovarianceAndCorrelationGraph()
+        private void textBoxes_Variables_TextChanged(object sender, EventArgs e)
         {
-            if (textBox_FirstVariableValues.Text == "" || textBox_SecondVariableValues.Text == "")
+            if (textBox_FirstVariableValues.Text != "")
+                label_CardinalityFirstVariable.Text = "|1st| = " + textBox_FirstVariableValues.Text.Replace(" ", "").Split(',').Length;
+            else
+                label_CardinalityFirstVariable.Text = "|1st| = 0";
+            if (textBox_SecondVariableValues.Text != "")
+                label_CardinalitySecondVariable.Text = "|2nd| = " + textBox_SecondVariableValues.Text.Replace(" ", "").Split(',').Length;
+            else
+                label_CardinalitySecondVariable.Text = "|2nd| = 0";
+        }
+
+        private bool CovarianceAndCorrelationGraph()
+        {
+            List<double> firstVariable, secondVariable;
+            try
             {
-                MessageBox.Show("Incorrect input.\nThe two boxes must be filled with values.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                firstVariable = InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text));
+                secondVariable = InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text));
             }
-            List<double> firstVariable = InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text));
-            List<double> secondVariable = InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text));
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                MessageBox.Show("Incorrect input.\nThe values of the two variables must be Numbers.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             if (firstVariable != null && secondVariable != null && firstVariable.Count == secondVariable.Count)
             {
                 double minX = double.MaxValue;
@@ -1943,25 +1981,32 @@ namespace SpotoMasterRace
 
                 for (int i = 0; i < firstVariable.Count; i++)
                     sheetCovarianceAndCorrelation.DrawEllipse(covarianceAndCorrelationPen, viewCovarianceAndCorrelation.XVideo(firstVariable[i]), viewCovarianceAndCorrelation.YVideo(secondVariable[i]), 1, 1);
-                //draw line in the middle of the distribution
                 videoCovarianceAndCorrelation.DrawImageUnscaled(drawingCovarianceAndCorrelation, 0, 0);
                 DrawCoordinates(videoCovarianceAndCorrelation, viewCovarianceAndCorrelation);
                 richTextBox_CovarianceAndCorrelation.Text = "The graph is plotted using the two variables.\n1st: " + textBox_FirstVariableValues.Text + "\n2nd: " + textBox_SecondVariableValues.Text + "\n";
             }
+            else
+            {
+                MessageBox.Show("Incorrect input.\nThe two variables must contain numbers and have the same cardinality.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
 
         #endregion Misc
 
         private void button_Covariance_Click(object sender, EventArgs e)
         {
-            CovarianceAndCorrelationGraph();
-            richTextBox_CovarianceAndCorrelation.Text += "The covariance between the two variables is " + ClassSpotoMasterRace.Covariance(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text)));
+            if (CovarianceAndCorrelationGraph())
+                richTextBox_CovarianceAndCorrelation.AppendText("The covariance between the two variables is " +
+                    ClassSpotoMasterRace.Covariance(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text))));
         }
 
         private void button_Correlation_Click(object sender, EventArgs e)
         {
-            CovarianceAndCorrelationGraph();
-            richTextBox_CovarianceAndCorrelation.Text += "The correlation between the two variables is " + ClassSpotoMasterRace.Correlation(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text)));
+            if (CovarianceAndCorrelationGraph())
+                richTextBox_CovarianceAndCorrelation.AppendText("The correlation between the two variables is " +
+                    ClassSpotoMasterRace.Correlation(InitializeDoubleCollection(InitializeStringCollection(textBox_FirstVariableValues.Text)), InitializeDoubleCollection(InitializeStringCollection(textBox_SecondVariableValues.Text))));
         }
 
         #endregion Covariance and Correlation
@@ -1981,8 +2026,9 @@ namespace SpotoMasterRace
                         throw new Exception();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionHandler(ex);
                 MessageBox.Show("Incorrect input.\nThe probability must be a Real number, with 4 decimals at most, included in the interval [0, 1].", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox_SNDProbability.Text = "0.0000";
             }
@@ -1999,8 +2045,9 @@ namespace SpotoMasterRace
                         throw new Exception();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionHandler(ex);
                 MessageBox.Show("Incorrect input.\nz must be a Real number, with 2 decimals at most, included in the interval [-3.49, 3.49] (the given table have those values).", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox_SNDZPoint.Text = "0.00";
             }
@@ -2010,14 +2057,14 @@ namespace SpotoMasterRace
 
         private void button_SNDProbability_Click(object sender, EventArgs e)
         {
-            richTextBox_Tables.Text += "The Probability of having a value from -∞ to " + textBox_SNDProbability.Text.Replace(',', '.') + " is " +
-              string.Format("{0:0.0000}", ClassSpotoMasterRace.GetZTableProbability(textBox_SNDZPoint.Text.Replace(',', '.')).ToString()) + "\n\n";
+            richTextBox_Tables.AppendText("The Probability of having a value from -∞ to " + string.Format("{0:0.00}", textBox_SNDProbability.Text.Replace(',', '.')) + " is " +
+              string.Format("{0:0.0000}", ClassSpotoMasterRace.GetZTableProbability(textBox_SNDZPoint.Text.Replace(',', '.')).ToString()) + "\n\n");
         }
 
         private void button_SNDZPoint_Click(object sender, EventArgs e)
         {
-            richTextBox_Tables.Text += "The zPoint that gives a probability of " + textBox_SNDProbability.Text.Replace(',', '.') + " is " +
-              string.Format("{0:0.00}", ClassSpotoMasterRace.GetZTableZPoint(Convert.ToDouble(textBox_SNDProbability.Text.Replace(',', '.'))).ToString()) + "\n\n";
+            richTextBox_Tables.AppendText("The zPoint that gives a probability of " + string.Format("{0:0.0000}", textBox_SNDProbability.Text.Replace(',', '.')) + " is " +
+              string.Format("{0:0.00}", ClassSpotoMasterRace.GetZTableZPoint(Convert.ToDouble(textBox_SNDProbability.Text.Replace(',', '.'))).ToString()) + "\n\n");
         }
 
         private void button_CSDCriticalValue_Click(object sender, EventArgs e)
@@ -2065,8 +2112,8 @@ namespace SpotoMasterRace
                 degreesOfFreedom = 100;
             else
                 degreesOfFreedom = Convert.ToInt32(numericUpDown_CSDDegreesOfFreedom.Value);
-            richTextBox_Tables.Text += "The Critical X^2 with an α of " + alpha + " and " + numericUpDown_CSDDegreesOfFreedom.Value + " deegrees of freedom is " +
-                string.Format("{0:0.000}", ClassSpotoMasterRace.GetChiSquareTableValue(degreesOfFreedom, alpha)) + "\n\n";
+            richTextBox_Tables.AppendText("The Critical X^2 with an α of " + alpha + " and " + numericUpDown_CSDDegreesOfFreedom.Value + " deegrees of freedom is " +
+                string.Format("{0:0.000}", ClassSpotoMasterRace.GetChiSquareTableValue(degreesOfFreedom, alpha)) + "\n\n");
         }
 
         private void button_TDCriticalT_Click(object sender, EventArgs e)
@@ -2100,8 +2147,8 @@ namespace SpotoMasterRace
                 degreesOfFreedom = "∞";
             else
                 degreesOfFreedom = numericUpDown_TDDegreesOfFreedom.Text;
-            richTextBox_Tables.Text += "The Critical t with an α of " + alpha + " and " + numericUpDown_CSDDegreesOfFreedom.Value + " deegrees of freedom is " +
-                string.Format("{0:0.000}", ClassSpotoMasterRace.GetTTableValue(degreesOfFreedom, alpha)) + "\n\n";
+            richTextBox_Tables.AppendText("The Critical t with an α of " + alpha + " and " + numericUpDown_CSDDegreesOfFreedom.Value + " deegrees of freedom is " +
+                string.Format("{0:0.000}", ClassSpotoMasterRace.GetTTableValue(degreesOfFreedom, alpha)) + "\n\n");
         }
 
         #endregion Tables
@@ -2117,10 +2164,64 @@ namespace SpotoMasterRace
                 if (((TextBox)sender).Text != "")
                     Convert.ToDouble(((TextBox)sender).Text);
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionHandler(ex);
                 MessageBox.Show("Incorrect input.\nThe values in this page must be Numbers.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ((TextBox)sender).Text = "0";
+            }
+        }
+
+        private void textBox_UtilitiesN_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox_UtilitiesN.Text != "")
+                    Convert.ToUInt32(textBox_UtilitiesN.Text);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                MessageBox.Show("Incorrect input.\nn must be an integer higher than 0.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_UtilitiesN.Text = "1";
+            }
+        }
+
+        private void textBoxes_UtilitiesStandardDeviations_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (((TextBox)sender).Text != "")
+                {
+                    double stDev = Convert.ToDouble(((TextBox)sender).Text);
+                    if (stDev < 0)
+                        throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                MessageBox.Show("Incorrect input.\nThe Standard Deviation must be a Positive Real Number.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ((TextBox)sender).Text = "0";
+            }
+        }
+
+        private void textBox_UtilitiesVariance_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox_UtilitiesVariance.Text != "")
+                {
+                    double stDev = Convert.ToDouble(textBox_UtilitiesVariance.Text);
+                    if (stDev < 0)
+                        throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler(ex);
+                MessageBox.Show("Incorrect input.\nThe Variance must be a Positive Real Number.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_UtilitiesVariance.Text = "0";
             }
         }
 
@@ -2130,49 +2231,42 @@ namespace SpotoMasterRace
         {
             richTextBox_Utilities.AppendText("The Variance of the Population composed of " + textBox_UtilitiesN.Text + " individuals with Deviance = " + textBox_UtilitiesDeviance.Text + " is " +
                 ClassSpotoMasterRace.VariancePopulation(Convert.ToDouble(textBox_UtilitiesDeviance.Text), Convert.ToInt32(textBox_UtilitiesN.Text)) + "\n\n");
-            richTextBox_Utilities.ScrollToCaret();
         }
 
         private void button_UtilitiesVarianceSample_Click(object sender, EventArgs e)
         {
             richTextBox_Utilities.AppendText("The Variance of the Sample composed of " + textBox_UtilitiesN.Text + " individuals with Deviance = " + textBox_UtilitiesDeviance.Text + " is " +
                 ClassSpotoMasterRace.VarianceSample(Convert.ToDouble(textBox_UtilitiesDeviance.Text), Convert.ToInt32(textBox_UtilitiesN.Text)) + "\n\n");
-            richTextBox_Utilities.ScrollToCaret();
         }
 
         private void button_UtilitiesCoefficientOfVariationPopulation_Click(object sender, EventArgs e)
         {
             richTextBox_Utilities.AppendText("The coefficient of Variation of the Population with Standard Deviation = " + textBox_UtilitiesStandardDeviationForCoefficientOfVariation.Text + " and Mean = " + textBox_UtilitiesMeanForCoefficientOfVariation.Text + " is " +
                 ClassSpotoMasterRace.CoefficientOfVariationPopulation(Convert.ToDouble(textBox_UtilitiesStandardDeviationForCoefficientOfVariation.Text), Convert.ToDouble(textBox_UtilitiesMeanForCoefficientOfVariation.Text)) + "\n\n");
-            richTextBox_Utilities.ScrollToCaret();
         }
 
         private void button_UtilitiesCoefficientOfVariationSample_Click(object sender, EventArgs e)
         {
             richTextBox_Utilities.AppendText("The coefficient of Variation of the Sample with Standard Deviation = " + textBox_UtilitiesStandardDeviationForCoefficientOfVariation.Text + " and Mean = " + textBox_UtilitiesMeanForCoefficientOfVariation.Text + " is " +
                 ClassSpotoMasterRace.CoefficientOfVariationSample(Convert.ToDouble(textBox_UtilitiesStandardDeviationForCoefficientOfVariation.Text), Convert.ToDouble(textBox_UtilitiesMeanForCoefficientOfVariation.Text)) + "\n\n");
-            richTextBox_Utilities.ScrollToCaret();
         }
 
         private void button_UtilitiesZScore_Click(object sender, EventArgs e)
         {
             richTextBox_Utilities.AppendText("The ZScore of " + textBox_UtilitiesItemForZScore.Text + " with Standard Deviation = " + textBox_UtilitiesStandardDeviationForZScore.Text + " and Mean = " + textBox_UtilitiesMeanForZScore.Text + " is " +
                 ClassSpotoMasterRace.ZScore(Convert.ToDouble(textBox_UtilitiesMeanForZScore.Text), Convert.ToDouble(textBox_UtilitiesStandardDeviationForZScore.Text), Convert.ToDouble(textBox_UtilitiesItemForZScore.Text)) + "\n\n");
-            richTextBox_Utilities.ScrollToCaret();
         }
 
         private void button_UtilitiesTScore_Click(object sender, EventArgs e)
         {
             richTextBox_Utilities.AppendText("The TScore of a ZScore of " + textBox_UtilitiesZScoreForTScore.Text + " with Standard Deviation = " + textBox_UtilitiesStandardDeviationForTScore.Text + " and Mean = " + textBox_UtilitiesMeanForTScore.Text + " is " +
                 ClassSpotoMasterRace.TScore(Convert.ToDouble(textBox_UtilitiesZScoreForTScore.Text), Convert.ToDouble(textBox_UtilitiesMeanForTScore.Text), Convert.ToDouble(textBox_UtilitiesStandardDeviationForTScore.Text)) + "\n\n");
-            richTextBox_Utilities.ScrollToCaret();
         }
 
         private void button_UtilitiesStandardDeviation_Click(object sender, EventArgs e)
         {
             richTextBox_Utilities.AppendText("The Standard Deviation of a population/sample with Variance = " + textBox_UtilitiesVariance.Text + " is " +
                 ClassSpotoMasterRace.StandardDeviation(Convert.ToDouble(textBox_UtilitiesVariance.Text)) + "\n\n");
-            richTextBox_Utilities.ScrollToCaret();
         }
 
         #endregion Utilities

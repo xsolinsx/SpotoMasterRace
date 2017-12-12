@@ -1,30 +1,30 @@
 ﻿using System.ComponentModel;
 
-internal struct StructSet<T>
+internal class ClassSet<T>
 {
     private char name;
     private BindingList<T> elements;
     private bool ordered;
 
-    public StructSet(char _name)
+    public ClassSet(ClassSet<T> _set)
+    {
+        this.name = _set.Name;
+        this.elements = _set.Elements;
+        this.ordered = _set.Ordered;
+    }
+
+    public ClassSet(char _name)
     {
         this.name = _name;
         this.elements = new BindingList<T>();
         this.ordered = false;
     }
 
-    public StructSet(char _name, BindingList<T> _elements, bool _ordered = false)
+    public ClassSet(char _name, BindingList<T> _elements, bool _ordered = false)
     {
         this.name = _name;
         this.elements = _elements;
         this.ordered = _ordered;
-    }
-
-    public StructSet(StructSet<T> _set)
-    {
-        this.name = _set.Name;
-        this.elements = _set.Elements;
-        this.ordered = _set.Ordered;
     }
 
     public char Name
@@ -45,7 +45,7 @@ internal struct StructSet<T>
     public int Cardinality
     { get { return elements.Count; } }
 
-    static public bool operator ==(StructSet<T> set1, StructSet<T> set2)
+    static public bool operator ==(ClassSet<T> set1, ClassSet<T> set2)
     {
         if (set1.Cardinality != set2.Cardinality)
             return false;
@@ -55,14 +55,14 @@ internal struct StructSet<T>
         return true;
     }
 
-    static public bool operator !=(StructSet<T> set1, StructSet<T> set2)
+    static public bool operator !=(ClassSet<T> set1, ClassSet<T> set2)
     { return !(set1 == set2); }
 
     public override bool Equals(object obj)
     {
         if (obj == null || GetType() != obj.GetType())
             return false;
-        return this == ((StructSet<T>)obj);
+        return this == ((ClassSet<T>)obj);
     }
 
     public override string ToString()
@@ -80,7 +80,7 @@ internal struct StructSet<T>
         { return this.name + " = " + (this.ordered ? "( " : "{ ") + (this.ordered ? " )" : " }"); }
     }
 
-    public StructSet<T> Sort()
+    public ClassSet<T> Sort()
     {
         for (int i = 0; i < elements.Count - 1; i++)
             for (int j = 0; j < elements.Count - 1; j++)

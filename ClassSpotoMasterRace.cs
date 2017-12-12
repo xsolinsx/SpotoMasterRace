@@ -223,7 +223,6 @@ namespace SpotoMasterRace
             double bestProb = Int32.MaxValue;
             string iString = "";
             string jString = "";
-            string firstPart = "";
             for (int i = 0; i < zTable.GetLength(0); i++)
                 for (int j = 0; j < zTable.GetLength(1); j++)
                 {
@@ -295,12 +294,12 @@ namespace SpotoMasterRace
             return sum;
         }
 
-        static internal int GetFrequency(BindingList<StructSet<string>> sets, StructSet<string> container)
+        static internal int GetFrequency(BindingList<ClassSet<string>> sets, ClassSet<string> container)
         {
             int counter = 0;
             List<int> countedElementsIndeces = new List<int>();
             for (int i = 0; i < container.Cardinality; i++)
-                foreach (StructSet<string> interestingSet in sets)
+                foreach (ClassSet<string> interestingSet in sets)
                     foreach (string elementInTheSet in interestingSet.Elements)
                         if (elementInTheSet == container.Elements[i])
                         {
@@ -320,7 +319,7 @@ namespace SpotoMasterRace
 
         #region Set Theory
 
-        static internal bool Inclusion(StructSet<string> set1, StructSet<string> set2, bool strict)
+        static internal bool Inclusion(ClassSet<string> set1, ClassSet<string> set2, bool strict)
         {
             if (set1.Cardinality > set2.Cardinality)
                 return false;
@@ -335,7 +334,7 @@ namespace SpotoMasterRace
             return true;
         }
 
-        static internal BindingList<string> PowerSet(StructSet<string> set)
+        static internal BindingList<string> PowerSet(ClassSet<string> set)
         {
             int n = set.Cardinality;
             // Power set contains 2^N subsets.
@@ -361,16 +360,16 @@ namespace SpotoMasterRace
             return powerSet;
         }
 
-        static internal BindingList<StructSet<T>> PowerSet<T>(StructSet<T> set)
+        static internal BindingList<ClassSet<T>> PowerSet<T>(ClassSet<T> set)
         {
             int n = set.Cardinality;
             // Power set contains 2^N subsets.
             long powerSetCount = Convert.ToInt64(Math.Pow(2, n));
-            BindingList<StructSet<T>> powerSet = new BindingList<StructSet<T>>();
+            BindingList<ClassSet<T>> powerSet = new BindingList<ClassSet<T>>();
 
             for (int setMask = 0; setMask < powerSetCount; setMask++)
             {
-                StructSet<T> s = new StructSet<T>('X');
+                ClassSet<T> s = new ClassSet<T>('X');
                 for (int i = 0; i < n; i++)
                 {
                     // Checking whether i'th element of input collection should go to the current subset.
@@ -382,7 +381,7 @@ namespace SpotoMasterRace
             return powerSet;
         }
 
-        static internal BindingList<string> Union(StructSet<string> set1, StructSet<string> set2)
+        static internal BindingList<string> Union(ClassSet<string> set1, ClassSet<string> set2)
         {
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item in set1.Elements)
@@ -394,7 +393,7 @@ namespace SpotoMasterRace
             return tempElements;
         }
 
-        static internal BindingList<string> Intersection(StructSet<string> set1, StructSet<string> set2)
+        static internal BindingList<string> Intersection(ClassSet<string> set1, ClassSet<string> set2)
         {
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item1 in set1.Elements)
@@ -406,9 +405,9 @@ namespace SpotoMasterRace
             return tempElements;
         }
 
-        static internal BindingList<string> Difference(StructSet<string> set1, StructSet<string> set2)
+        static internal BindingList<string> Difference(ClassSet<string> set1, ClassSet<string> set2)
         {
-            StructSet<string> intersection = new StructSet<string>('A', Intersection(set1, set2), set1.Ordered);
+            ClassSet<string> intersection = new ClassSet<string>('A', Intersection(set1, set2), set1.Ordered);
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item in set1.Elements)
                 tempElements.Add(item);
@@ -420,7 +419,7 @@ namespace SpotoMasterRace
             return tempElements;
         }
 
-        static internal BindingList<string> CartesianProduct(StructSet<string> set1, StructSet<string> set2)
+        static internal BindingList<string> CartesianProduct(ClassSet<string> set1, ClassSet<string> set2)
         {
             BindingList<string> tempElements = new BindingList<string>();
             foreach (string item1 in set1.Elements)
@@ -661,28 +660,28 @@ namespace SpotoMasterRace
 
         #region Combinatorics
 
-        static internal double FactorialOf(short n)
+        static internal double FactorialOf(uint n)
         {
             double fact = 1;
-            for (short i = n; i > 0; i--)
+            for (uint i = n; i > 0; i--)
                 fact *= i;
             return fact;
         }
 
-        static internal double BinomialCoefficient(short n, short k)
-        { return FactorialOf(n) / (FactorialOf(k) * FactorialOf(Convert.ToInt16(n - k))); }
+        static internal double BinomialCoefficient(uint n, uint k)
+        { return FactorialOf(n) / (FactorialOf(k) * FactorialOf(n - k)); }
 
         #endregion Combinatorics
 
         #region Probability Distributions
 
-        static internal StructSet<StructSet<string>> MainEvents(BindingList<StructSet<string>> sets)
+        static internal ClassSet<ClassSet<string>> MainEvents(BindingList<ClassSet<string>> sets)
         {
-            StructSet<StructSet<string>> mainEvents = new StructSet<StructSet<string>>('X');
-            foreach (StructSet<string> set in sets)
+            ClassSet<ClassSet<string>> mainEvents = new ClassSet<ClassSet<string>>('X');
+            foreach (ClassSet<string> set in sets)
             {
                 bool alreadyPresent = false;
-                foreach (StructSet<string> ev in mainEvents.Elements)
+                foreach (ClassSet<string> ev in mainEvents.Elements)
                     if (set.Cardinality == ev.Cardinality)
                         alreadyPresent = true;
                 if (!alreadyPresent)
@@ -697,19 +696,19 @@ namespace SpotoMasterRace
 
         #region Discrete
 
-        static internal double[] BinomialDistribution(short n, double p)
+        static internal double[] BinomialDistribution(uint n, double p)
         {
             double[] probabilities = new double[n];
-            for (short i = 0; i < probabilities.Length; i++)
+            for (uint i = 0; i < probabilities.Length; i++)
                 probabilities[i] = BinomialCoefficient(n, i) * Math.Pow(p, i) * Math.Pow((1 - p), n - i);
             return probabilities;
         }
 
-        static internal double[] HypergeometricDistribution(short Q, short q, short n)
+        static internal double[] HypergeometricDistribution(uint Q, uint q, uint n)
         {
             double[] probabilities = new double[n];
-            for (short i = 0; i < probabilities.Length; i++)
-                probabilities[i] = FactorialOf(n) * BinomialCoefficient(q, i) * BinomialCoefficient(Convert.ToInt16(Q - q), Convert.ToInt16(n - i)) * (FactorialOf(Convert.ToInt16(Q - n)) / FactorialOf(Q));
+            for (uint i = 0; i < probabilities.Length; i++)
+                probabilities[i] = FactorialOf(n) * BinomialCoefficient(q, i) * BinomialCoefficient(Q - q, n - i) * (FactorialOf(Q - n) / FactorialOf(Q));
             return probabilities;
         }
 
