@@ -288,7 +288,7 @@ namespace SpotoMasterRace
                     }
                 case "tabPage_Utilities":
                     {
-                        this.MinimumSize = new Size(500, 600);
+                        this.MinimumSize = new Size(800, 500);
                         break;
                     }
                 default:

@@ -2876,12 +2876,13 @@
             // 
             // richTextBox_Utilities
             // 
-            this.richTextBox_Utilities.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.richTextBox_Utilities.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox_Utilities.Location = new System.Drawing.Point(6, 336);
+            this.richTextBox_Utilities.Location = new System.Drawing.Point(228, 6);
             this.richTextBox_Utilities.Name = "richTextBox_Utilities";
             this.richTextBox_Utilities.ReadOnly = true;
-            this.richTextBox_Utilities.Size = new System.Drawing.Size(740, 169);
+            this.richTextBox_Utilities.Size = new System.Drawing.Size(296, 419);
             this.richTextBox_Utilities.TabIndex = 39;
             this.richTextBox_Utilities.Text = "";
             this.richTextBox_Utilities.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
@@ -3063,7 +3064,7 @@
             this.groupBox_UtilitiesStandardDeviation.Controls.Add(this.textBox_UtilitiesVariance);
             this.groupBox_UtilitiesStandardDeviation.Controls.Add(this.label_UtilitiesVariance);
             this.groupBox_UtilitiesStandardDeviation.Controls.Add(this.button_UtilitiesStandardDeviation);
-            this.groupBox_UtilitiesStandardDeviation.Location = new System.Drawing.Point(6, 256);
+            this.groupBox_UtilitiesStandardDeviation.Location = new System.Drawing.Point(6, 431);
             this.groupBox_UtilitiesStandardDeviation.Name = "groupBox_UtilitiesStandardDeviation";
             this.groupBox_UtilitiesStandardDeviation.Size = new System.Drawing.Size(740, 74);
             this.groupBox_UtilitiesStandardDeviation.TabIndex = 37;
@@ -3116,7 +3117,7 @@
             this.groupBox_UtilitiesZScore.Controls.Add(this.textBox_UtilitiesMeanForZScore);
             this.groupBox_UtilitiesZScore.Controls.Add(this.textBox_UtilitiesStandardDeviationForZScore);
             this.groupBox_UtilitiesZScore.Controls.Add(this.textBox_UtilitiesItemForZScore);
-            this.groupBox_UtilitiesZScore.Location = new System.Drawing.Point(6, 124);
+            this.groupBox_UtilitiesZScore.Location = new System.Drawing.Point(6, 211);
             this.groupBox_UtilitiesZScore.Name = "groupBox_UtilitiesZScore";
             this.groupBox_UtilitiesZScore.Size = new System.Drawing.Size(216, 126);
             this.groupBox_UtilitiesZScore.TabIndex = 35;
@@ -3217,7 +3218,7 @@
             this.groupBox_UtilitiesTScore.Controls.Add(this.textBox_UtilitiesMeanForTScore);
             this.groupBox_UtilitiesTScore.Controls.Add(this.label_UtilitiesMeanForTScore);
             this.groupBox_UtilitiesTScore.Controls.Add(this.textBox_UtilitiesStandardDeviationForTScore);
-            this.groupBox_UtilitiesTScore.Location = new System.Drawing.Point(530, 124);
+            this.groupBox_UtilitiesTScore.Location = new System.Drawing.Point(530, 211);
             this.groupBox_UtilitiesTScore.Name = "groupBox_UtilitiesTScore";
             this.groupBox_UtilitiesTScore.Size = new System.Drawing.Size(216, 126);
             this.groupBox_UtilitiesTScore.TabIndex = 34;
@@ -3314,7 +3315,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tabControl_SpotoMasterRace);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(3, 3);
             this.Name = "FormSpotoMasterRace";
             this.Text = "SpotoMasterRace";
             this.SizeChanged += new System.EventHandler(this.FormSpotoMasterRace_SizeChanged);
