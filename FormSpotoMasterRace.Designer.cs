@@ -133,18 +133,18 @@
             this.label_ResizingWarningDiscreteParametricDistributions = new System.Windows.Forms.Label();
             this.button_ResetDiscreteParametricDistributions = new System.Windows.Forms.Button();
             this.groupBox_HypergeometricDistribution = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_nHypergeometricDistribution = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_qDownHypergeometricDistribution = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_qUpHypergeometricDistribution = new System.Windows.Forms.NumericUpDown();
             this.label_nHypergeometricDistribution = new System.Windows.Forms.Label();
-            this.textBox_nHypergeometricDistribution = new System.Windows.Forms.TextBox();
             this.label_qUpHypergeometricDistribution = new System.Windows.Forms.Label();
-            this.textBox_qUpHypergeometricDistribution = new System.Windows.Forms.TextBox();
-            this.textBox_qDownHypergeometricDistribution = new System.Windows.Forms.TextBox();
             this.button_MFOfHypergeometricDistribution = new System.Windows.Forms.Button();
             this.label_qDownHypergeometricDistribution = new System.Windows.Forms.Label();
             this.button_CDFOfHypergeometricDistribution = new System.Windows.Forms.Button();
             this.panel_DiscreteParametricDistributions = new System.Windows.Forms.Panel();
             this.groupBox_BinomialDistribution = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_nBinomialDistribution = new System.Windows.Forms.NumericUpDown();
             this.label_nBinomialDistribution = new System.Windows.Forms.Label();
-            this.textBox_nBinomialDistribution = new System.Windows.Forms.TextBox();
             this.textBox_pBinomialDistribution = new System.Windows.Forms.TextBox();
             this.button_MFOfBinomialDistribution = new System.Windows.Forms.Button();
             this.label_pBinomialDistribution = new System.Windows.Forms.Label();
@@ -176,7 +176,19 @@
             this.panel_CovarianceAndCorrelation = new System.Windows.Forms.Panel();
             this.richTextBox_CovarianceAndCorrelation = new System.Windows.Forms.RichTextBox();
             this.tabPage_Tables = new System.Windows.Forms.TabPage();
+            this.label_TablesWarning = new System.Windows.Forms.Label();
             this.richTextBox_Tables = new System.Windows.Forms.RichTextBox();
+            this.groupBox_FDistribution = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_FDDegreesOfFreedomMSw = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioButton_FD01 = new System.Windows.Forms.RadioButton();
+            this.radioButton_FD10 = new System.Windows.Forms.RadioButton();
+            this.radioButton_FD05 = new System.Windows.Forms.RadioButton();
+            this.radioButton_FD025 = new System.Windows.Forms.RadioButton();
+            this.numericUpDown_FDDegreesOfFreedomMSb = new System.Windows.Forms.NumericUpDown();
+            this.label_FDAlpha = new System.Windows.Forms.Label();
+            this.label_FDDegreesOfFreedom1 = new System.Windows.Forms.Label();
+            this.button_FDCriticalF = new System.Windows.Forms.Button();
             this.groupBox_TDistribution = new System.Windows.Forms.GroupBox();
             this.radioButton_TD10 = new System.Windows.Forms.RadioButton();
             this.radioButton_TD100 = new System.Windows.Forms.RadioButton();
@@ -212,15 +224,14 @@
             this.tabPage_Utilities = new System.Windows.Forms.TabPage();
             this.richTextBox_Utilities = new System.Windows.Forms.RichTextBox();
             this.groupBox_UtilitiesVariance = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_UtilitiesN = new System.Windows.Forms.NumericUpDown();
             this.textBox_UtilitiesDeviance = new System.Windows.Forms.TextBox();
-            this.textBox_UtilitiesN = new System.Windows.Forms.TextBox();
             this.label_UtilitiesDeviance = new System.Windows.Forms.Label();
             this.label_UtilitiesN = new System.Windows.Forms.Label();
             this.button_UtilitiesVariancePopulation = new System.Windows.Forms.Button();
             this.button_UtilitiesVarianceSample = new System.Windows.Forms.Button();
             this.groupBox_CoefficientOfVariation = new System.Windows.Forms.GroupBox();
             this.button_UtilitiesCoefficientOfVariationSample = new System.Windows.Forms.Button();
-            this.button_UtilitiesCoefficientOfVariationPopulation = new System.Windows.Forms.Button();
             this.textBox_UtilitiesMeanForCoefficientOfVariation = new System.Windows.Forms.TextBox();
             this.textBox_UtilitiesStandardDeviationForCoefficientOfVariation = new System.Windows.Forms.TextBox();
             this.label_UtilitiesStandardDeviationForCoefficientOfVariation = new System.Windows.Forms.Label();
@@ -264,10 +275,17 @@
             this.tabControl_ParametricDistributions.SuspendLayout();
             this.tabPage_DiscreteParametricDistributions.SuspendLayout();
             this.groupBox_HypergeometricDistribution.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_nHypergeometricDistribution)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_qDownHypergeometricDistribution)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_qUpHypergeometricDistribution)).BeginInit();
             this.groupBox_BinomialDistribution.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_nBinomialDistribution)).BeginInit();
             this.tabPage_ContinuousParametricDistributions.SuspendLayout();
             this.tabPage_CovarianceAndCorrelation.SuspendLayout();
             this.tabPage_Tables.SuspendLayout();
+            this.groupBox_FDistribution.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FDDegreesOfFreedomMSw)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FDDegreesOfFreedomMSb)).BeginInit();
             this.groupBox_TDistribution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TDDegreesOfFreedom)).BeginInit();
             this.groupBox_ChiSquareDistribution.SuspendLayout();
@@ -275,6 +293,7 @@
             this.groupBox_StandardNormalDistribution.SuspendLayout();
             this.tabPage_Utilities.SuspendLayout();
             this.groupBox_UtilitiesVariance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UtilitiesN)).BeginInit();
             this.groupBox_CoefficientOfVariation.SuspendLayout();
             this.groupBox_UtilitiesStandardDeviation.SuspendLayout();
             this.groupBox_UtilitiesZScore.SuspendLayout();
@@ -972,7 +991,7 @@
             0,
             0,
             0});
-            this.numericUpDown_XPercentile.ValueChanged += new System.EventHandler(this.numericUpDown_XPercentage_ValueChanged);
+            this.numericUpDown_XPercentile.ValueChanged += new System.EventHandler(this.numericUpDown_XPercentile_ValueChanged);
             // 
             // button_XPercentile
             // 
@@ -1404,6 +1423,7 @@
             this.label_ResizingWarningProbabilityDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ResizingWarningProbabilityDistributions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_ResizingWarningProbabilityDistributions.ForeColor = System.Drawing.Color.Red;
             this.label_ResizingWarningProbabilityDistributions.Location = new System.Drawing.Point(174, 452);
             this.label_ResizingWarningProbabilityDistributions.Name = "label_ResizingWarningProbabilityDistributions";
             this.label_ResizingWarningProbabilityDistributions.Size = new System.Drawing.Size(463, 56);
@@ -1560,6 +1580,7 @@
             // 
             this.label_ResizingWarningDiscreteParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ResizingWarningDiscreteParametricDistributions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_ResizingWarningDiscreteParametricDistributions.ForeColor = System.Drawing.Color.Red;
             this.label_ResizingWarningDiscreteParametricDistributions.Location = new System.Drawing.Point(577, 281);
             this.label_ResizingWarningDiscreteParametricDistributions.Name = "label_ResizingWarningDiscreteParametricDistributions";
             this.label_ResizingWarningDiscreteParametricDistributions.Size = new System.Drawing.Size(149, 105);
@@ -1583,11 +1604,11 @@
             // groupBox_HypergeometricDistribution
             // 
             this.groupBox_HypergeometricDistribution.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.numericUpDown_nHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.numericUpDown_qDownHypergeometricDistribution);
+            this.groupBox_HypergeometricDistribution.Controls.Add(this.numericUpDown_qUpHypergeometricDistribution);
             this.groupBox_HypergeometricDistribution.Controls.Add(this.label_nHypergeometricDistribution);
-            this.groupBox_HypergeometricDistribution.Controls.Add(this.textBox_nHypergeometricDistribution);
             this.groupBox_HypergeometricDistribution.Controls.Add(this.label_qUpHypergeometricDistribution);
-            this.groupBox_HypergeometricDistribution.Controls.Add(this.textBox_qUpHypergeometricDistribution);
-            this.groupBox_HypergeometricDistribution.Controls.Add(this.textBox_qDownHypergeometricDistribution);
             this.groupBox_HypergeometricDistribution.Controls.Add(this.button_MFOfHypergeometricDistribution);
             this.groupBox_HypergeometricDistribution.Controls.Add(this.label_qDownHypergeometricDistribution);
             this.groupBox_HypergeometricDistribution.Controls.Add(this.button_CDFOfHypergeometricDistribution);
@@ -1597,6 +1618,81 @@
             this.groupBox_HypergeometricDistribution.TabIndex = 44;
             this.groupBox_HypergeometricDistribution.TabStop = false;
             this.groupBox_HypergeometricDistribution.Text = "Hypergeometric Distribution";
+            // 
+            // numericUpDown_nHypergeometricDistribution
+            // 
+            this.numericUpDown_nHypergeometricDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.numericUpDown_nHypergeometricDistribution.Location = new System.Drawing.Point(109, 36);
+            this.numericUpDown_nHypergeometricDistribution.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.numericUpDown_nHypergeometricDistribution.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_nHypergeometricDistribution.Name = "numericUpDown_nHypergeometricDistribution";
+            this.numericUpDown_nHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDown_nHypergeometricDistribution.TabIndex = 47;
+            this.numericUpDown_nHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_nHypergeometricDistribution.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_nHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDowns_qDownAndNHypergeometricDistribution_ValueChanged);
+            // 
+            // numericUpDown_qDownHypergeometricDistribution
+            // 
+            this.numericUpDown_qDownHypergeometricDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.numericUpDown_qDownHypergeometricDistribution.Location = new System.Drawing.Point(32, 49);
+            this.numericUpDown_qDownHypergeometricDistribution.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.numericUpDown_qDownHypergeometricDistribution.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_qDownHypergeometricDistribution.Name = "numericUpDown_qDownHypergeometricDistribution";
+            this.numericUpDown_qDownHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDown_qDownHypergeometricDistribution.TabIndex = 46;
+            this.numericUpDown_qDownHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_qDownHypergeometricDistribution.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_qDownHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDowns_qDownAndNHypergeometricDistribution_ValueChanged);
+            // 
+            // numericUpDown_qUpHypergeometricDistribution
+            // 
+            this.numericUpDown_qUpHypergeometricDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.numericUpDown_qUpHypergeometricDistribution.Location = new System.Drawing.Point(32, 20);
+            this.numericUpDown_qUpHypergeometricDistribution.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.numericUpDown_qUpHypergeometricDistribution.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_qUpHypergeometricDistribution.Name = "numericUpDown_qUpHypergeometricDistribution";
+            this.numericUpDown_qUpHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDown_qUpHypergeometricDistribution.TabIndex = 45;
+            this.numericUpDown_qUpHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_qUpHypergeometricDistribution.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_qUpHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDown_qUpHypergeometricDistribution_ValueChanged);
             // 
             // label_nHypergeometricDistribution
             // 
@@ -1609,17 +1705,6 @@
             this.label_nHypergeometricDistribution.Text = "n:";
             this.label_nHypergeometricDistribution.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox_nHypergeometricDistribution
-            // 
-            this.textBox_nHypergeometricDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_nHypergeometricDistribution.Location = new System.Drawing.Point(109, 35);
-            this.textBox_nHypergeometricDistribution.Name = "textBox_nHypergeometricDistribution";
-            this.textBox_nHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
-            this.textBox_nHypergeometricDistribution.TabIndex = 44;
-            this.textBox_nHypergeometricDistribution.Text = "0";
-            this.textBox_nHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_nHypergeometricDistribution.TextChanged += new System.EventHandler(this.textBoxes_HypergeometricDistribution_TextChanged);
-            // 
             // label_qUpHypergeometricDistribution
             // 
             this.label_qUpHypergeometricDistribution.AutoSize = true;
@@ -1630,28 +1715,6 @@
             this.label_qUpHypergeometricDistribution.TabIndex = 41;
             this.label_qUpHypergeometricDistribution.Text = "Q:";
             this.label_qUpHypergeometricDistribution.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox_qUpHypergeometricDistribution
-            // 
-            this.textBox_qUpHypergeometricDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_qUpHypergeometricDistribution.Location = new System.Drawing.Point(32, 19);
-            this.textBox_qUpHypergeometricDistribution.Name = "textBox_qUpHypergeometricDistribution";
-            this.textBox_qUpHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
-            this.textBox_qUpHypergeometricDistribution.TabIndex = 42;
-            this.textBox_qUpHypergeometricDistribution.Text = "0";
-            this.textBox_qUpHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_qUpHypergeometricDistribution.TextChanged += new System.EventHandler(this.textBoxes_HypergeometricDistribution_TextChanged);
-            // 
-            // textBox_qDownHypergeometricDistribution
-            // 
-            this.textBox_qDownHypergeometricDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_qDownHypergeometricDistribution.Location = new System.Drawing.Point(32, 49);
-            this.textBox_qDownHypergeometricDistribution.Name = "textBox_qDownHypergeometricDistribution";
-            this.textBox_qDownHypergeometricDistribution.Size = new System.Drawing.Size(47, 20);
-            this.textBox_qDownHypergeometricDistribution.TabIndex = 40;
-            this.textBox_qDownHypergeometricDistribution.Text = "0";
-            this.textBox_qDownHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_qDownHypergeometricDistribution.TextChanged += new System.EventHandler(this.textBoxes_HypergeometricDistribution_TextChanged);
             // 
             // button_MFOfHypergeometricDistribution
             // 
@@ -1697,8 +1760,8 @@
             // groupBox_BinomialDistribution
             // 
             this.groupBox_BinomialDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox_BinomialDistribution.Controls.Add(this.numericUpDown_nBinomialDistribution);
             this.groupBox_BinomialDistribution.Controls.Add(this.label_nBinomialDistribution);
-            this.groupBox_BinomialDistribution.Controls.Add(this.textBox_nBinomialDistribution);
             this.groupBox_BinomialDistribution.Controls.Add(this.textBox_pBinomialDistribution);
             this.groupBox_BinomialDistribution.Controls.Add(this.button_MFOfBinomialDistribution);
             this.groupBox_BinomialDistribution.Controls.Add(this.label_pBinomialDistribution);
@@ -1710,6 +1773,31 @@
             this.groupBox_BinomialDistribution.TabStop = false;
             this.groupBox_BinomialDistribution.Text = "Binomial Distribution";
             // 
+            // numericUpDown_nBinomialDistribution
+            // 
+            this.numericUpDown_nBinomialDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.numericUpDown_nBinomialDistribution.Location = new System.Drawing.Point(30, 20);
+            this.numericUpDown_nBinomialDistribution.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.numericUpDown_nBinomialDistribution.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_nBinomialDistribution.Name = "numericUpDown_nBinomialDistribution";
+            this.numericUpDown_nBinomialDistribution.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDown_nBinomialDistribution.TabIndex = 46;
+            this.numericUpDown_nBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_nBinomialDistribution.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_nBinomialDistribution.ValueChanged += new System.EventHandler(this.numericUpDown_nBinomialDistribution_ValueChanged);
+            // 
             // label_nBinomialDistribution
             // 
             this.label_nBinomialDistribution.AutoSize = true;
@@ -1720,17 +1808,6 @@
             this.label_nBinomialDistribution.TabIndex = 41;
             this.label_nBinomialDistribution.Text = "n:";
             this.label_nBinomialDistribution.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox_nBinomialDistribution
-            // 
-            this.textBox_nBinomialDistribution.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_nBinomialDistribution.Location = new System.Drawing.Point(30, 19);
-            this.textBox_nBinomialDistribution.Name = "textBox_nBinomialDistribution";
-            this.textBox_nBinomialDistribution.Size = new System.Drawing.Size(47, 20);
-            this.textBox_nBinomialDistribution.TabIndex = 42;
-            this.textBox_nBinomialDistribution.Text = "1";
-            this.textBox_nBinomialDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_nBinomialDistribution.TextChanged += new System.EventHandler(this.textBox_nBinomialDistribution_TextChanged);
             // 
             // textBox_pBinomialDistribution
             // 
@@ -1810,6 +1887,7 @@
             this.label_ResizingWarningContinuousParametricDistributions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ResizingWarningContinuousParametricDistributions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_ResizingWarningContinuousParametricDistributions.ForeColor = System.Drawing.Color.Red;
             this.label_ResizingWarningContinuousParametricDistributions.Location = new System.Drawing.Point(210, 414);
             this.label_ResizingWarningContinuousParametricDistributions.Name = "label_ResizingWarningContinuousParametricDistributions";
             this.label_ResizingWarningContinuousParametricDistributions.Size = new System.Drawing.Size(407, 56);
@@ -1851,7 +1929,7 @@
             this.textBox_VarianceNormalDistribution.Name = "textBox_VarianceNormalDistribution";
             this.textBox_VarianceNormalDistribution.Size = new System.Drawing.Size(47, 20);
             this.textBox_VarianceNormalDistribution.TabIndex = 45;
-            this.textBox_VarianceNormalDistribution.Text = "0";
+            this.textBox_VarianceNormalDistribution.Text = "0.1";
             this.textBox_VarianceNormalDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_VarianceNormalDistribution.TextChanged += new System.EventHandler(this.textBox_VarianceNormalDistribution_TextChanged);
             // 
@@ -1961,6 +2039,7 @@
             // 
             this.label_ResizingWarningCovarianceAndCorrelation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ResizingWarningCovarianceAndCorrelation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_ResizingWarningCovarianceAndCorrelation.ForeColor = System.Drawing.Color.Red;
             this.label_ResizingWarningCovarianceAndCorrelation.Location = new System.Drawing.Point(597, 371);
             this.label_ResizingWarningCovarianceAndCorrelation.Name = "label_ResizingWarningCovarianceAndCorrelation";
             this.label_ResizingWarningCovarianceAndCorrelation.Size = new System.Drawing.Size(149, 105);
@@ -2099,7 +2178,9 @@
             // 
             // tabPage_Tables
             // 
+            this.tabPage_Tables.Controls.Add(this.label_TablesWarning);
             this.tabPage_Tables.Controls.Add(this.richTextBox_Tables);
+            this.tabPage_Tables.Controls.Add(this.groupBox_FDistribution);
             this.tabPage_Tables.Controls.Add(this.groupBox_TDistribution);
             this.tabPage_Tables.Controls.Add(this.groupBox_ChiSquareDistribution);
             this.tabPage_Tables.Controls.Add(this.groupBox_StandardNormalDistribution);
@@ -2111,18 +2192,208 @@
             this.tabPage_Tables.Text = "Tables";
             this.tabPage_Tables.UseVisualStyleBackColor = true;
             // 
+            // label_TablesWarning
+            // 
+            this.label_TablesWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_TablesWarning.ForeColor = System.Drawing.Color.Red;
+            this.label_TablesWarning.Location = new System.Drawing.Point(6, 157);
+            this.label_TablesWarning.Name = "label_TablesWarning";
+            this.label_TablesWarning.Size = new System.Drawing.Size(205, 56);
+            this.label_TablesWarning.TabIndex = 49;
+            this.label_TablesWarning.Text = "You must write the whole number\r\nYou can\'t write .12 or .1234\r\nThe number must be" +
+    " in the format ±IntegerPart.DecimalPart";
+            this.label_TablesWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // richTextBox_Tables
             // 
             this.richTextBox_Tables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox_Tables.Location = new System.Drawing.Point(6, 219);
+            this.richTextBox_Tables.Location = new System.Drawing.Point(217, 6);
             this.richTextBox_Tables.Name = "richTextBox_Tables";
             this.richTextBox_Tables.ReadOnly = true;
-            this.richTextBox_Tables.Size = new System.Drawing.Size(740, 286);
+            this.richTextBox_Tables.Size = new System.Drawing.Size(355, 499);
             this.richTextBox_Tables.TabIndex = 48;
             this.richTextBox_Tables.Text = "";
             this.richTextBox_Tables.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
+            // 
+            // groupBox_FDistribution
+            // 
+            this.groupBox_FDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_FDistribution.Controls.Add(this.numericUpDown_FDDegreesOfFreedomMSw);
+            this.groupBox_FDistribution.Controls.Add(this.label2);
+            this.groupBox_FDistribution.Controls.Add(this.radioButton_FD01);
+            this.groupBox_FDistribution.Controls.Add(this.radioButton_FD10);
+            this.groupBox_FDistribution.Controls.Add(this.radioButton_FD05);
+            this.groupBox_FDistribution.Controls.Add(this.radioButton_FD025);
+            this.groupBox_FDistribution.Controls.Add(this.numericUpDown_FDDegreesOfFreedomMSb);
+            this.groupBox_FDistribution.Controls.Add(this.label_FDAlpha);
+            this.groupBox_FDistribution.Controls.Add(this.label_FDDegreesOfFreedom1);
+            this.groupBox_FDistribution.Controls.Add(this.button_FDCriticalF);
+            this.groupBox_FDistribution.Location = new System.Drawing.Point(578, 298);
+            this.groupBox_FDistribution.Name = "groupBox_FDistribution";
+            this.groupBox_FDistribution.Size = new System.Drawing.Size(168, 207);
+            this.groupBox_FDistribution.TabIndex = 47;
+            this.groupBox_FDistribution.TabStop = false;
+            this.groupBox_FDistribution.Text = "f-Distribution";
+            // 
+            // numericUpDown_FDDegreesOfFreedomMSw
+            // 
+            this.numericUpDown_FDDegreesOfFreedomMSw.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDown_FDDegreesOfFreedomMSw.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.numericUpDown_FDDegreesOfFreedomMSw.Location = new System.Drawing.Point(9, 76);
+            this.numericUpDown_FDDegreesOfFreedomMSw.Maximum = new decimal(new int[] {
+            121,
+            0,
+            0,
+            0});
+            this.numericUpDown_FDDegreesOfFreedomMSw.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_FDDegreesOfFreedomMSw.Name = "numericUpDown_FDDegreesOfFreedomMSw";
+            this.numericUpDown_FDDegreesOfFreedomMSw.Size = new System.Drawing.Size(153, 20);
+            this.numericUpDown_FDDegreesOfFreedomMSw.TabIndex = 59;
+            this.numericUpDown_FDDegreesOfFreedomMSw.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_FDDegreesOfFreedomMSw.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(6, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(156, 13);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "Degrees of Freedom MSw:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // radioButton_FD01
+            // 
+            this.radioButton_FD01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButton_FD01.AutoSize = true;
+            this.radioButton_FD01.Location = new System.Drawing.Point(116, 139);
+            this.radioButton_FD01.Name = "radioButton_FD01";
+            this.radioButton_FD01.Size = new System.Drawing.Size(46, 17);
+            this.radioButton_FD01.TabIndex = 57;
+            this.radioButton_FD01.TabStop = true;
+            this.radioButton_FD01.Text = "0.01";
+            this.radioButton_FD01.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioButton_FD01.UseVisualStyleBackColor = true;
+            this.radioButton_FD01.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
+            // 
+            // radioButton_FD10
+            // 
+            this.radioButton_FD10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButton_FD10.AutoSize = true;
+            this.radioButton_FD10.Location = new System.Drawing.Point(58, 116);
+            this.radioButton_FD10.Name = "radioButton_FD10";
+            this.radioButton_FD10.Size = new System.Drawing.Size(46, 17);
+            this.radioButton_FD10.TabIndex = 52;
+            this.radioButton_FD10.TabStop = true;
+            this.radioButton_FD10.Text = "0.10";
+            this.radioButton_FD10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioButton_FD10.UseVisualStyleBackColor = true;
+            this.radioButton_FD10.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
+            // 
+            // radioButton_FD05
+            // 
+            this.radioButton_FD05.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButton_FD05.AutoSize = true;
+            this.radioButton_FD05.Location = new System.Drawing.Point(116, 116);
+            this.radioButton_FD05.Name = "radioButton_FD05";
+            this.radioButton_FD05.Size = new System.Drawing.Size(46, 17);
+            this.radioButton_FD05.TabIndex = 51;
+            this.radioButton_FD05.TabStop = true;
+            this.radioButton_FD05.Text = "0.05";
+            this.radioButton_FD05.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioButton_FD05.UseVisualStyleBackColor = true;
+            this.radioButton_FD05.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
+            // 
+            // radioButton_FD025
+            // 
+            this.radioButton_FD025.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButton_FD025.AutoSize = true;
+            this.radioButton_FD025.Location = new System.Drawing.Point(58, 139);
+            this.radioButton_FD025.Name = "radioButton_FD025";
+            this.radioButton_FD025.Size = new System.Drawing.Size(52, 17);
+            this.radioButton_FD025.TabIndex = 50;
+            this.radioButton_FD025.TabStop = true;
+            this.radioButton_FD025.Text = "0.025";
+            this.radioButton_FD025.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioButton_FD025.UseVisualStyleBackColor = true;
+            this.radioButton_FD025.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
+            // 
+            // numericUpDown_FDDegreesOfFreedomMSb
+            // 
+            this.numericUpDown_FDDegreesOfFreedomMSb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDown_FDDegreesOfFreedomMSb.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.numericUpDown_FDDegreesOfFreedomMSb.Location = new System.Drawing.Point(6, 37);
+            this.numericUpDown_FDDegreesOfFreedomMSb.Maximum = new decimal(new int[] {
+            121,
+            0,
+            0,
+            0});
+            this.numericUpDown_FDDegreesOfFreedomMSb.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_FDDegreesOfFreedomMSb.Name = "numericUpDown_FDDegreesOfFreedomMSb";
+            this.numericUpDown_FDDegreesOfFreedomMSb.Size = new System.Drawing.Size(156, 20);
+            this.numericUpDown_FDDegreesOfFreedomMSb.TabIndex = 47;
+            this.numericUpDown_FDDegreesOfFreedomMSb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_FDDegreesOfFreedomMSb.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label_FDAlpha
+            // 
+            this.label_FDAlpha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_FDAlpha.AutoSize = true;
+            this.label_FDAlpha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_FDAlpha.Location = new System.Drawing.Point(6, 130);
+            this.label_FDAlpha.Name = "label_FDAlpha";
+            this.label_FDAlpha.Size = new System.Drawing.Size(19, 13);
+            this.label_FDAlpha.TabIndex = 45;
+            this.label_FDAlpha.Text = "α:";
+            this.label_FDAlpha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_FDDegreesOfFreedom1
+            // 
+            this.label_FDDegreesOfFreedom1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_FDDegreesOfFreedom1.AutoSize = true;
+            this.label_FDDegreesOfFreedom1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label_FDDegreesOfFreedom1.Location = new System.Drawing.Point(3, 21);
+            this.label_FDDegreesOfFreedom1.Name = "label_FDDegreesOfFreedom1";
+            this.label_FDDegreesOfFreedom1.Size = new System.Drawing.Size(154, 13);
+            this.label_FDDegreesOfFreedom1.TabIndex = 41;
+            this.label_FDDegreesOfFreedom1.Text = "Degrees of Freedom MSb:";
+            this.label_FDDegreesOfFreedom1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_FDCriticalF
+            // 
+            this.button_FDCriticalF.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_FDCriticalF.Location = new System.Drawing.Point(6, 178);
+            this.button_FDCriticalF.Name = "button_FDCriticalF";
+            this.button_FDCriticalF.Size = new System.Drawing.Size(156, 23);
+            this.button_FDCriticalF.TabIndex = 35;
+            this.button_FDCriticalF.Text = "Compute the Critical f";
+            this.button_FDCriticalF.UseVisualStyleBackColor = true;
+            this.button_FDCriticalF.Click += new System.EventHandler(this.button_FDCriticalF_Click);
             // 
             // groupBox_TDistribution
             // 
@@ -2136,17 +2407,18 @@
             this.groupBox_TDistribution.Controls.Add(this.label_TDAlpha);
             this.groupBox_TDistribution.Controls.Add(this.label_TDDegreesOfFreedom);
             this.groupBox_TDistribution.Controls.Add(this.button_TDCriticalT);
-            this.groupBox_TDistribution.Location = new System.Drawing.Point(606, 6);
+            this.groupBox_TDistribution.Location = new System.Drawing.Point(578, 6);
             this.groupBox_TDistribution.Name = "groupBox_TDistribution";
-            this.groupBox_TDistribution.Size = new System.Drawing.Size(137, 207);
+            this.groupBox_TDistribution.Size = new System.Drawing.Size(168, 207);
             this.groupBox_TDistribution.TabIndex = 47;
             this.groupBox_TDistribution.TabStop = false;
             this.groupBox_TDistribution.Text = "t-Distribution";
             // 
             // radioButton_TD10
             // 
+            this.radioButton_TD10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_TD10.AutoSize = true;
-            this.radioButton_TD10.Location = new System.Drawing.Point(79, 132);
+            this.radioButton_TD10.Location = new System.Drawing.Point(110, 132);
             this.radioButton_TD10.Name = "radioButton_TD10";
             this.radioButton_TD10.Size = new System.Drawing.Size(52, 17);
             this.radioButton_TD10.TabIndex = 57;
@@ -2154,11 +2426,13 @@
             this.radioButton_TD10.Text = "0.010";
             this.radioButton_TD10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_TD10.UseVisualStyleBackColor = true;
+            this.radioButton_TD10.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_TD100
             // 
+            this.radioButton_TD100.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_TD100.AutoSize = true;
-            this.radioButton_TD100.Location = new System.Drawing.Point(79, 63);
+            this.radioButton_TD100.Location = new System.Drawing.Point(110, 63);
             this.radioButton_TD100.Name = "radioButton_TD100";
             this.radioButton_TD100.Size = new System.Drawing.Size(52, 17);
             this.radioButton_TD100.TabIndex = 52;
@@ -2166,11 +2440,13 @@
             this.radioButton_TD100.Text = "0.100";
             this.radioButton_TD100.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_TD100.UseVisualStyleBackColor = true;
+            this.radioButton_TD100.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_TD50
             // 
+            this.radioButton_TD50.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_TD50.AutoSize = true;
-            this.radioButton_TD50.Location = new System.Drawing.Point(79, 86);
+            this.radioButton_TD50.Location = new System.Drawing.Point(110, 86);
             this.radioButton_TD50.Name = "radioButton_TD50";
             this.radioButton_TD50.Size = new System.Drawing.Size(52, 17);
             this.radioButton_TD50.TabIndex = 51;
@@ -2178,11 +2454,13 @@
             this.radioButton_TD50.Text = "0.050";
             this.radioButton_TD50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_TD50.UseVisualStyleBackColor = true;
+            this.radioButton_TD50.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_TD25
             // 
+            this.radioButton_TD25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_TD25.AutoSize = true;
-            this.radioButton_TD25.Location = new System.Drawing.Point(79, 109);
+            this.radioButton_TD25.Location = new System.Drawing.Point(110, 109);
             this.radioButton_TD25.Name = "radioButton_TD25";
             this.radioButton_TD25.Size = new System.Drawing.Size(52, 17);
             this.radioButton_TD25.TabIndex = 50;
@@ -2190,11 +2468,13 @@
             this.radioButton_TD25.Text = "0.025";
             this.radioButton_TD25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_TD25.UseVisualStyleBackColor = true;
+            this.radioButton_TD25.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_TD5
             // 
+            this.radioButton_TD5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_TD5.AutoSize = true;
-            this.radioButton_TD5.Location = new System.Drawing.Point(79, 155);
+            this.radioButton_TD5.Location = new System.Drawing.Point(110, 155);
             this.radioButton_TD5.Name = "radioButton_TD5";
             this.radioButton_TD5.Size = new System.Drawing.Size(52, 17);
             this.radioButton_TD5.TabIndex = 49;
@@ -2202,18 +2482,26 @@
             this.radioButton_TD5.Text = "0.005";
             this.radioButton_TD5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_TD5.UseVisualStyleBackColor = true;
+            this.radioButton_TD5.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // numericUpDown_TDDegreesOfFreedom
             // 
+            this.numericUpDown_TDDegreesOfFreedom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown_TDDegreesOfFreedom.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
             this.numericUpDown_TDDegreesOfFreedom.Location = new System.Drawing.Point(6, 37);
+            this.numericUpDown_TDDegreesOfFreedom.Maximum = new decimal(new int[] {
+            39,
+            0,
+            0,
+            0});
             this.numericUpDown_TDDegreesOfFreedom.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numericUpDown_TDDegreesOfFreedom.Name = "numericUpDown_TDDegreesOfFreedom";
-            this.numericUpDown_TDDegreesOfFreedom.Size = new System.Drawing.Size(125, 20);
+            this.numericUpDown_TDDegreesOfFreedom.Size = new System.Drawing.Size(156, 20);
             this.numericUpDown_TDDegreesOfFreedom.TabIndex = 47;
             this.numericUpDown_TDDegreesOfFreedom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_TDDegreesOfFreedom.Value = new decimal(new int[] {
@@ -2224,6 +2512,7 @@
             // 
             // label_TDAlpha
             // 
+            this.label_TDAlpha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label_TDAlpha.AutoSize = true;
             this.label_TDAlpha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label_TDAlpha.Location = new System.Drawing.Point(6, 111);
@@ -2235,6 +2524,8 @@
             // 
             // label_TDDegreesOfFreedom
             // 
+            this.label_TDDegreesOfFreedom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label_TDDegreesOfFreedom.AutoSize = true;
             this.label_TDDegreesOfFreedom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label_TDDegreesOfFreedom.Location = new System.Drawing.Point(6, 21);
@@ -2246,9 +2537,11 @@
             // 
             // button_TDCriticalT
             // 
+            this.button_TDCriticalT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_TDCriticalT.Location = new System.Drawing.Point(6, 178);
             this.button_TDCriticalT.Name = "button_TDCriticalT";
-            this.button_TDCriticalT.Size = new System.Drawing.Size(125, 23);
+            this.button_TDCriticalT.Size = new System.Drawing.Size(156, 23);
             this.button_TDCriticalT.TabIndex = 35;
             this.button_TDCriticalT.Text = "Compute the Critical t";
             this.button_TDCriticalT.UseVisualStyleBackColor = true;
@@ -2256,7 +2549,7 @@
             // 
             // groupBox_ChiSquareDistribution
             // 
-            this.groupBox_ChiSquareDistribution.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox_ChiSquareDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox_ChiSquareDistribution.Controls.Add(this.radioButton_CSD10);
             this.groupBox_ChiSquareDistribution.Controls.Add(this.radioButton_CSD995);
             this.groupBox_ChiSquareDistribution.Controls.Add(this.radioButton_CSD975);
@@ -2271,17 +2564,18 @@
             this.groupBox_ChiSquareDistribution.Controls.Add(this.label_CSDAlpha);
             this.groupBox_ChiSquareDistribution.Controls.Add(this.label_CSDDegreesOfFreedom);
             this.groupBox_ChiSquareDistribution.Controls.Add(this.button_CSDCriticalValue);
-            this.groupBox_ChiSquareDistribution.Location = new System.Drawing.Point(310, 6);
+            this.groupBox_ChiSquareDistribution.Location = new System.Drawing.Point(6, 298);
             this.groupBox_ChiSquareDistribution.Name = "groupBox_ChiSquareDistribution";
-            this.groupBox_ChiSquareDistribution.Size = new System.Drawing.Size(205, 166);
+            this.groupBox_ChiSquareDistribution.Size = new System.Drawing.Size(205, 207);
             this.groupBox_ChiSquareDistribution.TabIndex = 47;
             this.groupBox_ChiSquareDistribution.TabStop = false;
             this.groupBox_ChiSquareDistribution.Text = "Chi-Square Distribution";
             // 
             // radioButton_CSD10
             // 
+            this.radioButton_CSD10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD10.AutoSize = true;
-            this.radioButton_CSD10.Location = new System.Drawing.Point(147, 91);
+            this.radioButton_CSD10.Location = new System.Drawing.Point(147, 112);
             this.radioButton_CSD10.Name = "radioButton_CSD10";
             this.radioButton_CSD10.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD10.TabIndex = 57;
@@ -2289,11 +2583,13 @@
             this.radioButton_CSD10.Text = "0.010";
             this.radioButton_CSD10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD10.UseVisualStyleBackColor = true;
+            this.radioButton_CSD10.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD995
             // 
+            this.radioButton_CSD995.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD995.AutoSize = true;
-            this.radioButton_CSD995.Location = new System.Drawing.Point(31, 45);
+            this.radioButton_CSD995.Location = new System.Drawing.Point(31, 66);
             this.radioButton_CSD995.Name = "radioButton_CSD995";
             this.radioButton_CSD995.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD995.TabIndex = 56;
@@ -2301,11 +2597,13 @@
             this.radioButton_CSD995.Text = "0.995";
             this.radioButton_CSD995.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD995.UseVisualStyleBackColor = true;
+            this.radioButton_CSD995.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD975
             // 
+            this.radioButton_CSD975.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD975.AutoSize = true;
-            this.radioButton_CSD975.Location = new System.Drawing.Point(147, 45);
+            this.radioButton_CSD975.Location = new System.Drawing.Point(147, 66);
             this.radioButton_CSD975.Name = "radioButton_CSD975";
             this.radioButton_CSD975.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD975.TabIndex = 55;
@@ -2313,11 +2611,13 @@
             this.radioButton_CSD975.Text = "0.975";
             this.radioButton_CSD975.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD975.UseVisualStyleBackColor = true;
+            this.radioButton_CSD975.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD950
             // 
+            this.radioButton_CSD950.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD950.AutoSize = true;
-            this.radioButton_CSD950.Location = new System.Drawing.Point(31, 68);
+            this.radioButton_CSD950.Location = new System.Drawing.Point(31, 89);
             this.radioButton_CSD950.Name = "radioButton_CSD950";
             this.radioButton_CSD950.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD950.TabIndex = 54;
@@ -2325,11 +2625,13 @@
             this.radioButton_CSD950.Text = "0.950";
             this.radioButton_CSD950.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD950.UseVisualStyleBackColor = true;
+            this.radioButton_CSD950.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD900
             // 
+            this.radioButton_CSD900.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD900.AutoSize = true;
-            this.radioButton_CSD900.Location = new System.Drawing.Point(89, 68);
+            this.radioButton_CSD900.Location = new System.Drawing.Point(89, 89);
             this.radioButton_CSD900.Name = "radioButton_CSD900";
             this.radioButton_CSD900.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD900.TabIndex = 53;
@@ -2337,11 +2639,13 @@
             this.radioButton_CSD900.Text = "0.900";
             this.radioButton_CSD900.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD900.UseVisualStyleBackColor = true;
+            this.radioButton_CSD900.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD100
             // 
+            this.radioButton_CSD100.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD100.AutoSize = true;
-            this.radioButton_CSD100.Location = new System.Drawing.Point(147, 68);
+            this.radioButton_CSD100.Location = new System.Drawing.Point(147, 89);
             this.radioButton_CSD100.Name = "radioButton_CSD100";
             this.radioButton_CSD100.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD100.TabIndex = 52;
@@ -2349,11 +2653,13 @@
             this.radioButton_CSD100.Text = "0.100";
             this.radioButton_CSD100.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD100.UseVisualStyleBackColor = true;
+            this.radioButton_CSD100.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD50
             // 
+            this.radioButton_CSD50.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD50.AutoSize = true;
-            this.radioButton_CSD50.Location = new System.Drawing.Point(31, 91);
+            this.radioButton_CSD50.Location = new System.Drawing.Point(31, 112);
             this.radioButton_CSD50.Name = "radioButton_CSD50";
             this.radioButton_CSD50.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD50.TabIndex = 51;
@@ -2361,11 +2667,13 @@
             this.radioButton_CSD50.Text = "0.050";
             this.radioButton_CSD50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD50.UseVisualStyleBackColor = true;
+            this.radioButton_CSD50.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD25
             // 
+            this.radioButton_CSD25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD25.AutoSize = true;
-            this.radioButton_CSD25.Location = new System.Drawing.Point(89, 91);
+            this.radioButton_CSD25.Location = new System.Drawing.Point(89, 112);
             this.radioButton_CSD25.Name = "radioButton_CSD25";
             this.radioButton_CSD25.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD25.TabIndex = 50;
@@ -2373,11 +2681,13 @@
             this.radioButton_CSD25.Text = "0.025";
             this.radioButton_CSD25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD25.UseVisualStyleBackColor = true;
+            this.radioButton_CSD25.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD5
             // 
+            this.radioButton_CSD5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD5.AutoSize = true;
-            this.radioButton_CSD5.Location = new System.Drawing.Point(89, 114);
+            this.radioButton_CSD5.Location = new System.Drawing.Point(89, 135);
             this.radioButton_CSD5.Name = "radioButton_CSD5";
             this.radioButton_CSD5.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD5.TabIndex = 49;
@@ -2385,11 +2695,13 @@
             this.radioButton_CSD5.Text = "0.005";
             this.radioButton_CSD5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD5.UseVisualStyleBackColor = true;
+            this.radioButton_CSD5.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // radioButton_CSD990
             // 
+            this.radioButton_CSD990.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton_CSD990.AutoSize = true;
-            this.radioButton_CSD990.Location = new System.Drawing.Point(89, 45);
+            this.radioButton_CSD990.Location = new System.Drawing.Point(89, 66);
             this.radioButton_CSD990.Name = "radioButton_CSD990";
             this.radioButton_CSD990.Size = new System.Drawing.Size(52, 17);
             this.radioButton_CSD990.TabIndex = 48;
@@ -2397,9 +2709,12 @@
             this.radioButton_CSD990.Text = "0.990";
             this.radioButton_CSD990.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton_CSD990.UseVisualStyleBackColor = true;
+            this.radioButton_CSD990.Click += new System.EventHandler(this.radioButtonsAlpha_Click);
             // 
             // numericUpDown_CSDDegreesOfFreedom
             // 
+            this.numericUpDown_CSDDegreesOfFreedom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown_CSDDegreesOfFreedom.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
             this.numericUpDown_CSDDegreesOfFreedom.Location = new System.Drawing.Point(137, 19);
             this.numericUpDown_CSDDegreesOfFreedom.Minimum = new decimal(new int[] {
@@ -2419,9 +2734,10 @@
             // 
             // label_CSDAlpha
             // 
+            this.label_CSDAlpha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label_CSDAlpha.AutoSize = true;
             this.label_CSDAlpha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_CSDAlpha.Location = new System.Drawing.Point(6, 72);
+            this.label_CSDAlpha.Location = new System.Drawing.Point(6, 93);
             this.label_CSDAlpha.Name = "label_CSDAlpha";
             this.label_CSDAlpha.Size = new System.Drawing.Size(19, 13);
             this.label_CSDAlpha.TabIndex = 45;
@@ -2430,6 +2746,8 @@
             // 
             // label_CSDDegreesOfFreedom
             // 
+            this.label_CSDDegreesOfFreedom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label_CSDDegreesOfFreedom.AutoSize = true;
             this.label_CSDDegreesOfFreedom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.label_CSDDegreesOfFreedom.Location = new System.Drawing.Point(6, 21);
@@ -2441,7 +2759,9 @@
             // 
             // button_CSDCriticalValue
             // 
-            this.button_CSDCriticalValue.Location = new System.Drawing.Point(6, 137);
+            this.button_CSDCriticalValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_CSDCriticalValue.Location = new System.Drawing.Point(6, 178);
             this.button_CSDCriticalValue.Name = "button_CSDCriticalValue";
             this.button_CSDCriticalValue.Size = new System.Drawing.Size(193, 23);
             this.button_CSDCriticalValue.TabIndex = 35;
@@ -2459,40 +2779,44 @@
             this.groupBox_StandardNormalDistribution.Controls.Add(this.button_SNDZPoint);
             this.groupBox_StandardNormalDistribution.Location = new System.Drawing.Point(6, 6);
             this.groupBox_StandardNormalDistribution.Name = "groupBox_StandardNormalDistribution";
-            this.groupBox_StandardNormalDistribution.Size = new System.Drawing.Size(205, 101);
+            this.groupBox_StandardNormalDistribution.Size = new System.Drawing.Size(205, 148);
             this.groupBox_StandardNormalDistribution.TabIndex = 44;
             this.groupBox_StandardNormalDistribution.TabStop = false;
             this.groupBox_StandardNormalDistribution.Text = "Standard Normal Distribution";
             // 
             // textBox_SNDProbability
             // 
+            this.textBox_SNDProbability.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_SNDProbability.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_SNDProbability.Location = new System.Drawing.Point(64, 68);
-            this.textBox_SNDProbability.MaxLength = 6;
+            this.textBox_SNDProbability.Location = new System.Drawing.Point(64, 116);
+            this.textBox_SNDProbability.MaxLength = 7;
             this.textBox_SNDProbability.Name = "textBox_SNDProbability";
-            this.textBox_SNDProbability.Size = new System.Drawing.Size(47, 20);
-            this.textBox_SNDProbability.TabIndex = 51;
+            this.textBox_SNDProbability.Size = new System.Drawing.Size(51, 20);
+            this.textBox_SNDProbability.TabIndex = 54;
             this.textBox_SNDProbability.Text = "0.0000";
             this.textBox_SNDProbability.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_SNDProbability.TextChanged += new System.EventHandler(this.textBox_SNDProbability_TextChanged);
             // 
             // textBox_SNDZPoint
             // 
+            this.textBox_SNDZPoint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_SNDZPoint.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_SNDZPoint.Location = new System.Drawing.Point(64, 27);
+            this.textBox_SNDZPoint.Location = new System.Drawing.Point(58, 28);
             this.textBox_SNDZPoint.MaxLength = 5;
             this.textBox_SNDZPoint.Name = "textBox_SNDZPoint";
-            this.textBox_SNDZPoint.Size = new System.Drawing.Size(47, 20);
-            this.textBox_SNDZPoint.TabIndex = 50;
+            this.textBox_SNDZPoint.Size = new System.Drawing.Size(57, 20);
+            this.textBox_SNDZPoint.TabIndex = 54;
             this.textBox_SNDZPoint.Text = "0.00";
             this.textBox_SNDZPoint.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_SNDZPoint.TextChanged += new System.EventHandler(this.textBox_SNDZPoint_TextChanged);
             // 
             // label_Probability
             // 
+            this.label_Probability.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Probability.AutoSize = true;
             this.label_Probability.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_Probability.Location = new System.Drawing.Point(6, 71);
+            this.label_Probability.Location = new System.Drawing.Point(6, 119);
             this.label_Probability.Name = "label_Probability";
             this.label_Probability.Size = new System.Drawing.Size(52, 13);
             this.label_Probability.TabIndex = 48;
@@ -2501,9 +2825,11 @@
             // 
             // label_ZPoint
             // 
+            this.label_ZPoint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ZPoint.AutoSize = true;
             this.label_ZPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label_ZPoint.Location = new System.Drawing.Point(6, 30);
+            this.label_ZPoint.Location = new System.Drawing.Point(6, 31);
             this.label_ZPoint.Name = "label_ZPoint";
             this.label_ZPoint.Size = new System.Drawing.Size(46, 13);
             this.label_ZPoint.TabIndex = 41;
@@ -2512,6 +2838,7 @@
             // 
             // button_SNDProbability
             // 
+            this.button_SNDProbability.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SNDProbability.Location = new System.Drawing.Point(121, 19);
             this.button_SNDProbability.Name = "button_SNDProbability";
             this.button_SNDProbability.Size = new System.Drawing.Size(78, 35);
@@ -2522,7 +2849,8 @@
             // 
             // button_SNDZPoint
             // 
-            this.button_SNDZPoint.Location = new System.Drawing.Point(121, 60);
+            this.button_SNDZPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_SNDZPoint.Location = new System.Drawing.Point(121, 107);
             this.button_SNDZPoint.Name = "button_SNDZPoint";
             this.button_SNDZPoint.Size = new System.Drawing.Size(78, 35);
             this.button_SNDZPoint.TabIndex = 37;
@@ -2550,28 +2878,52 @@
             // 
             this.richTextBox_Utilities.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox_Utilities.Location = new System.Drawing.Point(6, 357);
+            this.richTextBox_Utilities.Location = new System.Drawing.Point(6, 336);
             this.richTextBox_Utilities.Name = "richTextBox_Utilities";
             this.richTextBox_Utilities.ReadOnly = true;
-            this.richTextBox_Utilities.Size = new System.Drawing.Size(740, 148);
+            this.richTextBox_Utilities.Size = new System.Drawing.Size(740, 169);
             this.richTextBox_Utilities.TabIndex = 39;
             this.richTextBox_Utilities.Text = "";
             this.richTextBox_Utilities.TextChanged += new System.EventHandler(this.richTextBoxes_TextChanged);
             // 
             // groupBox_UtilitiesVariance
             // 
+            this.groupBox_UtilitiesVariance.Controls.Add(this.numericUpDown_UtilitiesN);
             this.groupBox_UtilitiesVariance.Controls.Add(this.textBox_UtilitiesDeviance);
-            this.groupBox_UtilitiesVariance.Controls.Add(this.textBox_UtilitiesN);
             this.groupBox_UtilitiesVariance.Controls.Add(this.label_UtilitiesDeviance);
             this.groupBox_UtilitiesVariance.Controls.Add(this.label_UtilitiesN);
             this.groupBox_UtilitiesVariance.Controls.Add(this.button_UtilitiesVariancePopulation);
             this.groupBox_UtilitiesVariance.Controls.Add(this.button_UtilitiesVarianceSample);
             this.groupBox_UtilitiesVariance.Location = new System.Drawing.Point(6, 6);
             this.groupBox_UtilitiesVariance.Name = "groupBox_UtilitiesVariance";
-            this.groupBox_UtilitiesVariance.Size = new System.Drawing.Size(216, 127);
+            this.groupBox_UtilitiesVariance.Size = new System.Drawing.Size(216, 112);
             this.groupBox_UtilitiesVariance.TabIndex = 38;
             this.groupBox_UtilitiesVariance.TabStop = false;
             this.groupBox_UtilitiesVariance.Text = "Variance";
+            // 
+            // numericUpDown_UtilitiesN
+            // 
+            this.numericUpDown_UtilitiesN.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
+            this.numericUpDown_UtilitiesN.Location = new System.Drawing.Point(132, 45);
+            this.numericUpDown_UtilitiesN.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.numericUpDown_UtilitiesN.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_UtilitiesN.Name = "numericUpDown_UtilitiesN";
+            this.numericUpDown_UtilitiesN.Size = new System.Drawing.Size(78, 20);
+            this.numericUpDown_UtilitiesN.TabIndex = 30;
+            this.numericUpDown_UtilitiesN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDown_UtilitiesN.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // textBox_UtilitiesDeviance
             // 
@@ -2585,19 +2937,6 @@
             this.textBox_UtilitiesDeviance.Text = "0";
             this.textBox_UtilitiesDeviance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_UtilitiesDeviance.TextChanged += new System.EventHandler(this.textBoxes_Utilities_TextChanged);
-            // 
-            // textBox_UtilitiesN
-            // 
-            this.textBox_UtilitiesN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_UtilitiesN.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.textBox_UtilitiesN.Location = new System.Drawing.Point(132, 45);
-            this.textBox_UtilitiesN.Name = "textBox_UtilitiesN";
-            this.textBox_UtilitiesN.Size = new System.Drawing.Size(78, 20);
-            this.textBox_UtilitiesN.TabIndex = 29;
-            this.textBox_UtilitiesN.Text = "1";
-            this.textBox_UtilitiesN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_UtilitiesN.TextChanged += new System.EventHandler(this.textBox_UtilitiesN_TextChanged);
             // 
             // label_UtilitiesDeviance
             // 
@@ -2624,7 +2963,7 @@
             // button_UtilitiesVariancePopulation
             // 
             this.button_UtilitiesVariancePopulation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_UtilitiesVariancePopulation.Location = new System.Drawing.Point(6, 86);
+            this.button_UtilitiesVariancePopulation.Location = new System.Drawing.Point(6, 71);
             this.button_UtilitiesVariancePopulation.Name = "button_UtilitiesVariancePopulation";
             this.button_UtilitiesVariancePopulation.Size = new System.Drawing.Size(78, 35);
             this.button_UtilitiesVariancePopulation.TabIndex = 0;
@@ -2635,7 +2974,7 @@
             // button_UtilitiesVarianceSample
             // 
             this.button_UtilitiesVarianceSample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_UtilitiesVarianceSample.Location = new System.Drawing.Point(132, 86);
+            this.button_UtilitiesVarianceSample.Location = new System.Drawing.Point(132, 71);
             this.button_UtilitiesVarianceSample.Name = "button_UtilitiesVarianceSample";
             this.button_UtilitiesVarianceSample.Size = new System.Drawing.Size(78, 35);
             this.button_UtilitiesVarianceSample.TabIndex = 3;
@@ -2647,14 +2986,13 @@
             // 
             this.groupBox_CoefficientOfVariation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CoefficientOfVariation.Controls.Add(this.button_UtilitiesCoefficientOfVariationSample);
-            this.groupBox_CoefficientOfVariation.Controls.Add(this.button_UtilitiesCoefficientOfVariationPopulation);
             this.groupBox_CoefficientOfVariation.Controls.Add(this.textBox_UtilitiesMeanForCoefficientOfVariation);
             this.groupBox_CoefficientOfVariation.Controls.Add(this.textBox_UtilitiesStandardDeviationForCoefficientOfVariation);
             this.groupBox_CoefficientOfVariation.Controls.Add(this.label_UtilitiesStandardDeviationForCoefficientOfVariation);
             this.groupBox_CoefficientOfVariation.Controls.Add(this.label_UtilitiesMeanForCoefficientOfVariation);
             this.groupBox_CoefficientOfVariation.Location = new System.Drawing.Point(530, 6);
             this.groupBox_CoefficientOfVariation.Name = "groupBox_CoefficientOfVariation";
-            this.groupBox_CoefficientOfVariation.Size = new System.Drawing.Size(216, 127);
+            this.groupBox_CoefficientOfVariation.Size = new System.Drawing.Size(216, 112);
             this.groupBox_CoefficientOfVariation.TabIndex = 36;
             this.groupBox_CoefficientOfVariation.TabStop = false;
             this.groupBox_CoefficientOfVariation.Text = "Coefficient of Variation";
@@ -2662,24 +3000,13 @@
             // button_UtilitiesCoefficientOfVariationSample
             // 
             this.button_UtilitiesCoefficientOfVariationSample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_UtilitiesCoefficientOfVariationSample.Location = new System.Drawing.Point(132, 71);
+            this.button_UtilitiesCoefficientOfVariationSample.Location = new System.Drawing.Point(8, 83);
             this.button_UtilitiesCoefficientOfVariationSample.Name = "button_UtilitiesCoefficientOfVariationSample";
-            this.button_UtilitiesCoefficientOfVariationSample.Size = new System.Drawing.Size(78, 50);
+            this.button_UtilitiesCoefficientOfVariationSample.Size = new System.Drawing.Size(204, 23);
             this.button_UtilitiesCoefficientOfVariationSample.TabIndex = 6;
-            this.button_UtilitiesCoefficientOfVariationSample.Text = "Coefficient of Variation Sample";
+            this.button_UtilitiesCoefficientOfVariationSample.Text = "Coefficient of Variation";
             this.button_UtilitiesCoefficientOfVariationSample.UseVisualStyleBackColor = true;
             this.button_UtilitiesCoefficientOfVariationSample.Click += new System.EventHandler(this.button_UtilitiesCoefficientOfVariationSample_Click);
-            // 
-            // button_UtilitiesCoefficientOfVariationPopulation
-            // 
-            this.button_UtilitiesCoefficientOfVariationPopulation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_UtilitiesCoefficientOfVariationPopulation.Location = new System.Drawing.Point(6, 71);
-            this.button_UtilitiesCoefficientOfVariationPopulation.Name = "button_UtilitiesCoefficientOfVariationPopulation";
-            this.button_UtilitiesCoefficientOfVariationPopulation.Size = new System.Drawing.Size(78, 50);
-            this.button_UtilitiesCoefficientOfVariationPopulation.TabIndex = 5;
-            this.button_UtilitiesCoefficientOfVariationPopulation.Text = "Coefficient of Variation Population";
-            this.button_UtilitiesCoefficientOfVariationPopulation.UseVisualStyleBackColor = true;
-            this.button_UtilitiesCoefficientOfVariationPopulation.Click += new System.EventHandler(this.button_UtilitiesCoefficientOfVariationPopulation_Click);
             // 
             // textBox_UtilitiesMeanForCoefficientOfVariation
             // 
@@ -2736,7 +3063,7 @@
             this.groupBox_UtilitiesStandardDeviation.Controls.Add(this.textBox_UtilitiesVariance);
             this.groupBox_UtilitiesStandardDeviation.Controls.Add(this.label_UtilitiesVariance);
             this.groupBox_UtilitiesStandardDeviation.Controls.Add(this.button_UtilitiesStandardDeviation);
-            this.groupBox_UtilitiesStandardDeviation.Location = new System.Drawing.Point(6, 277);
+            this.groupBox_UtilitiesStandardDeviation.Location = new System.Drawing.Point(6, 256);
             this.groupBox_UtilitiesStandardDeviation.Name = "groupBox_UtilitiesStandardDeviation";
             this.groupBox_UtilitiesStandardDeviation.Size = new System.Drawing.Size(740, 74);
             this.groupBox_UtilitiesStandardDeviation.TabIndex = 37;
@@ -2789,7 +3116,7 @@
             this.groupBox_UtilitiesZScore.Controls.Add(this.textBox_UtilitiesMeanForZScore);
             this.groupBox_UtilitiesZScore.Controls.Add(this.textBox_UtilitiesStandardDeviationForZScore);
             this.groupBox_UtilitiesZScore.Controls.Add(this.textBox_UtilitiesItemForZScore);
-            this.groupBox_UtilitiesZScore.Location = new System.Drawing.Point(6, 142);
+            this.groupBox_UtilitiesZScore.Location = new System.Drawing.Point(6, 124);
             this.groupBox_UtilitiesZScore.Name = "groupBox_UtilitiesZScore";
             this.groupBox_UtilitiesZScore.Size = new System.Drawing.Size(216, 126);
             this.groupBox_UtilitiesZScore.TabIndex = 35;
@@ -2890,7 +3217,7 @@
             this.groupBox_UtilitiesTScore.Controls.Add(this.textBox_UtilitiesMeanForTScore);
             this.groupBox_UtilitiesTScore.Controls.Add(this.label_UtilitiesMeanForTScore);
             this.groupBox_UtilitiesTScore.Controls.Add(this.textBox_UtilitiesStandardDeviationForTScore);
-            this.groupBox_UtilitiesTScore.Location = new System.Drawing.Point(530, 142);
+            this.groupBox_UtilitiesTScore.Location = new System.Drawing.Point(530, 124);
             this.groupBox_UtilitiesTScore.Name = "groupBox_UtilitiesTScore";
             this.groupBox_UtilitiesTScore.Size = new System.Drawing.Size(216, 126);
             this.groupBox_UtilitiesTScore.TabIndex = 34;
@@ -3020,13 +3347,21 @@
             this.tabPage_DiscreteParametricDistributions.ResumeLayout(false);
             this.groupBox_HypergeometricDistribution.ResumeLayout(false);
             this.groupBox_HypergeometricDistribution.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_nHypergeometricDistribution)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_qDownHypergeometricDistribution)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_qUpHypergeometricDistribution)).EndInit();
             this.groupBox_BinomialDistribution.ResumeLayout(false);
             this.groupBox_BinomialDistribution.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_nBinomialDistribution)).EndInit();
             this.tabPage_ContinuousParametricDistributions.ResumeLayout(false);
             this.tabPage_ContinuousParametricDistributions.PerformLayout();
             this.tabPage_CovarianceAndCorrelation.ResumeLayout(false);
             this.tabPage_CovarianceAndCorrelation.PerformLayout();
             this.tabPage_Tables.ResumeLayout(false);
+            this.groupBox_FDistribution.ResumeLayout(false);
+            this.groupBox_FDistribution.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FDDegreesOfFreedomMSw)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_FDDegreesOfFreedomMSb)).EndInit();
             this.groupBox_TDistribution.ResumeLayout(false);
             this.groupBox_TDistribution.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TDDegreesOfFreedom)).EndInit();
@@ -3038,6 +3373,7 @@
             this.tabPage_Utilities.ResumeLayout(false);
             this.groupBox_UtilitiesVariance.ResumeLayout(false);
             this.groupBox_UtilitiesVariance.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UtilitiesN)).EndInit();
             this.groupBox_CoefficientOfVariation.ResumeLayout(false);
             this.groupBox_CoefficientOfVariation.PerformLayout();
             this.groupBox_UtilitiesStandardDeviation.ResumeLayout(false);
@@ -3154,20 +3490,16 @@
         private System.Windows.Forms.Panel panel_DiscreteParametricDistributions;
         private System.Windows.Forms.RichTextBox richTextBox_ProbabilityDistributions;
         private System.Windows.Forms.Label label_pBinomialDistribution;
-        private System.Windows.Forms.TextBox textBox_nBinomialDistribution;
         private System.Windows.Forms.Label label_nBinomialDistribution;
         private System.Windows.Forms.TextBox textBox_pBinomialDistribution;
         private System.Windows.Forms.RichTextBox richTextBox_DiscreteParametricDistributions;
         private System.Windows.Forms.GroupBox groupBox_HypergeometricDistribution;
         private System.Windows.Forms.Label label_qUpHypergeometricDistribution;
-        private System.Windows.Forms.TextBox textBox_qUpHypergeometricDistribution;
-        private System.Windows.Forms.TextBox textBox_qDownHypergeometricDistribution;
         private System.Windows.Forms.Button button_MFOfHypergeometricDistribution;
         private System.Windows.Forms.Label label_qDownHypergeometricDistribution;
         private System.Windows.Forms.Button button_CDFOfHypergeometricDistribution;
         private System.Windows.Forms.GroupBox groupBox_BinomialDistribution;
         private System.Windows.Forms.Label label_nHypergeometricDistribution;
-        private System.Windows.Forms.TextBox textBox_nHypergeometricDistribution;
         private System.Windows.Forms.TabControl tabControl_ParametricDistributions;
         private System.Windows.Forms.TabPage tabPage_DiscreteParametricDistributions;
         private System.Windows.Forms.TabPage tabPage_ContinuousParametricDistributions;
@@ -3190,8 +3522,6 @@
         private System.Windows.Forms.Button button_SNDProbability;
         private System.Windows.Forms.Button button_SNDZPoint;
         private System.Windows.Forms.RichTextBox richTextBox_Tables;
-        private System.Windows.Forms.TextBox textBox_SNDProbability;
-        private System.Windows.Forms.TextBox textBox_SNDZPoint;
         private System.Windows.Forms.NumericUpDown numericUpDown_CSDDegreesOfFreedom;
         private System.Windows.Forms.RadioButton radioButton_CSD10;
         private System.Windows.Forms.RadioButton radioButton_CSD995;
@@ -3231,7 +3561,6 @@
         private System.Windows.Forms.Button button_UtilitiesStandardDeviation;
         private System.Windows.Forms.Label label_UtilitiesVariance;
         private System.Windows.Forms.Button button_UtilitiesCoefficientOfVariationSample;
-        private System.Windows.Forms.Button button_UtilitiesCoefficientOfVariationPopulation;
         private System.Windows.Forms.Label label_UtilitiesMeanForCoefficientOfVariation;
         private System.Windows.Forms.Label label_UtilitiesStandardDeviationForCoefficientOfVariation;
         private System.Windows.Forms.Label label_UtilitiesZScoreForTScore;
@@ -3244,7 +3573,6 @@
         private System.Windows.Forms.Label label_XPercentile;
         private System.Windows.Forms.GroupBox groupBox_UtilitiesVariance;
         private System.Windows.Forms.TextBox textBox_UtilitiesDeviance;
-        private System.Windows.Forms.TextBox textBox_UtilitiesN;
         private System.Windows.Forms.GroupBox groupBox_CoefficientOfVariation;
         private System.Windows.Forms.TextBox textBox_UtilitiesMeanForCoefficientOfVariation;
         private System.Windows.Forms.TextBox textBox_UtilitiesStandardDeviationForCoefficientOfVariation;
@@ -3269,6 +3597,25 @@
         private System.Windows.Forms.Label label_FirstVariable;
         private System.Windows.Forms.Label label_CardinalitySecondVariable;
         private System.Windows.Forms.Label label_CardinalityFirstVariable;
+        private System.Windows.Forms.Label label_TablesWarning;
+        private System.Windows.Forms.TextBox textBox_SNDZPoint;
+        private System.Windows.Forms.TextBox textBox_SNDProbability;
+        private System.Windows.Forms.NumericUpDown numericUpDown_nHypergeometricDistribution;
+        private System.Windows.Forms.NumericUpDown numericUpDown_qDownHypergeometricDistribution;
+        private System.Windows.Forms.NumericUpDown numericUpDown_qUpHypergeometricDistribution;
+        private System.Windows.Forms.NumericUpDown numericUpDown_nBinomialDistribution;
+        private System.Windows.Forms.GroupBox groupBox_FDistribution;
+        private System.Windows.Forms.RadioButton radioButton_FD01;
+        private System.Windows.Forms.RadioButton radioButton_FD10;
+        private System.Windows.Forms.RadioButton radioButton_FD05;
+        private System.Windows.Forms.RadioButton radioButton_FD025;
+        private System.Windows.Forms.NumericUpDown numericUpDown_FDDegreesOfFreedomMSb;
+        private System.Windows.Forms.Label label_FDAlpha;
+        private System.Windows.Forms.Label label_FDDegreesOfFreedom1;
+        private System.Windows.Forms.Button button_FDCriticalF;
+        private System.Windows.Forms.NumericUpDown numericUpDown_FDDegreesOfFreedomMSw;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown numericUpDown_UtilitiesN;
 
     }
 }
