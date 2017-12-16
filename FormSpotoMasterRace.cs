@@ -666,7 +666,7 @@ namespace SpotoMasterRace
         private void button_CopySet_Click(object sender, EventArgs e)
         {
             button_NewSet_Click(sender, e);
-            if (sets.Count > 0)
+            if (sets.Count > 0 && selectedSetIndex >= 0)
                 foreach (string item in sets[selectedSetIndex].Elements)
                     tempSetSetTheory.Elements.Add(item);
             Update_TempSet_Listboxes();
