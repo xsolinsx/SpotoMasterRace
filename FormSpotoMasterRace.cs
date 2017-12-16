@@ -1638,6 +1638,7 @@ namespace SpotoMasterRace
                 probabilities[i] += previous;
                 previous = probabilities[i];
             }
+            probabilities.Add(1);
             if (!CorrectApproximation(probabilities))
             {
                 MessageBox.Show("The computer has its limits too, this goes far beyond its limits because the numbers become too small to be approximated correctly.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1751,6 +1752,7 @@ namespace SpotoMasterRace
                 probabilities[i] += previous;
                 previous = probabilities[i];
             }
+            probabilities.Add(1);
             if (!CorrectApproximation(probabilities))
             {
                 MessageBox.Show("The computer has its limits too, this goes far beyond its limits because the numbers become too small to be approximated correctly.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
