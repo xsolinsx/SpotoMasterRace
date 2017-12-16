@@ -31,7 +31,6 @@ namespace SpotoMasterRace
         private int selectedElementIndex;
         private BindingList<ClassSet<string>> sets;
         private ClassSet<string> tempSetSetTheory;
-        private bool warn = true;
 
         #endregion Set Theory
 
@@ -466,15 +465,6 @@ namespace SpotoMasterRace
 
         #region Misc
 
-        private void textBox_Element_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox_Element.Text.Contains(",") && warn)
-            {
-                MessageBox.Show("YOU MUST INSERT ONLY ONE ELEMENT AT A TIME!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                warn = false;
-            }
-        }
-
         private void checkBox_FlagOrdered_CheckedChanged(object sender, EventArgs e)
         {
             tempSetSetTheory.Ordered = checkBox_FlagOrdered.Checked;
@@ -565,10 +555,7 @@ namespace SpotoMasterRace
             try
             {
                 selectedElementIndex = listBox_Elements.SelectedIndex;
-                if (listBox_Elements.SelectedItem.ToString().Contains(","))
-                    warn = false;
                 textBox_Element.Text = listBox_Elements.SelectedItem.ToString();
-                warn = true;
             }
             catch (Exception ex)
             { ExceptionHandler(ex); }
@@ -588,7 +575,6 @@ namespace SpotoMasterRace
 
         private void button_InsertElement_Click(object sender, EventArgs e)
         {
-            warn = false;
             string element = textBox_Element.Text == "" ? "{}" : textBox_Element.Text;
             if (!tempSetSetTheory.Ordered)
             {

@@ -621,7 +621,6 @@
             this.textBox_Element.Size = new System.Drawing.Size(218, 20);
             this.textBox_Element.TabIndex = 4;
             this.textBox_Element.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_Element.TextChanged += new System.EventHandler(this.textBox_Element_TextChanged);
             this.textBox_Element.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Element_KeyDown);
             // 
             // button_InsertElement
