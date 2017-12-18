@@ -1236,12 +1236,12 @@ namespace SpotoMasterRace
             if (textBox_OutcomeSpaceProbabilityTheory.Text != "")
             {
                 label_CardinalityOutcomeSpaceProbabilityTheory.Text = "|Ω| = " + outcomeSpaceProbabilityTheory.Count.ToString();
-                label_CardinalitySpaceOfEventsProbabilityTheory.Text = "|ε| = " + Math.Pow(2.0, outcomeSpaceProbabilityTheory.Count).ToString();
+                label_CardinalitySpaceOfEventsProbabilityTheory.Text = "|ε| = 2^" + outcomeSpaceProbabilityTheory.Count;
             }
             else
             {
                 label_CardinalityOutcomeSpaceProbabilityTheory.Text = "|Ω| = 0";
-                label_CardinalitySpaceOfEventsProbabilityTheory.Text = "|ε| = 1";
+                label_CardinalitySpaceOfEventsProbabilityTheory.Text = "|ε| = 2^0";
             }
             label_ProbabilityOfX.Text = "Probability of X: ";
             listBox_SpaceOfEvents.DataSource = new BindingList<ClassSet<string>>();
@@ -1308,12 +1308,12 @@ namespace SpotoMasterRace
             if (textBox_OutcomeSpaceProbabilityDistributions.Text != "")
             {
                 label_CardinalityOutcomeSpaceProbabilityDistributions.Text = "|Ω| = " + outcomeSpaceProbabilityDistributions.Count.ToString();
-                label_CardinalitySpaceOfEventsProbabilityDistributions.Text = "|ε| = " + Math.Pow(2.0, outcomeSpaceProbabilityDistributions.Count).ToString();
+                label_CardinalitySpaceOfEventsProbabilityDistributions.Text = "|ε| = 2^" + outcomeSpaceProbabilityDistributions.Count;
             }
             else
             {
                 label_CardinalityOutcomeSpaceProbabilityDistributions.Text = "|Ω| = 0";
-                label_CardinalitySpaceOfEventsProbabilityDistributions.Text = "|ε| = 1";
+                label_CardinalitySpaceOfEventsProbabilityDistributions.Text = "|ε| = 2^0";
             }
         }
 
