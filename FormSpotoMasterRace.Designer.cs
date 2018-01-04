@@ -1641,7 +1641,7 @@
             0,
             0,
             0});
-            this.numericUpDown_nHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDowns_qDownAndNHypergeometricDistribution_ValueChanged);
+            this.numericUpDown_nHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDowns_HypergeometricDistribution_ValueChanged);
             // 
             // numericUpDown_qDownHypergeometricDistribution
             // 
@@ -1653,7 +1653,7 @@
             -1,
             0});
             this.numericUpDown_qDownHypergeometricDistribution.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -1662,11 +1662,11 @@
             this.numericUpDown_qDownHypergeometricDistribution.TabIndex = 46;
             this.numericUpDown_qDownHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_qDownHypergeometricDistribution.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
-            this.numericUpDown_qDownHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDowns_qDownAndNHypergeometricDistribution_ValueChanged);
+            this.numericUpDown_qDownHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDowns_HypergeometricDistribution_ValueChanged);
             // 
             // numericUpDown_qUpHypergeometricDistribution
             // 
@@ -1678,7 +1678,7 @@
             -1,
             0});
             this.numericUpDown_qUpHypergeometricDistribution.Minimum = new decimal(new int[] {
-            1,
+            3,
             0,
             0,
             0});
@@ -1687,11 +1687,11 @@
             this.numericUpDown_qUpHypergeometricDistribution.TabIndex = 45;
             this.numericUpDown_qUpHypergeometricDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_qUpHypergeometricDistribution.Value = new decimal(new int[] {
-            1,
+            3,
             0,
             0,
             0});
-            this.numericUpDown_qUpHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDown_qUpHypergeometricDistribution_ValueChanged);
+            this.numericUpDown_qUpHypergeometricDistribution.ValueChanged += new System.EventHandler(this.numericUpDowns_HypergeometricDistribution_ValueChanged);
             // 
             // label_nHypergeometricDistribution
             // 
@@ -2241,7 +2241,7 @@
             this.numericUpDown_FDDegreesOfFreedomMSw.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown_FDDegreesOfFreedomMSw.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold);
-            this.numericUpDown_FDDegreesOfFreedomMSw.Location = new System.Drawing.Point(9, 76);
+            this.numericUpDown_FDDegreesOfFreedomMSw.Location = new System.Drawing.Point(6, 76);
             this.numericUpDown_FDDegreesOfFreedomMSw.Maximum = new decimal(new int[] {
             121,
             0,
@@ -2253,7 +2253,7 @@
             0,
             0});
             this.numericUpDown_FDDegreesOfFreedomMSw.Name = "numericUpDown_FDDegreesOfFreedomMSw";
-            this.numericUpDown_FDDegreesOfFreedomMSw.Size = new System.Drawing.Size(153, 20);
+            this.numericUpDown_FDDegreesOfFreedomMSw.Size = new System.Drawing.Size(156, 20);
             this.numericUpDown_FDDegreesOfFreedomMSw.TabIndex = 59;
             this.numericUpDown_FDDegreesOfFreedomMSw.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown_FDDegreesOfFreedomMSw.Value = new decimal(new int[] {
@@ -3314,7 +3314,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tabControl_SpotoMasterRace);
-            this.MinimumSize = new System.Drawing.Size(3, 3);
+            this.MinimumSize = new System.Drawing.Size(16, 39);
             this.Name = "FormSpotoMasterRace";
             this.Text = "SpotoMasterRace";
             this.SizeChanged += new System.EventHandler(this.FormSpotoMasterRace_SizeChanged);

@@ -1575,38 +1575,21 @@ namespace SpotoMasterRace
             return probabilities;
         }
 
-        private void numericUpDown_qUpHypergeometricDistribution_ValueChanged(object sender, EventArgs e)
+        private void numericUpDowns_HypergeometricDistribution_ValueChanged(object sender, EventArgs e)
         {
-            try
+            if (//Q > q
+                numericUpDown_qUpHypergeometricDistribution.Value < numericUpDown_qDownHypergeometricDistribution.Value ||
+                //Q > n
+                numericUpDown_qUpHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value ||
+                //q > n
+                numericUpDown_qDownHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value ||
+                //Q - q > n
+                numericUpDown_qUpHypergeometricDistribution.Value - numericUpDown_qDownHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value)
             {
-                if (numericUpDown_qUpHypergeometricDistribution.Value == 0)
-                    throw new Exception();
-                if (numericUpDown_qUpHypergeometricDistribution.Value < numericUpDown_qDownHypergeometricDistribution.Value)
-                    numericUpDown_qDownHypergeometricDistribution.Value = 1;
-                if (numericUpDown_qUpHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value)
-                    numericUpDown_nHypergeometricDistribution.Value = 1;
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler(ex);
-                MessageBox.Show("Incorrect input.\nQ must be higher than 0.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                numericUpDown_qUpHypergeometricDistribution.Value = 1;
-            }
-        }
-
-        private void numericUpDowns_qDownAndNHypergeometricDistribution_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (((NumericUpDown)sender).Value == 0 ||
-                    ((NumericUpDown)sender).Value > numericUpDown_qUpHypergeometricDistribution.Value)
-                    throw new Exception();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler(ex);
-                MessageBox.Show("Incorrect input.\nq and n must be higher than 0 but lower than Q.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ((NumericUpDown)sender).Value = 1;
+                MessageBox.Show("Incorrect input.\nValues will be restored to default.\nQ must be higher than q and n.\nq must be higher than n.\nQ - q must be higher than n.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                numericUpDown_nHypergeometricDistribution.Value = 1;
+                numericUpDown_qDownHypergeometricDistribution.Value = 2;
+                numericUpDown_qUpHypergeometricDistribution.Value = 3;
             }
         }
 
