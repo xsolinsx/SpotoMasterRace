@@ -1582,11 +1582,9 @@ namespace SpotoMasterRace
                 //Q > n
                 numericUpDown_qUpHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value ||
                 //q > n
-                numericUpDown_qDownHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value ||
-                //Q - q > n
-                numericUpDown_qUpHypergeometricDistribution.Value - numericUpDown_qDownHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value)
+                numericUpDown_qDownHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value)
             {
-                MessageBox.Show("Incorrect input.\nValues will be restored to default.\nQ must be higher than q and n.\nq must be higher than n.\nQ - q must be higher than n.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect input.\nValues will be restored to default.\nQ must be higher than q and n.\nq must be higher than n.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 numericUpDown_nHypergeometricDistribution.Value = 1;
                 numericUpDown_qDownHypergeometricDistribution.Value = 2;
                 numericUpDown_qUpHypergeometricDistribution.Value = 3;
@@ -1608,7 +1606,6 @@ namespace SpotoMasterRace
         {
             button_ResetDiscreteParametricDistributions_Click(sender, e);
             List<double> probabilities = new List<double>(BinomialDistributionIntro());
-            probabilities.Sort();
             double previous = 0;
             probabilities.Insert(0, 0);
             if (!CorrectApproximation(probabilities) || !CorrectSum(probabilities))
@@ -1631,8 +1628,13 @@ namespace SpotoMasterRace
             for (int i = 0; i < xValues.Length; i++)
                 xValues[i] = i;
             richTextBox_DiscreteParametricDistributions.Text = "These are the values of the Binomial Distribution with n = " + numericUpDown_nBinomialDistribution.Value + " and p = " + textBox_pBinomialDistribution.Text + "\n";
-            for (int i = 0; i < probabilities.Count; i++)
-                richTextBox_DiscreteParametricDistributions.AppendText("The probability from -∞ to " + i + " successes is " + probabilities[i] + "\n");
+            for (int i = 1; i < probabilities.Count; i++)
+            {
+                richTextBox_DiscreteParametricDistributions.AppendText("The probability of the extraction of ");
+                for (int j = 0; j < i; j++)
+                    richTextBox_DiscreteParametricDistributions.AppendText(j + (j + 1 != i ? " OR " : ""));
+                richTextBox_DiscreteParametricDistributions.AppendText(" successes is " + probabilities[i] + "\n");
+            }
             FixView(viewDiscreteParametricDistributions, panel_DiscreteParametricDistributions, sheetDiscreteParametricDistributions, -probabilities.Count - 1, probabilities.Count + 1);
             DrawAxes(sheetDiscreteParametricDistributions, viewDiscreteParametricDistributions);
             for (int x = 0; x < probabilities.Count; x++)
@@ -1722,7 +1724,6 @@ namespace SpotoMasterRace
         {
             button_ResetDiscreteParametricDistributions_Click(sender, e);
             List<double> probabilities = new List<double>(HypergeometricDistributionIntro());
-            probabilities.Sort();
             double previous = 0;
             probabilities.Insert(0, 0);
             if (!CorrectApproximation(probabilities) || !CorrectSum(probabilities))
@@ -1735,7 +1736,6 @@ namespace SpotoMasterRace
                 probabilities[i] += previous;
                 previous = probabilities[i];
             }
-            probabilities.Add(1);
             if (!CorrectApproximation(probabilities))
             {
                 MessageBox.Show("The computer has its limits too, this goes far beyond its limits because the numbers become too small to be approximated correctly.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
