@@ -1577,11 +1577,11 @@ namespace SpotoMasterRace
 
         private void numericUpDowns_HypergeometricDistribution_ValueChanged(object sender, EventArgs e)
         {
-            if (//Q > q
+            if (//Q >= q
                 numericUpDown_qUpHypergeometricDistribution.Value < numericUpDown_qDownHypergeometricDistribution.Value ||
-                //Q > n
+                //Q >= n
                 numericUpDown_qUpHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value ||
-                //q > n
+                //q >= n
                 numericUpDown_qDownHypergeometricDistribution.Value < numericUpDown_nHypergeometricDistribution.Value)
             {
                 MessageBox.Show("Incorrect input.\nValues will be restored to default.\nQ must be higher than q and n.\nq must be higher than n.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);

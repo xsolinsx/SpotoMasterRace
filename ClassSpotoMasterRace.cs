@@ -904,7 +904,10 @@ namespace SpotoMasterRace
         {
             double[] probabilities = new double[n + 1];
             for (uint i = 0; i < probabilities.Length; i++)
-                probabilities[i] = FactorialOf(n) * BinomialCoefficient(q, i) * BinomialCoefficient(Q - q, n - i) * (FactorialOf(Q - n) / FactorialOf(Q));
+                if (i >= n + q - Q)
+                    probabilities[i] = FactorialOf(n) * BinomialCoefficient(q, i) * BinomialCoefficient(Q - q, n - i) * (FactorialOf(Q - n) / FactorialOf(Q));
+                else
+                    probabilities[i] = 0;
             return probabilities;
         }
 
