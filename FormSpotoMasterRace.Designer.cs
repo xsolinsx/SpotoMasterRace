@@ -1272,11 +1272,6 @@
             0,
             0,
             0});
-            this.numericUpDown_CombinatoricsK.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDown_CombinatoricsK.Name = "numericUpDown_CombinatoricsK";
             this.numericUpDown_CombinatoricsK.Size = new System.Drawing.Size(78, 20);
             this.numericUpDown_CombinatoricsK.TabIndex = 28;
